@@ -1,0 +1,67 @@
+:root {
+  --background-color: #F7FAFF;
+  --main-color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+.page-container {
+  position: relative;
+  width: 100%;
+  max-width: 1080px !important;
+  margin: 0 auto;
+}
+
+@font-face {
+  font-family: 'Goudy Oldstyle Std';
+  src: url('GoudyStd.eot');
+  src: local('./assets/fonts/Goudy Oldstyle Std Regular'), local('./assets/fonts/GoudyStd'),
+      url('GoudyStd.woff2') format('woff2'),
+      url('GoudyStd.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Goudy Oldstyle Std';
+  src: url('GoudyStd-BoldItalic.eot');
+  src: local('./assets/fonts/Goudy Oldstyle Std Bold Italic'), local('./assets/fonts/GoudyStd-BoldItalic'),
+      url('GoudyStd-BoldItalic.woff2') format('woff2'),
+      url('GoudyStd-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Goudy Oldstyle Std';
+  src: url('GoudyStd-Bold.eot');
+  src: local('./assets/fonts/Goudy Oldstyle Std Bold'), local('./assets/fonts/GoudyStd-Bold'),
+      url('GoudyStd-Bold.woff2') format('woff2'),
+      url('GoudyStd-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Goudy Oldstyle Std';
+  src: url('GoudyStd-Italic.eot');
+  src: local('./assets/fonts/Goudy Oldstyle Std Italic'), local('./assets/fonts/GoudyStd-Italic'),
+      url('GoudyStd-Italic.woff2') format('woff2'),
+      url('GoudyStd-Italic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+

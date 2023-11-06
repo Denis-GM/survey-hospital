@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="main">
+    <app-header></app-header>
+    <div class="main__content">
+      <app-layout title="Вход">
+        <form class="form" [formGroup]="testForm" onsubmit=""> 
+          <div class="form__body">
+            <tui-input formControlName="testValue" tuiTextfieldSize="m" class="input_margin-bottom_20px">
+              Логин
+              <input autocomplete="email" tuiTextfield type="text" />
+            </tui-input>  
+            <tui-input formControlName="testValue" tuiTextfieldSize="m" class="input_margin-bottom_10px">
+              Пароль
+              <input autocomplete="email" tuiTextfield type="password" />
+            </tui-input> 
+            <div class="inscription-top">Забыли пароль?</div>
+          </div>
+          <div class="form__footer">
+            <button appearance="primary" size="m" tuiButton type="submit" class="tui-space_right-3 tui-space_bottom-3 btn">
+              Войти
+            </button>
+            <div class="inscription-bottom">Еще нет аккаунта? Зарегистрируйтесь</div>
+          </div>
+        </form>
+      </app-layout>
+    </div>
+  </div>
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
+</div>
