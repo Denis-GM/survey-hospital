@@ -1,2 +1,44 @@
-<app-header></app-header>
-<p>registration works!</p>
+<div class="wrapper">
+  <div class="main">
+    <app-header></app-header>
+    <div class="main__content">
+      <app-layout title="Регистрация">
+        <form class="form" [formGroup]="regForm" (ngSubmit)="submit()"> 
+          <div class="form__body">
+            <tui-select tuiTextfieldSize="m" class="tui-space_vertical-4 input_margin-bottom_20px" 
+              formControlName="role">
+              Роль
+              <input placeholder="Choose your hero" tuiTextfield name="role"/>
+              <tui-data-list-wrapper *tuiDataList [items]="items"></tui-data-list-wrapper>
+            </tui-select>
+            <tui-input formControlName="email" tuiTextfieldSize="m" class="input_margin-bottom_20px">
+              Почта
+              <input autocomplete="email" tuiTextfield type="text" name="email"/>
+            </tui-input>
+            <tui-input formControlName="login" tuiTextfieldSize="m" class="input_margin-bottom_20px">
+              Логин
+              <input autocomplete="nickname" tuiTextfield type="text" name="login"/>
+            </tui-input>  
+            <tui-input formControlName="password1" tuiTextfieldSize="m" class="input_margin-bottom_10px">
+              Пароль
+              <input autocomplete="new-password" tuiTextfield type="password" name="password1"/>
+            </tui-input>
+            <tui-input formControlName="password2" tuiTextfieldSize="m" class="input_margin-bottom_10px">
+              Подтвердите пароль
+              <input autocomplete="new-password" tuiTextfield type="password" name="password2"/>
+            </tui-input>
+          </div>
+          <div class="form__footer">
+            <button appearance="primary" size="m" tuiButton type="submit" class="tui-space_right-3 tui-space_bottom-3 btn">
+              Зарегистрироваться
+            </button>
+            <div routerLink="/employee/account/login" class="inscription-bottom">Уже есть аккаунт? Войдите</div>
+          </div>
+        </form>
+      </app-layout>
+    </div>
+  </div>
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
+</div>

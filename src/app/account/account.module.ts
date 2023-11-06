@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { TuiInputModule } from '@taiga-ui/kit';
+import { TuiDataListWrapperModule, TuiInputModule, TuiSelectModule } from '@taiga-ui/kit';
 import {TuiHintModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 
 const routes: Routes = [
@@ -32,7 +32,9 @@ const routes: Routes = [
 
     TuiInputModule,
     TuiHintModule,
-    TuiTextfieldControllerModule
+    TuiTextfieldControllerModule,
+    TuiDataListWrapperModule,
+    TuiSelectModule 
   ],
   exports: [RouterModule]
 })

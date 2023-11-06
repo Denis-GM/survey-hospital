@@ -1,0 +1,88 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+  position: relative;
+}
+
+.main {
+	flex-grow: 1;
+  background-color: var(--background-color);
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.main__content {
+  position: relative;
+  flex-grow: 1;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  position: relative;
+	flex: 0 0 auto;
+}
+
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 50px;
+}
+
+.form__body {
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form__footer {
+  display: flex;
+  height: 20%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.input_margin-bottom_20px {
+  margin-bottom: 20px;
+}
+
+.input_margin-bottom_10px {
+  margin-bottom: 10px;
+}
+
+.btn {
+  width: 100%;
+  margin-bottom: 10px;
+  height: 40px !important;
+}
+
+.inscription-top {
+  color: var(--text-blue-color);
+  user-select: none;
+  cursor: pointer;
+
+  font-size: 12px;
+
+  display: flex;
+  justify-content: end;
+}
+
+.inscription-bottom {
+  color: var(--text-blue-color);
+  user-select: none;
+  cursor: pointer;
+
+  margin: 0 auto;
+
+  font-size: 12px;
+}

@@ -9,6 +9,7 @@
 
   position: relative;
   top: -2vh;
+  margin: 14% 0 10%;
 }
 
 .main-block__container {
@@ -17,6 +18,7 @@
 
 .main-block__title {
   font-family: inherit;
+  user-select: none;
   font-size: 18px;
   font-weight: 200;
 }

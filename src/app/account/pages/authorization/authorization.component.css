@@ -67,6 +67,7 @@
 }
 
 .inscription-top {
+  color: var(--text-blue-color);
   user-select: none;
   cursor: pointer;
 
@@ -77,6 +78,7 @@
 }
 
 .inscription-bottom {
+  color: var(--text-blue-color);
   user-select: none;
   cursor: pointer;
 
