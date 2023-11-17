@@ -12,13 +12,12 @@ import { AccountModule } from './account/account.module';
 import { ListSurveysPatientComponent } from './list-surveys-patient/list-surveys-patient.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
-import { SurveysComponent } from './admin-analytical/pages/surveys/surveys.component';
+import { AdminAnalyticalModule } from "./administrative-analytical/admin-analytical.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListSurveysPatientComponent,
-    SurveysComponent,
+    ListSurveysPatientComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +28,8 @@ import { SurveysComponent } from './admin-analytical/pages/surveys/surveys.compo
     TuiRootModule,
 
     SharedModule,
-    AccountModule
+    AccountModule,
+    AdminAnalyticalModule
   ], 
   providers: [
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}

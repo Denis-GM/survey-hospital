@@ -4,12 +4,16 @@
   --main-color: rgba(255, 255, 255, 1);
   --background-color-main: rgba(255, 255, 255, 1);
   --text-blue-color: #6A88C1;
+  --nav-bar-background: rgba(150, 167, 230, 1);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
 
 html,
@@ -25,8 +29,39 @@ body {
 }
 
 @font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat ExtraLight'), local('Montserrat-ExtraLight'),
+      url('./assets/fonts/Montserrat-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Italic'), local('Montserrat-Italic'),
+      url('./assets/fonts/Montserrat-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Regular'), local('Montserrat-Regular'),
+      url('./assets/fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Medium'), local('Montserrat-Medium'),
+      url('./assets/fonts/Montserrat-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Goudy Oldstyle Std';
-  /* src: url('GoudyStd.eot'); */
   src: local('Goudy Oldstyle Std Regular'), local('GoudyStd'),
       url('./assets/fonts/GoudyStd.woff2') format('woff2');
   font-weight: normal;
@@ -36,7 +71,6 @@ body {
 
 @font-face {
   font-family: 'Goudy Oldstyle Std';
-  /* src: url('GoudyStd-BoldItalic.eot'); */
   src: local('Goudy Oldstyle Std Bold Italic'), local('GoudyStd-BoldItalic'),
       url('./assets/fonts/GoudyStd-BoldItalic.woff2') format('woff2');
   font-weight: bold;
@@ -46,7 +80,6 @@ body {
 
 @font-face {
   font-family: 'Goudy Oldstyle Std';
-  /* src: url('GoudyStd-Bold.eot'); */
   src: local('Goudy Oldstyle Std Bold'), local('GoudyStd-Bold'),
       url('./assets/fonts/GoudyStd-Bold.woff2') format('woff2');
   font-weight: bold;
@@ -56,7 +89,6 @@ body {
 
 @font-face {
   font-family: 'Goudy Oldstyle Std';
-  /* src: url('GoudyStd-Italic.eot'); */
   src: local('Goudy Oldstyle Std Italic'), local('GoudyStd-Italic'),
       url('./assets/fonts/GoudyStd-Italic.woff2') format('woff2');
   font-weight: 500;

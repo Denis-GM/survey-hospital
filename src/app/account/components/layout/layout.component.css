@@ -13,14 +13,17 @@
 }
 
 .main-block__container {
-  padding: 30px 45px 20px 45px;
+  padding: 30px 35px 20px 35px;
 }
 
 .main-block__title {
   font-family: inherit;
   user-select: none;
   font-size: 18px;
-  font-weight: 200;
+  font-weight: 400;
+  text-align: center;
+
+  color: rgba(2, 25, 107, 1);
 }
 
 .content {
@@ -28,6 +31,6 @@
   font-size: 14px;
   font-weight: 200;
 
-  width: 70%;
-  margin: 40px auto;
+  width: 75%;
+  margin: 30px auto;
 }

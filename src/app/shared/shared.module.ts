@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NavBarComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   ],
   exports: [
     FooterComponent,
+    NavBarComponent,
+
     TuiDialogModule,
     TuiAlertModule,
     TuiButtonModule,
