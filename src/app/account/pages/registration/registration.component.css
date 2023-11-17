@@ -12,6 +12,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
+
+  padding: 4% 0 4% 0;
 }
 
 .main__content {
@@ -20,6 +22,7 @@
   height: 100%;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

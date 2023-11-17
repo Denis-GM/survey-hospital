@@ -1,6 +1,8 @@
 :root {
-  --background-color: #F7FAFF;
-  --main-color: #ffffff;
+  --background-color: rgba(218, 225, 250, 1);
+  --background-color-footer: rgba(82, 110, 211, 0.19);
+  --main-color: rgba(255, 255, 255, 1);
+  --background-color-main: rgba(255, 255, 255, 1);
   --text-blue-color: #6A88C1;
 }
 
@@ -24,10 +26,9 @@ body {
 
 @font-face {
   font-family: 'Goudy Oldstyle Std';
-  src: url('GoudyStd.eot');
+  /* src: url('GoudyStd.eot'); */
   src: local('Goudy Oldstyle Std Regular'), local('GoudyStd'),
-      url('./assets/fonts/GoudyStd.woff2') format('woff2'),
-      url('./assets/fonts/GoudyStd.woff') format('woff');
+      url('./assets/fonts/GoudyStd.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -35,10 +36,9 @@ body {
 
 @font-face {
   font-family: 'Goudy Oldstyle Std';
-  src: url('GoudyStd-BoldItalic.eot');
+  /* src: url('GoudyStd-BoldItalic.eot'); */
   src: local('Goudy Oldstyle Std Bold Italic'), local('GoudyStd-BoldItalic'),
-      url('./assets/fonts/GoudyStd-BoldItalic.woff2') format('woff2'),
-      url('./assets/fonts/GoudyStd-BoldItalic.woff') format('woff');
+      url('./assets/fonts/GoudyStd-BoldItalic.woff2') format('woff2');
   font-weight: bold;
   font-style: italic;
   font-display: swap;
@@ -46,10 +46,9 @@ body {
 
 @font-face {
   font-family: 'Goudy Oldstyle Std';
-  src: url('GoudyStd-Bold.eot');
+  /* src: url('GoudyStd-Bold.eot'); */
   src: local('Goudy Oldstyle Std Bold'), local('GoudyStd-Bold'),
-      url('./assets/fonts/GoudyStd-Bold.woff2') format('woff2'),
-      url('./assets/fonts/GoudyStd-Bold.woff') format('woff');
+      url('./assets/fonts/GoudyStd-Bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -57,10 +56,9 @@ body {
 
 @font-face {
   font-family: 'Goudy Oldstyle Std';
-  src: url('GoudyStd-Italic.eot');
+  /* src: url('GoudyStd-Italic.eot'); */
   src: local('Goudy Oldstyle Std Italic'), local('GoudyStd-Italic'),
-      url('./assets/fonts/GoudyStd-Italic.woff2') format('woff2'),
-      url('./assets/fonts/GoudyStd-Italic.woff') format('woff');
+      url('./assets/fonts/GoudyStd-Italic.woff2') format('woff2');
   font-weight: 500;
   font-style: italic;
   font-display: swap;

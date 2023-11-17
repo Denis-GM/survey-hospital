@@ -9,6 +9,7 @@
   font-family: sans-serif;
   font-size: 14px;
   font-weight: 200;
+  background-color: var(--background-color-footer);
 }
 
 .footer-container {
