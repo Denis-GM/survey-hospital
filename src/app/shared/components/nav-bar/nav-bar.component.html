@@ -1,11 +1,15 @@
 <div class="container">
-	<div class="title">Survey Hospital</div>
-	<div class="nav-bar">
-		<div class="">Опросы</div>
-		<div class="">Создать опрос</div>
-		<div class="">Статистика</div>
-		<div class="">Ключ доступа</div>
-		<div class="">Выйти</div>
-	</div>
-	<div class="email">survey-hospital@yandex.ru</div>
+  <div class="nav-bar">
+    <div class="nav-bar__content">
+      <div class="title" routerLink="/employee/main/surveys">
+        <p>Survey</p><p>Hospital</p>
+      </div>
+      <app-button routerLink="/employee/main/surveys">Опросы</app-button>
+      <app-button routerLink="/employee/main/cteate-survey">Создать опрос</app-button>
+      <app-button routerLink="/employee/main/statistics">Статистика</app-button>
+      <app-button>Ключ доступа</app-button>
+      <app-button routerLink="/employee/account/login">Выйти</app-button>
+    </div>
+    <div class="email">survey-hospital@yandex.ru</div>
+  </div>
 </div>

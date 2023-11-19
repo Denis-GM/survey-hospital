@@ -1,0 +1,30 @@
+.btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+
+  border: none;
+  border-radius: 7px;
+  padding: 16px 32px 16px 32px;
+  /* width: 100%; */
+  background-color: rgba(255, 255, 255, 1);
+
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+
+  width: 15vw;
+  min-width: 150px;
+  max-width: 350px;
+}
+
+.btn:hover {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(82, 110, 211, 1);
+  transition: 300ms;
+}
+
+.btn-active {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(82, 110, 211, 1);
+  transition: 300ms;
+}

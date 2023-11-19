@@ -5,15 +5,19 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { ButtonComponent } from './components/button/button.component';
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
     FooterComponent,
     NotFoundComponent,
-    NavBarComponent
+    NavBarComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     TuiDialogModule,
     TuiAlertModule,
     TuiButtonModule,
