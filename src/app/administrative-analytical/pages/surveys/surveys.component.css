@@ -1,0 +1,9 @@
+.container {
+  width: 80%;
+  position: relative;
+  margin: 4% auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

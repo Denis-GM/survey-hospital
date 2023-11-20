@@ -7,6 +7,7 @@ import { DetailsSurveyComponent } from './pages/details-survey/details-survey.co
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { Route, Router, RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
+import { SurveyBlockComponent } from './components/survey-block/survey-block.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent, 
@@ -26,7 +27,8 @@ const routes: Routes = [
     CreateSurveysComponent,
     DetailsSurveyComponent,
     StatisticsComponent,
-    MainComponent
+    MainComponent,
+    SurveyBlockComponent
   ],
   imports: [
     CommonModule,

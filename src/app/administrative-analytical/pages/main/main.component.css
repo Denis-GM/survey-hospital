@@ -4,3 +4,9 @@
   flex-direction: row;
   position: relative;
 }
+
+.content {
+  width: 100%;
+  padding: 35px 5%;
+  background-color: var(--background-color);
+}

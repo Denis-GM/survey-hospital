@@ -13,6 +13,7 @@ import { ListSurveysPatientComponent } from './list-surveys-patient/list-surveys
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { AdminAnalyticalModule } from "./administrative-analytical/admin-analytical.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AdminAnalyticalModule } from "./administrative-analytical/admin-analyti
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
 
     TuiRootModule,
 

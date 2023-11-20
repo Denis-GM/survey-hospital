@@ -1,0 +1,13 @@
+<form class="c-form">
+  <tui-input
+    [(ngModel)]="value"
+    name = "searchText"
+    [tuiTextfieldLabelOutside]="true">
+    Поиск по названию
+    <input
+      tuiTextfield
+      type="text"
+      (input)="searchText()"
+    />
+  </tui-input>
+</form>
