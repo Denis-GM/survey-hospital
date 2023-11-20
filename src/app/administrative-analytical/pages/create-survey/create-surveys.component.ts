@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-surveys.component.css']
 })
 export class CreateSurveysComponent {
-
+  protected value: string = '';
 }

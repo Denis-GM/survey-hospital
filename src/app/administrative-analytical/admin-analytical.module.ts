@@ -8,6 +8,10 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { Route, Router, RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
 import { SurveyBlockComponent } from './components/survey-block/survey-block.component';
+import { SurveysService } from '../core/api/surveys.service';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TuiInputModule, TuiTextareaModule} from '@taiga-ui/kit';
 
 const routes: Routes = [
   { path: '', component: MainComponent, 
@@ -28,13 +32,18 @@ const routes: Routes = [
     DetailsSurveyComponent,
     StatisticsComponent,
     MainComponent,
-    SurveyBlockComponent
+    SurveyBlockComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    TuiInputModule,
+    TuiTextareaModule,
+    FormsModule,
   ],
+  providers: [SurveysService],
   exports: [RouterModule]
 })
 export class AdminAnalyticalModule { }

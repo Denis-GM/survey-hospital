@@ -1,1 +1,16 @@
-<p>create-surveys works!</p>
+<div class="header-block">
+  <h3>Создание опроса</h3>
+  <tui-input formControlName="testValue">Название опроса
+    <input tuiTextfield type="text"/>
+  </tui-input>
+  <tui-textarea class="b-form" [(ngModel)]="value" >
+    Описание
+    <textarea
+        maxlength="97"
+        tuiTextfield
+    ></textarea>
+  </tui-textarea>
+  <!-- <tui-input formControlName="testValue">Описание
+    <input tuiTextfield type="text"/>
+  </tui-input> -->
+</div>
