@@ -13,6 +13,8 @@
 
   display: grid;
   grid-template-rows: 15% 60% 25%;
+
+  padding: 2vh 2vw 0 2vw;
 }
 
 .nav-bar__content {

@@ -11,7 +11,8 @@ import { SurveyBlockComponent } from './components/survey-block/survey-block.com
 import { SurveysService } from '../core/api/surveys.service';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TuiInputModule, TuiTextareaModule} from '@taiga-ui/kit';
+import {TuiDataListWrapperModule, TuiInputModule, TuiRadioModule, TuiSelectModule, TuiTextareaModule} from '@taiga-ui/kit';
+import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 
 const routes: Routes = [
   { path: '', component: MainComponent, 
@@ -39,9 +40,15 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
+    FormsModule,
+
     TuiInputModule,
     TuiTextareaModule,
-    FormsModule,
+    TuiDataListModule,
+    TuiDataListWrapperModule,
+    TuiSelectModule,
+    TuiTextfieldControllerModule,
+    TuiRadioModule
   ],
   providers: [SurveysService],
   exports: [RouterModule]

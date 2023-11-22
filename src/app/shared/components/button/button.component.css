@@ -32,3 +32,73 @@
   background-color: rgba(82, 110, 211, 1);
   transition: 300ms;
 }
+
+@media (min-width: 320px) {
+  .btn{
+    font-size: 0.9rem;
+    font-weight: 300;
+
+    /* max-width: 190px; */
+    padding: 9px 0;
+  }
+}
+
+@media (min-width: 480px) {
+  .btn{
+    font-size: 1rem;
+    font-weight: 300;
+
+    /* max-width: 190px; */
+    padding: 10px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn{
+    font-size: 1.1rem;
+    font-weight: 400;
+
+    /* max-width: 160px; */
+    padding: 11px 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .btn{
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    /* max-width: 170px; */
+    padding: 14px 0;
+  }
+}
+
+@media (min-width: 1444px) {
+  .btn{
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    /* max-width: 170px; */
+    padding: 16px 0;
+  }
+}
+
+@media (min-width: 1600px) {
+  .btn{
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    /* max-width: 250px; */
+    padding: 18px 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .btn{
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    /* max-width: 250px; */
+    padding: 24px 0;
+  }
+}
