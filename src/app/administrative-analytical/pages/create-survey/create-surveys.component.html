@@ -14,6 +14,9 @@
     <div *ngFor="let question of questions.controls; let i=index">
 
       <div [formGroupName]="i" class="question-block">
+
+        <button class="removeQuestion" (click)="removeQuestion(i)"></button>
+
         <tui-select class="tui-space_top-4 question-block__input-type" [tuiTextfieldLabelOutside]="true"
           formControlName="type">
           <select tuiSelect [items]="tupesQuestions"></select>
@@ -27,23 +30,31 @@
         <div formArrayName="options">
           <div class="only-answer" *ngFor="let option of getYourOptions(i).controls; let j=index">
             <div [ngSwitch]="typeYourQuestion(i)">
-              <div *ngSwitchCase="'Один ответ' || 'Множественный ответ'">
-                <input type="radio" disabled/>
-                <input id="option-{{ j }}" [formControlName]="j" type="text" 
-                class="only-answer__input" placeholder="Ответ" />
-                <button (click)="removeOption(i, j)" class="removeOption">
-                  -
-                </button>
-              </div>
-              <div *ngSwitchCase="'Выбор в диапазоне'">Выбор в диапазоне</div>
-              <div *ngSwitchCase="'Вписать ответ'">Вписать ответ</div>
-            </div >
+              <input *ngSwitchCase="'Один ответ'" type="radio" disabled/>
+              <input *ngSwitchCase="'Множественный ответ'" type="checkbox" disabled/>
+            </div>
+            <div *ngIf="typeYourQuestion(i) == 'Один ответ' || typeYourQuestion(i) == 'Множественный ответ'">
+              <input id="option-{{ j }}" [formControlName]="j" type="text" 
+              class="only-answer__input" placeholder="Ответ" />
+              <button (click)="removeOption(i, j)" class="removeOption">
+                -
+              </button>
+            </div>
+            <!-- <div *ngIf="typeYourQuestion(i) == 'Выбор в диапазоне'">Выбор в диапазоне</div>
+            <div *ngIf="typeYourQuestion(i) == 'Вписать ответ'">Вписать ответ</div> -->
           </div>
         </div>
         <button (click)="addOption(i)" class="addOption">
           + Ответ
         </button>
-        <!-- <button (click)="consoleLog()">log</button> -->
+        <div class="toggle-required">
+          <label>Обязательный вопрос</label>
+          <tui-toggle
+              formControlName="isRequired"
+              size="l"
+              class="tui-space_left-1"
+          ></tui-toggle>
+        </div>
       </div>
       
       <!-- <app-question id="question-{{ i }}" 

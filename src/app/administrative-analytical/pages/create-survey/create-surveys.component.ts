@@ -56,7 +56,8 @@ export class CreateSurveysComponent {
   }
 
   public removeQuestion(index: number): void {
-    this.questions.removeAt(index);
+    if(this.questions.length > 1)
+      this.questions.removeAt(index);
   }
 
   consoleLogQuestion() {
