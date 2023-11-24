@@ -1,1 +1,10 @@
+<div class="only-answer">
+  <input *ngIf="inputTypeQuestion == 'Один ответ'" type="radio" disabled/>
+  <input *ngIf="inputTypeQuestion == 'Множественный ответ'" type="checkbox" disabled/>
+  <div *ngIf="inputTypeQuestion == 'Выбор в диапазоне'">Выбор в диапазоне</div>
+  <div *ngIf="inputTypeQuestion == 'Вписать ответ'">Вписать ответ</div>
 
+  <input *ngIf="inputTypeQuestion == 'Один ответ' || inputTypeQuestion == 'Множественный ответ'"
+    id="option-{{ idx }}" formControlName="optionControl" type="text" 
+    class="only-answer__input" placeholder="Ответ" />
+</div>

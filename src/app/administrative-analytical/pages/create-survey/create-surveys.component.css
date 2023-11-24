@@ -79,6 +79,38 @@
 
 /* close question */
 
+/* option */
+
+.only-answer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.only-answer__input {
+  border-color: var(--text-blue-color);
+  border: none;
+  margin-left: 5px;
+  width: calc(70% - 5px - 15px);
+  /* transition: border 2s; */
+}
+
+.only-answer__input:focus {
+  border-bottom: 1px solid var(--text-blue-color);
+  border-radius: 3px;
+}
+
+/* close option */
+
+.addOption {
+  border: none;
+  color: var(--text-blue-color);
+  background-color: #FFF;
+  cursor: pointer;
+}
+
 @media (min-width: 320px) {
   
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { SurveysComponent } from './pages/surveys/surveys.component';
@@ -10,7 +10,7 @@ import { MainComponent } from './pages/main/main.component';
 import { SurveyBlockComponent } from './components/survey-block/survey-block.component';
 import { SurveysService } from '../core/api/surveys.service';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule} from '@angular/forms';
 import {TuiDataListWrapperModule, TuiInputModule, TuiRadioModule, TuiSelectModule, TuiTextareaModule} from '@taiga-ui/kit';
 import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { QuestionComponent } from './components/question/question.component';

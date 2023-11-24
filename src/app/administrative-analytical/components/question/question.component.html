@@ -1,7 +1,6 @@
 <form [formGroup]="questionGroup" class="question-block">
   <tui-select class="tui-space_top-4 question-block__input-type" [tuiTextfieldLabelOutside]="true"
-    [(ngModel)]="inputTypeQuestion"
-    formControlName="type">
+    formControlName="type" [(ngModel)]="inputTypeQuestion">
     <select tuiSelect [items]="tupesQuestions"></select>
   </tui-select>
   <tui-input class="question-block__input-text" formControlName="questionText">
@@ -18,14 +17,34 @@
       <div *ngIf="inputTypeQuestion == 'Вписать ответ'">Вписать ответ</div>
 
       <input *ngIf="inputTypeQuestion == 'Один ответ' || inputTypeQuestion == 'Множественный ответ'"
-      id="option-{{ i }}" [formControlName]="i" type="text" 
+      id="option-{{ i }}" formControlName="{{i}}" type="text" 
       class="only-answer__input" placeholder="Ответ" />
     </div>
+  </div>
+    <!-- <div *ngFor="let option of options.controls; let i=index"> -->
+      <!-- <div class="only-answer">
+        <input *ngIf="inputTypeQuestion == 'Один ответ'" type="radio" disabled/>
+        <input *ngIf="inputTypeQuestion == 'Множественный ответ'" type="checkbox" disabled/>
+        <div *ngIf="inputTypeQuestion == 'Выбор в диапазоне'">Выбор в диапазоне</div>
+        <div *ngIf="inputTypeQuestion == 'Вписать ответ'">Вписать ответ</div>
+      
+        <input *ngIf="inputTypeQuestion == 'Один ответ' || inputTypeQuestion == 'Множественный ответ'"
+          id="option-{{ idx }}" formControlName="optionControl" type="text" 
+          class="only-answer__input" placeholder="Ответ" />
+      </div> -->
+      <!-- <app-option id="option-{{ i }}"
+        [idx]="i" [formControlName]="i"
+        [optionControl]="optionControl"
+        [inputTypeQuestion]="inputTypeQuestion"
+        (idxToRemove)="removeOption($event)"
+      >
+      </app-option> -->
+    <!-- </div> -->
     <button (click)="addOption()">
       + Ответ
     </button>
     <button (click)="consoleLog()">
       log 
     </button>
-  </div>
+  <!-- </div> -->
 </form>
