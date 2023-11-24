@@ -1,63 +1,28 @@
-<div class="header-block">
+<div class="header-block" [formGroup]="surveyForm">
   <h3 class="header-block__h">Создание опроса</h3>
-  <tui-input class="header-block__input" formControlName="testValue">Название опроса
+  <tui-input class="header-block__input" formControlName="title">Название опроса
     <input tuiTextfield type="text"/>
   </tui-input>
-  <tui-textarea class="b-form header-block__input" [(ngModel)]="value" >
+  <tui-textarea class="b-form header-block__input" formControlName="description" >
     Описание
-    <textarea
-        maxlength="97"
-        tuiTextfield
-    ></textarea>
+    <textarea maxlength="97" tuiTextfield></textarea>
   </tui-textarea>
-  <!-- <tui-input formControlName="testValue">Описание
-    <input tuiTextfield type="text"/>
-  </tui-input> -->
 </div>
 
-<div class="question-block" *ngFor="let question of questions.controls; let i=index">
-  <tui-select
-  class="tui-space_top-4 question-block__input-type"
-  [tuiTextfieldLabelOutside]="true"
-  [(ngModel)]="inputTypeQuestion">
-    <select tuiSelect [items]="tupesQuestions"></select>
-  </tui-select>
-  <tui-input class="question-block__input-text" formControlName="">
-    Введите текст вопроса
-    <input tuiTextfield type="text" />
-  </tui-input>
-
-  <div [ngSwitch]="inputTypeQuestion">
-    <div *ngSwitchCase="'Один ответ'">
-      <div class="only-answer"
-      *ngFor="let questions of questions.controls; let i=index">
-        <input type="radio" disabled/>
-        <input id="questions-{{ i }}" type="text" 
-        class="only-answer__input" placeholder="Ответ" 
-        [formControlName]="i" />
-      </div>
-      <button (click)="addQuestion()">
-        + Ответ
-      </button>
-      <button (click)="consoleLogOptions()">
-        console log
-      </button>
-    </div>
-    <div *ngSwitchCase="'Множественный ответ'">
-      <div>
-        <input type="checkbox" disabled/>
-        <input type="text"/>
-      </div>
-      <button (click)="addQuestion()">
-        + Ответ
-      </button>
-    </div>
-    <div *ngSwitchCase="'Выбор в диапазоне'">
-      Выбор в диапазоне
-    </div>
-    <div *ngSwitchCase="'Вписать ответ'">
-      Oдин ответ
-    </div>
+<div formArrayName="questions">
+  <div *ngFor="let question of questions.controls; let i=index">
+    <app-question
+      [idx]="i" [formGroupName]="i"
+      (idxToRemove)="removeQuestion($event)">
+    </app-question>
+    <!-- <app-question 
+      [formGroupName]="i" [idx]="i"
+      [questionGroup]="questionGroup" 
+      [optionControl]="optionControl"
+      (idxToRemove)="removeQuestion($event)"
+    >
+    </app-question> -->
   </div>
 </div>
-<button (click)="addQuestion()">+ Добавить вопрос</button>
+<button class="btn-add-question" (click)="addQuestion()">+ Добавить вопрос</button>
+<button class="btn-add-question" (click)="consoleLogQuestion()">Вывести вопросы</button>

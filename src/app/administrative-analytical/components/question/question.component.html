@@ -1,0 +1,31 @@
+<div [formGroup]="questionGroup" class="question-block">
+  <tui-select class="tui-space_top-4 question-block__input-type" [tuiTextfieldLabelOutside]="true"
+    [(ngModel)]="inputTypeQuestion"
+    formControlName="type">
+    <select tuiSelect [items]="tupesQuestions"></select>
+  </tui-select>
+  <tui-input class="question-block__input-text" formControlName="questionText">
+      Введите текст вопроса
+      <input tuiTextfield type="text" />
+  </tui-input>
+
+  
+  <div formArrayName="options">
+    <div class="only-answer" *ngFor="let option of options.controls; let i=index">
+      <input *ngIf="inputTypeQuestion == 'Один ответ'" type="radio" disabled/>
+      <input *ngIf="inputTypeQuestion == 'Множественный ответ'" type="checkbox" disabled/>
+      <div *ngIf="inputTypeQuestion == 'Выбор в диапазоне'">Выбор в диапазоне</div>
+      <div *ngIf="inputTypeQuestion == 'Вписать ответ'">Вписать ответ</div>
+
+      <input *ngIf="inputTypeQuestion == 'Один ответ' || inputTypeQuestion == 'Множественный ответ'"
+      id="option-{{ i }}" [formControlName]="i" type="text" 
+      class="only-answer__input" placeholder="Ответ" />
+    </div>
+    <button (click)="addOption()">
+      + Ответ
+    </button>
+    <button (click)="consoleLogOptions()">
+      console log options
+    </button>
+  </div>
+</div>

@@ -13,6 +13,8 @@ import { SurveysService } from '../core/api/surveys.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TuiDataListWrapperModule, TuiInputModule, TuiRadioModule, TuiSelectModule, TuiTextareaModule} from '@taiga-ui/kit';
 import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { QuestionComponent } from './components/question/question.component';
+import { OptionComponent } from './components/option/option.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent, 
@@ -34,6 +36,8 @@ const routes: Routes = [
     StatisticsComponent,
     MainComponent,
     SurveyBlockComponent,
+    QuestionComponent,
+    OptionComponent,
   ],
   imports: [
     CommonModule,
