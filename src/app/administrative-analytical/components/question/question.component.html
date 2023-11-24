@@ -1,4 +1,4 @@
-<div [formGroup]="questionGroup" class="question-block">
+<form [formGroup]="questionGroup" class="question-block">
   <tui-select class="tui-space_top-4 question-block__input-type" [tuiTextfieldLabelOutside]="true"
     [(ngModel)]="inputTypeQuestion"
     formControlName="type">
@@ -24,8 +24,8 @@
     <button (click)="addOption()">
       + Ответ
     </button>
-    <button (click)="consoleLogOptions()">
-      console log options
+    <button (click)="consoleLog()">
+      log 
     </button>
   </div>
-</div>
+</form>

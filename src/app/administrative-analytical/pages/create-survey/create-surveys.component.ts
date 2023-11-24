@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, Validators, FormBuilder, FormControl } from '@angular/forms'
+import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { ISurvey, IQuestion, TypesQuestion } from 'src/app/core/interfaces/surveyInterfaces';
 
 interface Questions {
@@ -15,7 +15,6 @@ interface Questions {
 export class CreateSurveysComponent {
   protected tupesQuestions: string[] = [ 'Один ответ', 'Множественный ответ','Выбор в диапазоне','Вписать ответ' ];
   protected inputTypeQuestion: string = this.tupesQuestions[0];
-  arr: any = [];
 
   constructor(private fb: FormBuilder) { }
 
@@ -38,14 +37,18 @@ export class CreateSurveysComponent {
     return this.surveyForm.get('questions') as FormArray;
   }
 
-  addQuestion() {
-    this.questions.push(this.fb.group({
+  get questionForm(): FormGroup {
+    return this.fb.group({
       type: ['', Validators.required],
       questionText: ['', Validators.required],
       options: this.fb.array([this.optionControl]),
       isRequired: [false]
-    }));
-    console.log('addQuestion');
+    });
+  }
+
+  addQuestion() {
+    this.questions.push(this.questionForm);
+    console.log('add question');
   }
 
   public removeQuestion(index: number): void {
@@ -54,6 +57,6 @@ export class CreateSurveysComponent {
 
   consoleLogQuestion() {
     // console.log(this.questions.value);
-    console.log(this.arr);
+    console.log(this.questions.value);
   }
 }

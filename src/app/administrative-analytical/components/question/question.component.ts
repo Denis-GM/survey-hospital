@@ -9,7 +9,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class QuestionComponent implements OnInit{
   
   // @Input() questionGroup!: FormGroup;
-  // @Input() optionControl!: FormControl;
+  // @Input() surveyForm!: FormGroup;
   @Input() idx!: number;
   @Input() disableRemove?: boolean;
   @Output() idxToRemove: EventEmitter<number> = new EventEmitter<number>();
@@ -35,7 +35,7 @@ export class QuestionComponent implements OnInit{
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    console.log(this.idx);
+
   }
 
   get options() {
@@ -47,8 +47,7 @@ export class QuestionComponent implements OnInit{
     console.log('addOption');
   }
 
-  consoleLogOptions() {
-    console.log(this.options.value);
-    console.log('consoleLogOptions');
+  consoleLog() {
+    console.log(this.questionGroup.value);
   }
 }

@@ -1,28 +1,31 @@
-<div class="header-block" [formGroup]="surveyForm">
-  <h3 class="header-block__h">Создание опроса</h3>
-  <tui-input class="header-block__input" formControlName="title">Название опроса
-    <input tuiTextfield type="text"/>
-  </tui-input>
-  <tui-textarea class="b-form header-block__input" formControlName="description" >
-    Описание
-    <textarea maxlength="97" tuiTextfield></textarea>
-  </tui-textarea>
-</div>
-
-<div formArrayName="questions">
-  <div *ngFor="let question of questions.controls; let i=index">
-    <app-question
-      [idx]="i" [formGroupName]="i"
-      (idxToRemove)="removeQuestion($event)">
-    </app-question>
-    <!-- <app-question 
-      [formGroupName]="i" [idx]="i"
-      [questionGroup]="questionGroup" 
-      [optionControl]="optionControl"
-      (idxToRemove)="removeQuestion($event)"
-    >
-    </app-question> -->
+<form [formGroup]="surveyForm">
+  <div class="header-block" >
+    <h3 class="header-block__h">Создание опроса</h3>
+    <tui-input class="header-block__input" formControlName="title">Название опроса
+      <input tuiTextfield type="text"/>
+    </tui-input>
+    <tui-textarea class="b-form header-block__input" formControlName="description" >
+      Описание
+      <textarea maxlength="97" tuiTextfield></textarea>
+    </tui-textarea>
   </div>
-</div>
+
+  <div formArrayName="questions">
+    <div *ngFor="let question of questions.controls; let i=index">
+      <app-question id="question-{{ i }}"
+        [idx]="i" [formGroupName]="i"
+        (idxToRemove)="removeQuestion($event)">
+      </app-question>
+      <!-- <app-question 
+        [surveyForm]="surveyForm"
+        [questionGroup]="questionForm"
+        [formGroupName]="i" [idx]="i"
+        [questionGroup]="questionGroup"
+        (idxToRemove)="removeQuestion($event)"
+      >
+      </app-question> -->
+    </div>
+  </div>
+</form>
 <button class="btn-add-question" (click)="addQuestion()">+ Добавить вопрос</button>
 <button class="btn-add-question" (click)="consoleLogQuestion()">Вывести вопросы</button>
