@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListSurveysPatientComponent } from './list-surveys-patient/list-surveys-patient.component';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
 
 const routes: Routes = [
 	{ 
 		path: 'patient', 
-		component: ListSurveysPatientComponent,
+		loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule)
 	},
 	{ 
 		path: 'employee', 

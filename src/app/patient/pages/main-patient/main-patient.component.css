@@ -1,0 +1,30 @@
+.outer {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  background-color: var(--background-color);
+}
+
+.wrapper {
+
+}
+
+.header-block {
+
+}
+
+.header-block__h {
+
+}
+
+.header-block__text {
+
+}
+
+.main-block {
+
+}
+
+.control-block {
+
+}

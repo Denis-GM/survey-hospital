@@ -1,7 +1,10 @@
-<app-search (searchEvent$)="applySearch($event)"></app-search>
+<app-search class="search"
+  (searchEvent$)="applySearch($event)">
+</app-search>
 <div class="container">
 	<ng-container *ngFor="let survey of surveys">
-		<app-survey-block [survey]="survey">
-		</app-survey-block>
+    <div *ngIf="contSubstring(survey)">
+      <app-survey-block [survey]="survey"></app-survey-block>
+    </div>
 	</ng-container>
 </div>

@@ -9,16 +9,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AccountModule } from './account/account.module';
-import { ListSurveysPatientComponent } from './list-surveys-patient/list-surveys-patient.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { AdminAnalyticalModule } from "./administrative-analytical/admin-analytical.module";
 import { HttpClientModule } from "@angular/common/http";
+import { PatientModule } from "./patient/patient.module";
+import { SurveySolutionModule } from "./survey-solution/survey-solution.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListSurveysPatientComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +31,9 @@ import { HttpClientModule } from "@angular/common/http";
 
     SharedModule,
     AccountModule,
-    AdminAnalyticalModule
+    AdminAnalyticalModule,
+    SurveySolutionModule,
+    PatientModule,
   ], 
   providers: [
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}

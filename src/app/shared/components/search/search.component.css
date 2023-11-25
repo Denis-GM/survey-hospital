@@ -3,16 +3,35 @@
   padding: 0;
   margin: 0;
 }
+
 .c-form{
   position: relative;
-  max-width: 1200px;
+  max-width: 600px;
+  /* width: 100%; */
+  /* margin: 0 auto; */
+}
+
+.search {
+  border: none;
+
   width: 100%;
-  margin: 0 auto;
+  height: 50px;
+  padding: 5px 20px;
 
-}
-.container{
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  border-radius: 7px;
+
+  font-size: 1.7rem;
+  outline: #fff solid 1px !important;
+  transition-property: outline-color;
+  transition-duration: .5s;
 }
 
+.search:hover {
+  outline-color: var(--text-blue-color) !important;
+  /* outline: 1px solid ; */
+}
+
+.search:focus {
+  outline-color: var(--text-blue-color) !important;
+  /* outline: 1px solid var(--text-blue-color); */
+}

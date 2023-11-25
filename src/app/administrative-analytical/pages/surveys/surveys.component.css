@@ -1,7 +1,12 @@
+.search {
+  display: block;
+  width: 50%;
+}
+
 .container {
   width: 80%;
   position: relative;
-  margin: 4% auto;
+  margin: 4% 0;
 
   display: flex;
   flex-direction: column;

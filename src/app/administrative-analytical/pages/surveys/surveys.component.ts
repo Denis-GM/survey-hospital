@@ -29,8 +29,13 @@ export class SurveysComponent implements OnInit{
     );
   }
 
-  applySearch(value: string) :void{
-    this.searchText = value;
+  contSubstring(survey: any): boolean {
+    const name = survey.name.toLowerCase();
+    return name.indexOf(this.searchText) >= 0;
+  }
+
+  applySearch(value: string): void{
+    this.searchText = value.toLowerCase();
     console.log(this.searchText);
   }
 
