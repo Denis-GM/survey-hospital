@@ -28,24 +28,24 @@
       
         
         <div formArrayName="options">
-          <div class="only-answer" *ngFor="let option of getYourOptions(i).controls; let j=index">
+          <div class="answer-block" *ngFor="let option of getYourOptions(i).controls; let j=index">
             <div [ngSwitch]="typeYourQuestion(i)">
-              <input *ngSwitchCase="'Один ответ'" type="radio" disabled/>
-              <input *ngSwitchCase="'Множественный ответ'" type="checkbox" disabled/>
+              <input *ngSwitchCase="'Один ответ'" type="radio" disabled class="answer-block__icon"/>
+              <input *ngSwitchCase="'Множественный ответ'" type="checkbox" disabled class="answer-block__icon"/>
             </div>
-            <div *ngIf="typeYourQuestion(i) == 'Один ответ' || typeYourQuestion(i) == 'Множественный ответ'">
+            <div class="answer-block__control"
+              *ngIf="typeYourQuestion(i) == 'Один ответ' || typeYourQuestion(i) == 'Множественный ответ'">
               <input id="option-{{ j }}" [formControlName]="j" type="text" 
-              class="only-answer__input" placeholder="Ответ" />
-              <button (click)="removeOption(i, j)" class="removeOption">
-                -
-              </button>
+              class="answer-block__input" placeholder="Ответ" />
+              <button (click)="removeOption(i, j)" class="removeOption"></button>
             </div>
             <!-- <div *ngIf="typeYourQuestion(i) == 'Выбор в диапазоне'">Выбор в диапазоне</div>
             <div *ngIf="typeYourQuestion(i) == 'Вписать ответ'">Вписать ответ</div> -->
           </div>
         </div>
-        <button (click)="addOption(i)" class="addOption">
-          + Ответ
+        <button *ngIf="typeYourQuestion(i) == 'Один ответ' || typeYourQuestion(i) == 'Множественный ответ'"
+         (click)="addOption(i)" class="addOption">
+          <span>+</span> Ответ
         </button>
         <div class="toggle-required">
           <label>Обязательный вопрос</label>

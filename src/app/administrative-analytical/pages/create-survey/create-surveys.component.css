@@ -74,59 +74,73 @@
   margin-bottom: 24px;
 }
 
-.only-answer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  margin-bottom: 10px;
-}
-
-.only-answer__input {
-  border-color: var(--text-blue-color);
-  border: none;
-  margin-left: 5px;
-  width: calc(70% - 5px - 15px);
-  /* transition: border 2s; */
-}
-
-.only-answer__input:focus {
-  border-bottom: 1px solid var(--text-blue-color);
-  border-radius: 3px;
-}
-
 /* close question */
 
 /* option */
 
-.only-answer {
+.answer-block {
   display: flex;
   flex-direction: row;
   align-items: center;
 
   margin-bottom: 10px;
+  position: relative;
+  width: 70%;
 }
 
-.only-answer__input {
+.answer-block__icon {
+  position: relative;
+  top: 2px;
+}
+
+.answer-block__control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  position: relative;
+}
+
+.answer-block__input {
   border-color: var(--text-blue-color);
   border: none;
   margin-left: 5px;
-  width: calc(70% - 5px - 15px);
+  width: 100%;
   /* transition: border 2s; */
 }
 
-.only-answer__input:focus {
+.answer-block__input:focus {
   border-bottom: 1px solid var(--text-blue-color);
   border-radius: 3px;
 }
 
 /* close option */
 
+.removeOption {
+  cursor: pointer;
+  border: none;
+  width: 20px;
+  height: 20px;
+  background-color: #FFF;
+  background-image: url('../../../../assets/img/close-circle-svgrepo-com.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .addOption {
   border: none;
   color: var(--text-blue-color);
   background-color: #FFF;
   cursor: pointer;
+}
+
+.addOption span {
+  font-size: 2rem;
+  position: relative;
+  margin-right: 3px;
+  top: 2px;
 }
 
 .toggle-required {
