@@ -1,0 +1,21 @@
+<div class="questions-list__item">
+  <h3>{{question.questionText}}</h3>
+  <div *ngIf="question.type == 'Один ответ' || question.type == 'Множественный ответ'"
+    class="block-answer">
+    <ul *ngFor="let option of options, let i = index" class="options-list">
+      <li class="options-list__item">
+        <input *ngIf="question.type == 'Один ответ'" type="radio" name="answer-{{index}}" 
+          class="answer-block__icon"/>
+        <input *ngIf="question.type == 'Множественный ответ'" type="checkbox" name="answer-{{index}}" 
+          class="answer-block__icon"/>
+        {{option}}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="question.type == 'Выбор в диапазоне'">
+    Выбор в диапазоне
+  </div>
+  <div *ngIf="question.type == 'Вписать ответ'">
+    <input name="answer-{{index}}" type="text" placeholder="Ответ">
+  </div>
+</div>

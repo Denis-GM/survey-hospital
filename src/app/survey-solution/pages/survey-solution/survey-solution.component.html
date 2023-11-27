@@ -1,1 +1,17 @@
-<p>survey-solution works!</p>
+<div class="outer">
+  <div class="wrapper">
+    <div class="btn-back" routerLink="/patient">Вернуться на главную</div>
+    <div class="header-block">
+      <h3 class="header-block__h">{{survey.name}}</h3>
+      <div class="header-block__text">{{survey.descriptions}}</div>
+    </div>
+    <div class="main-block">
+      <div *ngFor="let question of survey.questions, let i = index" class="questions-list">
+        <app-question [question]="question" [index]="i"></app-question>
+      </div>
+    </div>
+    <div class="control-block">
+      <button>Отправить</button>
+    </div>
+  </div>
+</div>

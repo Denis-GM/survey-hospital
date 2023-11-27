@@ -1,7 +1,7 @@
 import { TuiDialogModule, TuiAlertModule, TuiButtonModule } from "@taiga-ui/core";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TuiInputModule} from '@taiga-ui/kit';
-import {TuiHintModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiTextfieldControllerModule} from '@taiga-ui/core';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

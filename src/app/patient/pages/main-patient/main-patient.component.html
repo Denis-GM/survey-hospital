@@ -1,11 +1,20 @@
 <div class="outer">
   <div class="wrapper">
     <div class="header-block">
-      <h3 class="header-block__h">Список опросов</h3>
-      <p class="header-block__text">Добрый день</p>
+      <h3 class="header-block__h">Опросы</h3>
+      <p class="header-block__text">от ГАУЗ СО "ЦГБ № 20"</p>
     </div>
     <div class="main-block">
-      <ul></ul>
+      <ul *ngFor="let survey of surveys" class="surveys-list">
+        <li class="surveys-list__item">
+          <div class="link" routerLink="/fill/survey/{{survey.id}}">
+            {{survey.name}}
+          </div>
+          <div class="btn">
+            <button class="btn__img"></button>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="control-block">
   

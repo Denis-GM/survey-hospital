@@ -21,6 +21,11 @@ const routes: Routes = [
 			},
 		]
 	},
+	{ 
+		path: 'fill', 
+		loadChildren: () => import('./survey-solution/survey-solution.module')
+			.then(m => m.SurveySolutionModule)
+  	},
 	{ path: '**', component: NotFoundComponent }
 ];
 
