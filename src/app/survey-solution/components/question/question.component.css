@@ -1,9 +1,9 @@
-.questions-list__item {
+.question {
   position: relative;
   width: 100%;
   /* height: 70px; */
 
-  padding: 10px 5% 10px 5%;
+  padding: 20px 5% 30px 5%;
 
   border-radius: 10px;
   background: #F1F1F1;
@@ -11,12 +11,19 @@
   margin-bottom: 30px;
 }
 
+.question__h {
+  margin-bottom: 14px;
+}
+
 .block-answer {
-  margin-top: 10px;
+  
 }
 
 .options-list {
   list-style: none;
-  display: flex;
-  gap:10px;
+}
+
+.options-list__item {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
 }

@@ -5,25 +5,25 @@
       <app-layout title="Регистрация">
         <form class="form" [formGroup]="regForm" (ngSubmit)="submit()"> 
           <div class="form__body">
-            <tui-select tuiTextfieldSize="m" class="tui-space_vertical-4 input_margin-bottom_20px" 
+            <tui-select tuiTextfieldSize="l" class="tui-space_vertical-4 input_margin-bottom_20px" 
               formControlName="role">
               Роль
               <input placeholder="Choose your hero" tuiTextfield name="role"/>
               <tui-data-list-wrapper *tuiDataList [items]="items"></tui-data-list-wrapper>
             </tui-select>
-            <tui-input formControlName="email" tuiTextfieldSize="m" class="input_margin-bottom_20px">
+            <tui-input formControlName="email" tuiTextfieldSize="l" class="input_margin-bottom_20px">
               Почта
               <input autocomplete="email" tuiTextfield type="text" name="email"/>
             </tui-input>
-            <tui-input formControlName="login" tuiTextfieldSize="m" class="input_margin-bottom_20px">
+            <tui-input formControlName="login" tuiTextfieldSize="l" class="input_margin-bottom_20px">
               Логин
               <input autocomplete="nickname" tuiTextfield type="text" name="login"/>
             </tui-input>  
-            <tui-input formControlName="password1" tuiTextfieldSize="m" class="input_margin-bottom_20px">
+            <tui-input formControlName="password1" tuiTextfieldSize="l" class="input_margin-bottom_20px">
               Пароль
               <input autocomplete="new-password" tuiTextfield type="password" name="password1"/>
             </tui-input>
-            <tui-input formControlName="password2" tuiTextfieldSize="m" >
+            <tui-input formControlName="password2" tuiTextfieldSize="l" >
               Подтвердите пароль
               <input autocomplete="new-password" tuiTextfield type="password" name="password2"/>
             </tui-input>

@@ -14,13 +14,34 @@ export class SurveySolutionComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute, 
-    private surveysService: SurveysService) {
+    private surveysService: SurveysService,
+    private fb: FormBuilder) {
     this.id = activateRoute.snapshot.params["id"];
   }
 
   ngOnInit() {
     console.log(this.id);
     this.getSurvey(this.id);
+  }
+
+  get answers() {
+    return this.fb.group({
+      idQuestion: ['', Validators.required],
+      options: [ 
+        this.fb.array([]) 
+      ]
+    });
+  }
+  
+  surveyForm = this.fb.group({
+    id: ['', Validators.required],
+    answers: [
+      this.fb.array([this.answers])
+    ]
+  });
+
+  submit() {
+    console.log(this.surveyForm.value);
   }
 
   getSurvey(id: number): void {

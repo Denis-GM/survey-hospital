@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -8,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class QuestionComponent implements OnInit{
   @Input() question!: any;
   @Input() index!: number;
+  @Input() answers!: FormGroup;
   public options: any = [];
 
   ngOnInit(): void {

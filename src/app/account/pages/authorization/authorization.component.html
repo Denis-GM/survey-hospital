@@ -5,11 +5,11 @@
       <app-layout title="Вход">
         <form class="form" [formGroup]="loginForm" (ngSubmit)="submit()"> 
           <div class="form__body">
-            <tui-input formControlName="login" tuiTextfieldSize="m" class="input_margin-bottom_20px">
+            <tui-input formControlName="login" tuiTextfieldSize="l" class="input_margin-bottom_20px">
               Логин
               <input tuiTextfield type="text" name="login"/>
             </tui-input>  
-            <tui-input formControlName="password" tuiTextfieldSize="m" class="input_margin-bottom_10px">
+            <tui-input formControlName="password" tuiTextfieldSize="l" class="input_margin-bottom_10px">
               Пароль
               <input tuiTextfield type="password" name="password"/>
             </tui-input> 

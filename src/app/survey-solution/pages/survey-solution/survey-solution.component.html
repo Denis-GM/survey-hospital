@@ -7,11 +7,11 @@
     </div>
     <div class="main-block">
       <div *ngFor="let question of survey.questions, let i = index" class="questions-list">
-        <app-question [question]="question" [index]="i"></app-question>
+        <app-question [question]="question" [index]="i" [answers]="answers"></app-question>
       </div>
     </div>
     <div class="control-block">
-      <button>Отправить</button>
+      <button class="btn-submit">Отправить</button>
     </div>
   </div>
 </div>
