@@ -7,11 +7,12 @@
     </div>
     <form class="main-block" [formGroup]="surveyForm" (ngSubmit)="submit()">
       <div formArrayName="questions">
-        <div *ngFor="let question of questions, let i = index" class="questions-list">
+        <div *ngFor="let question of questionsFroms.controls, let i = index" class="questions-list">
           <app-question 
-            [question]="question" 
-            [questionForm]="questionForm"
-            [index]="i" >
+            [formGroupName]="i"
+            [questionForm]="question"
+            [question]="questions![i]"
+            [index]="i">
           </app-question>
         </div>
       </div>

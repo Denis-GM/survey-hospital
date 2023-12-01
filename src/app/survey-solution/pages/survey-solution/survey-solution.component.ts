@@ -14,7 +14,7 @@ export class SurveySolutionComponent implements OnInit {
   protected id!: number;
   protected survey: any = {};
   protected surveyForm!: FormGroup;
-  protected questionForm!: FormGroup;
+  protected questionForm!: FormArray<any>;
   protected questions!: QuestionBase<string>[] | null;
 
   constructor(
@@ -25,32 +25,19 @@ export class SurveySolutionComponent implements OnInit {
   ngOnInit() {
     this.id = this.activateRoute.snapshot.params["id"];
     this.getSurvey(this.id + '');
-    this.questionForm = this.qcs.toFormGroup(this.questions as QuestionBase<string>[]);
+    this.questionForm = this.qcs.toFormArray(this.questions as QuestionBase<string>[]);
     this.surveyForm = this.fb.group({
       id: [this.id, Validators.required],
-      questions: this.questionForm
+      questions: this.qcs.toFormArray(this.questions as QuestionBase<string>[]) 
     });
     // console.log(this.questions);
     console.log(this.surveyForm);
   }
 
-  // get questions() {
-  //   return this.surveyForm.get('questions') as FormArray;
-  // }
-
-  // get questionGroup() {
-  //   const questionGroup = this.fb.group({
-  //     id: ['', Validators.required],
-  //     textAnswer: [''],
-  //     rangeValue: [0],
-  //     selectedOptions: [ 
-  //       this.fb.array([]) 
-  //     ]
-  //   })
-  //   // this.questions.push(questionGroup);
-  //   return questionGroup;
-  // }
-
+  get questionsFroms(): FormArray {
+    return <FormArray> this.surveyForm.get('questions') as FormArray;
+  }
+  
   submit() {
     console.log(this.surveyForm.value);
   }

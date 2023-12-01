@@ -9,7 +9,7 @@ import { QuestionBase } from 'src/app/core/interfaces/question-base';
 })
 export class QuestionComponent implements OnInit{
   @Input() question!: QuestionBase<string>;
-  @Input() questionForm!: FormGroup;
+  @Input() questionForm!: any;
   @Input() index!: number;
   
   protected formControl = new FormControl();
@@ -25,7 +25,7 @@ export class QuestionComponent implements OnInit{
   ngOnInit(): void {
     this.options = this.question.options;
     this.questionForm.get('id')?.setValue(this.question.id);
-    // console.log(this.question)
+    console.log(this.index)
     // console.log(this.options)
     console.log(this.questionForm);
     // this.radioControlListiner();
