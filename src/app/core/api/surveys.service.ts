@@ -17,40 +17,55 @@ export class SurveysService {
     { "id": 1, "name": "Название опроса №1", "descriptions": "Описание",
       "questions": [
         { 
+          "id": 1,
           "type": "Один ответ", "questionText": "Вопрос №1", "isRequired": true,  
           "options": [1, 2, 3, 4, 5 ]    
         },
         { 
+          "id": 2,
           "type": "Множественный ответ", "questionText": "Вопрос №2", "isRequired": true,  
           "options": [1, 2, 3, 4, 5 ]    
         },
         { 
+          "id": 3,
           "type": "Один ответ", "questionText": "Вопрос №3", "isRequired": true,  
           "options": [3, 4, 5 ]    
         },
         {
-          "type": "Вписать ответ", "questionText": "Вопрос №3", "isRequired": true,  
+          "id": 4,
+          "type": "Вписать ответ", "questionText": "Вопрос №4", "isRequired": true,  
+          "options": []
+        },
+        {
+          "id": 5,
+          "type": "Выбор в диапазоне", "questionText": "Вопрос №5", "isRequired": true,  
           "options": []
         }
       ]
     },
     { "id": 2, "name": "Название опроса №2", "descriptions": "Описание",
       "questions": [
-        { "type": "Один ответ", "questionText": "Вопрос №2", "isRequired": true,  
+        { 
+          "id": 1,
+          "type": "Один ответ", "questionText": "Вопрос №2", "isRequired": true,  
           "options": [1, 2, 3, 4, 5 ]    
         }
       ]
     },
     { "id": 3, "name": "Название опроса №3", "descriptions": "Описание",
       "questions": [
-        { "type": "Один ответ", "questionText": "Вопрос №3", "isRequired": true,  
+        { 
+          "id": 2,
+          "type": "Один ответ", "questionText": "Вопрос №3", "isRequired": true,  
           "options": [1, 2, 3, 4, 5 ]    
         }
       ]
     },
     { "id": 4, "name": "Название опроса №4", "descriptions": "Описание",
       "questions": [
-        { "type": "Один ответ", "questionText": "Вопрос №4", "isRequired": true,  
+        { 
+          "id": 3,
+          "type": "Один ответ", "questionText": "Вопрос №4", "isRequired": true,  
           "options": [1, 2, 3, 4, 5 ]    
         }
       ]

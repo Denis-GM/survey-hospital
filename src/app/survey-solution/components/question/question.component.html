@@ -1,24 +1,87 @@
-<div class="question">
-  <h3 class="question__h">{{question.questionText}}</h3>
-  <div *ngIf="question.type == 'Один ответ' || question.type == 'Множественный ответ'"
-    class="block-answer">
-    <ul *ngFor="let option of options, let i = index" class="options-list">
-      <li class="options-list__item">
-        <input *ngIf="question.type == 'Один ответ'" type="radio" 
-          name="answer-{{index}}"  
-          class="answer-block__icon" />
-        <input *ngIf="question.type == 'Множественный ответ'" type="checkbox" 
-          name="answer-{{index}}"
-          class="answer-block__icon" />
-        {{option}}
-      </li>
-    </ul>
+<!-- <form  [id]="index"> -->
+  <div class="question" [formGroup]="questionGroup">
+    <h3 class="question__h">{{question.questionText}}</h3>
+    <div *ngIf="question.type == 'Один ответ' || question.type == 'Множественный ответ'"
+      class="block-answer">
+      <ul *ngFor="let option of options, let i = index" class="options-list">
+        <li class="option">
+          <input *ngIf="question.type == 'Один ответ'" type="radio" 
+            name="option-{{index}}"  
+            class="option-input" id="option-{{index}}"/>
+          <input *ngIf="question.type == 'Множественный ответ'" type="checkbox" 
+            name="option-{{index}}"
+            class="option-input" id="option-{{index}}"/>
+          <label for="option-{{index}}" class="option-input-text">{{option}}</label>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="question.type == 'Выбор в диапазоне'" [formGroup]="radioForm">
+      <div class="scale">
+        <label class="scale-item">
+          <span class="scale-item__text">1</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="1" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">2</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="2" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">3</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="3" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">4</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="4" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">5</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="5" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">6</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="6" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">7</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="7" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">8</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="8" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">9</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="9" id="range-{{index}}"/>
+        </label>
+        <label class="scale-item">
+          <span class="scale-item__text">10</span>
+          <input 
+            type="radio" class="scale-item__input" 
+            formControlName="rangeValue" [value]="10" id="range-{{index}}"/>
+        </label>
+      </div>
+    </div>
+    <div *ngIf="question.type == 'Вписать ответ'">
+      <input name="option-{{index}}" class="input-free-entry"
+        type="text" placeholder="Ответ" />
+    </div>
   </div>
-  <div *ngIf="question.type == 'Выбор в диапазоне'" >
-    Выбор в диапазоне
-  </div>
-  <div *ngIf="question.type == 'Вписать ответ'">
-    <input name="answer-{{index}}"
-      type="text" placeholder="Ответ" />
-  </div>
-</div>
+<!-- </form> -->

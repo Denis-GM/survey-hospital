@@ -5,6 +5,7 @@ import { SurveySolutionComponent } from './pages/survey-solution/survey-solution
 import { SurveysService } from '../core/api/surveys.service';
 import { QuestionComponent } from './components/question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: 'survey/:id', component: SurveySolutionComponent, }
@@ -13,7 +14,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     SurveySolutionComponent,
-    QuestionComponent
+    QuestionComponent,
   ],
   providers: [
     SurveysService
@@ -22,6 +23,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(routes),
   ],
   exports: [

@@ -11,12 +11,19 @@ import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@ang
 export class SurveySolutionComponent implements OnInit {
   protected id: number;
   protected survey: any = {};
+  protected surveyForm: FormGroup;
 
   constructor(
     private activateRoute: ActivatedRoute, 
-    private surveysService: SurveysService,
+    private surveysService: SurveysService, 
     private fb: FormBuilder) {
     this.id = activateRoute.snapshot.params["id"];
+    this.surveyForm = this.fb.group({
+      id: [this.id, Validators.required],
+      questions: [
+        this.fb.array([])
+      ]
+    });
   }
 
   ngOnInit() {
@@ -24,21 +31,22 @@ export class SurveySolutionComponent implements OnInit {
     this.getSurvey(this.id);
   }
 
-  get answers() {
-    return this.fb.group({
-      idQuestion: ['', Validators.required],
-      options: [ 
+  get questions() {
+    return this.surveyForm.get('questions') as FormArray;
+  }
+
+  get questionGroup() {
+    const questionGroup = this.fb.group({
+      id: ['', Validators.required],
+      textAnswer: [''],
+      rangeValue: [0],
+      selectedOptions: [ 
         this.fb.array([]) 
       ]
-    });
+    })
+    // this.questions.push(questionGroup);
+    return questionGroup;
   }
-  
-  surveyForm = this.fb.group({
-    id: ['', Validators.required],
-    answers: [
-      this.fb.array([this.answers])
-    ]
-  });
 
   submit() {
     console.log(this.surveyForm.value);

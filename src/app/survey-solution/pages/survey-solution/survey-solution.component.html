@@ -5,13 +5,18 @@
       <h3 class="header-block__h">{{survey.name}}</h3>
       <div class="header-block__text">{{survey.descriptions}}</div>
     </div>
-    <div class="main-block">
-      <div *ngFor="let question of survey.questions, let i = index" class="questions-list">
-        <app-question [question]="question" [index]="i" [answers]="answers"></app-question>
+    <form class="main-block" [formGroup]="surveyForm" (ngSubmit)="submit()">
+      <div *ngFor="let question of survey.questions, let i = index" 
+      class="questions-list" formArrayName="questions">
+        <app-question 
+          [question]="question" 
+          [questionGroup]="questionGroup"
+          [index]="i" >
+        </app-question>
       </div>
-    </div>
+    </form>
     <div class="control-block">
-      <button class="btn-submit">Отправить</button>
+      <button (click)="submit()" class="btn-submit">Отправить</button>
     </div>
   </div>
 </div>

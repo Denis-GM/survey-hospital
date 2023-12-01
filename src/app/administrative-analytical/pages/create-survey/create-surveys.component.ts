@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { Observable } from 'rxjs';
-import { ISurvey, IQuestion, TypesQuestion } from 'src/app/core/interfaces/surveyInterfaces';
+import { ISurvey, IQuestion, TypesQuestion } from 'src/app/core/interfaces/survey-interfaces';
 
 interface Questions {
   readonly text: string;

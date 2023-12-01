@@ -1,1 +1,24 @@
-<p>statistics works!</p>
+<div class="control-panel">
+  <div class="control-panel__name-survey">
+    <tui-select
+        tuiTextfieldSize="l"
+        class="tui-space_vertical-4"
+        [formControl]="testValue"
+        [tuiTextfieldLabelOutside]="true"
+    >
+        Название опроса
+        <input
+            placeholder="Название опроса"
+            tuiTextfield
+        />
+        <tui-data-list-wrapper
+            *tuiDataList
+            [items]="items"
+        ></tui-data-list-wrapper>
+    </tui-select>
+  </div>
+  <div class="control-panel__stat-survey"></div>
+</div>
+<div class="main">
+  
+</div>

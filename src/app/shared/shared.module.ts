@@ -18,7 +18,7 @@ import { SearchComponent } from "./components/search/search.component";
     NotFoundComponent,
     NavBarComponent,
     ButtonComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     CommonModule,

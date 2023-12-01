@@ -1,0 +1,24 @@
+.control-panel {
+  width: 90%;
+
+  border-radius: 7px;
+  background: #526ED3;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px 50px 30px 50px;
+}
+
+.control-panel__name-survey {
+
+}
+
+.control-panel__stat-survey {
+  display: flex;
+  flex-direction: row;
+}
+
+.main {
+
+}

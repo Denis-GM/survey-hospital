@@ -1,0 +1,29 @@
+{
+	"id": "1",
+	"name": "name",
+	"description": "description",
+	"questions": [
+		{
+			"id": "1",
+			"title": "string",
+			"type": 0,
+			"isRequired": true,
+			"options": [
+				{
+					"id": "1",
+					"answer": "string"
+				},
+				{
+					"id": "2",
+					"answer": "string"
+				},
+				{
+					"id": "3",
+					"answer": "string"
+				}
+			]
+		}
+	],
+	"creationTime": "2023-11-30T21:26:09.211Z",
+	"adminId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
