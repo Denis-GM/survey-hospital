@@ -1,31 +1,22 @@
-export class QuestionBase<T> {
-    value: T|undefined;
-    key: string;
-    label: string;
-    required: boolean;
-    order: number;
-    controlType: string;
-    type: string;
-    options: {key: string, value: string}[];
+export class SurveyBase<T> {
+    id!: string | T;
+    name?: string;
+    description?: string;
+    questions!: QuestionBase<T>[];
+    creationTime?: string;
+    adminId!: string;
+    // constructor() { }
+}
 
-    constructor(
-        options: {
-        value?: T;
-        key?: string;
-        label?: string;
-        required?: boolean;
-        order?: number;
-        controlType?: string;
-        type?: string;
-        options?: {key: string, value: string}[];
-        } = {}) {
-        this.value = options.value;
-        this.key = options.key || '';
-        this.label = options.label || '';
-        this.required = !!options.required;
-        this.order = options.order === undefined ? 1 : options.order;
-        this.controlType = options.controlType || '';
-        this.type = options.type || '';
-        this.options = options.options || [];
-    }
+export class QuestionBase<T> {
+    id!: string | T; 
+    title!: string; 
+    type!: number; 
+    isRequired!: boolean;
+    options!: OptionBase<T>[];
+}
+
+export class OptionBase<T> {
+    id!: string | T; 
+    answer!: string;
 }

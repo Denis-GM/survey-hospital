@@ -3,16 +3,17 @@
     <div class="btn-back" routerLink="/patient">Вернуться на главную</div>
     <div class="header-block">
       <h3 class="header-block__h">{{survey.name}}</h3>
-      <div class="header-block__text">{{survey.descriptions}}</div>
+      <div class="header-block__text">{{survey.description}}</div>
     </div>
     <form class="main-block" [formGroup]="surveyForm" (ngSubmit)="submit()">
-      <div *ngFor="let question of survey.questions, let i = index" 
-      class="questions-list" formArrayName="questions">
-        <app-question 
-          [question]="question" 
-          [questionGroup]="questionGroup"
-          [index]="i" >
-        </app-question>
+      <div formArrayName="questions">
+        <div *ngFor="let question of questions, let i = index" class="questions-list">
+          <app-question 
+            [question]="question" 
+            [questionForm]="questionForm"
+            [index]="i" >
+          </app-question>
+        </div>
       </div>
     </form>
     <div class="control-block">

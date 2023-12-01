@@ -1,21 +1,18 @@
-<!-- <form  [id]="index"> -->
-  <div class="question" [formGroup]="questionGroup">
-    <h3 class="question__h">{{question.questionText}}</h3>
-    <div *ngIf="question.type == 'Один ответ' || question.type == 'Множественный ответ'"
-      class="block-answer">
+<form [formGroup]="questionForm">
+  <div class="question">
+    <h3 class="question__h">{{question.title}}</h3>
+    <div class="block-answer" formArrayName="selectedOptions">
       <ul *ngFor="let option of options, let i = index" class="options-list">
         <li class="option">
-          <input *ngIf="question.type == 'Один ответ'" type="radio" 
-            name="option-{{index}}"  
-            class="option-input" id="option-{{index}}"/>
-          <input *ngIf="question.type == 'Множественный ответ'" type="checkbox" 
-            name="option-{{index}}"
-            class="option-input" id="option-{{index}}"/>
-          <label for="option-{{index}}" class="option-input-text">{{option}}</label>
+          <input 
+            [value]="option.id" 
+            [type]="questionTypes[question.type]"
+            class="option-input" id="option-{{index}}" />
+          <label for="option-{{index}}" class="option-input-text">{{option.answer}}</label>
         </li>
       </ul>
     </div>
-    <div *ngIf="question.type == 'Выбор в диапазоне'" [formGroup]="radioForm">
+    <div *ngIf="question.type == 2">
       <div class="scale">
         <label class="scale-item">
           <span class="scale-item__text">1</span>
@@ -79,9 +76,9 @@
         </label>
       </div>
     </div>
-    <div *ngIf="question.type == 'Вписать ответ'">
-      <input name="option-{{index}}" class="input-free-entry"
-        type="text" placeholder="Ответ" />
+    <div *ngIf="question.type == 3">
+      <input class="input-free-entry" type="text" 
+      placeholder="Ответ" formControlName="textAnswer" />
     </div>
   </div>
-<!-- </form> -->
+</form>
