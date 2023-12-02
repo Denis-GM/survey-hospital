@@ -13,9 +13,7 @@ export class QuestionControlService {
       id: ['', Validators.required],
       textAnswer: [''],
       rangeValue: [0],
-      selectedOptions: [ 
-        this._fb.array([]) 
-      ]
+      selectedOptions: this._fb.array([]),
     });
   }
 
@@ -23,7 +21,24 @@ export class QuestionControlService {
     let array: any = new FormArray([]);
 
     questions.forEach(question => {
-      array.push(this.questionGroup); //.controls['id'].setValue(question.id);
+      let questionGroup = this.questionGroup
+      if(question.isRequired){
+        switch(question.type){
+          case 0:
+            questionGroup.get('selectedOptions')!.setValidators(Validators.required);
+            break
+          case 1:
+            questionGroup.get('selectedOptions')!.setValidators(Validators.required);
+            break
+          case 2:
+            questionGroup.get('rangeValue')!.setValidators(Validators.required);
+            break
+          case 3:
+            questionGroup.get('textAnswer')!.setValidators(Validators.required);
+            break
+        }
+      }
+      array.push(questionGroup);
     });
     return array as FormArray;
   }
@@ -32,7 +47,7 @@ export class QuestionControlService {
     const group: any = {};
 
     questions.forEach(question => {
-      group[question.id] = this.questionGroup; //.controls['id'].setValue(question.id);
+      group[question.id] = this.questionGroup; 
     });
     return new FormGroup(group);
   }

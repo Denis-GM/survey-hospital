@@ -1,12 +1,26 @@
 <form [formGroup]="questionForm">
   <div class="question">
-    <h3 class="question__h">{{question.title}}</h3>
-    <div class="block-answer" formArrayName="selectedOptions">
-      <ul *ngFor="let option of options, let i = index" class="options-list">
-        <li class="option">
-          <input 
+    <h3 class="question__h">
+      {{question.title}} 
+      <span *ngIf="question.isRequired" class="marker-required">*</span>
+    </h3>
+    <div class="block-answer">
+      <ul class="options-list">
+        <li *ngFor="let option of options, let i = index" class="option">
+          <ng-conteiner *ngIf="question.type == 0" [formGroup]="radioForm">
+            <input 
+              [value]="option.id"
+              type="radio"
+              name="proxyRadioControl"
+              formControlName="proxyRadioControl"
+              class="option-input" id="option-{{index}}" />
+          </ng-conteiner>
+          <input *ngIf="question.type == 1"
             [value]="option.id" 
-            [type]="questionTypes[question.type]"
+            type="checkbox"
+            name="option-{{index}}"
+            formArrayName="selectedOptions" 
+            (change)="onCheckboxChange($event)"
             class="option-input" id="option-{{index}}" />
           <label for="option-{{index}}" class="option-input-text">{{option.answer}}</label>
         </li>

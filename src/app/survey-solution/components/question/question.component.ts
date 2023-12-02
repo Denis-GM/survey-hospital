@@ -13,22 +13,19 @@ export class QuestionComponent implements OnInit{
   @Input() index!: number;
   
   protected formControl = new FormControl();
-  protected radioForm: FormGroup; 
+  protected radioForm!: FormGroup; 
   public options: any = [];
 
-  constructor(private fb: FormBuilder) { 
-    this.radioForm = this.fb.group({
-      "rangeValue": [0],
-    });
-  }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.options = this.question.options;
     this.questionForm.get('id')?.setValue(this.question.id);
-    console.log(this.index)
-    // console.log(this.options)
     console.log(this.questionForm);
-    // this.radioControlListiner();
+    this.radioForm = this.fb.group({
+      proxyRadioControl: [ ],
+    });
+    this.radioControlListiner();
   }
 
   protected questionTypes: any  = {
@@ -38,16 +35,29 @@ export class QuestionComponent implements OnInit{
     3 : 'text'
   };
 
-  
-  get isValid(): boolean {
-    return this.questionForm.controls[this.question.id].valid;
+  get selectedCountries() {
+    return this.questionForm.controls['selectedOptions'] as FormArray;
+  }
+
+  onCheckboxChange(event: any) {
+    if (event.target.checked) {
+      this.selectedCountries.push(new FormControl(event.target.value));
+    } 
+    else {
+      const index = this.selectedCountries.controls
+        .findIndex(x => x.value === event.target.value);
+      this.selectedCountries.removeAt(index);
+    }
   }
 
   radioControlListiner() {
-    this.radioForm.get("rangeValue")!.valueChanges.subscribe(selectedValue => {
-      // console.log(selectedValue);
-      this.questionForm.get('rangeValue')?.setValue(selectedValue);
-      console.log(this.questionForm.get('rangeValue')?.value);
+    this.radioForm.get("proxyRadioControl")!.valueChanges.subscribe(selectedValue  => {
+      this.selectedCountries.clear();
+      this.selectedCountries.push(new FormControl(selectedValue));
     })
+  }
+  
+  get isValid(): boolean {
+    return this.questionForm.controls[this.question.id].valid;
   }
 }

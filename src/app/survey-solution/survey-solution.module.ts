@@ -7,9 +7,9 @@ import { QuestionComponent } from './components/question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
-const routes: Routes = [
-  { path: 'survey/:id', component: SurveySolutionComponent, }
-]
+// const routes: Routes = [
+//   { path: 'survey/:id', component: SurveySolutionComponent, }
+// ]
 
 @NgModule({
   declarations: [
@@ -24,10 +24,11 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule.forChild(routes),
+    // RouterModule.forChild(routes),
   ],
   exports: [
-    RouterModule
+    SurveySolutionComponent,
+    // RouterModule
   ]
 })
 export class SurveySolutionModule { }

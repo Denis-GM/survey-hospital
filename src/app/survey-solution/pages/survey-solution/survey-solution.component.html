@@ -1,24 +1,21 @@
-<div class="outer">
-  <div class="wrapper">
-    <div class="btn-back" routerLink="/patient">Вернуться на главную</div>
-    <div class="header-block">
-      <h3 class="header-block__h">{{survey.name}}</h3>
-      <div class="header-block__text">{{survey.description}}</div>
-    </div>
-    <form class="main-block" [formGroup]="surveyForm" (ngSubmit)="submit()">
-      <div formArrayName="questions">
-        <div *ngFor="let question of questionsFroms.controls, let i = index" class="questions-list">
-          <app-question 
-            [formGroupName]="i"
-            [questionForm]="question"
-            [question]="questions![i]"
-            [index]="i">
-          </app-question>
-        </div>
+<div class="container">
+  <div class="header-block">
+    <h3 class="header-block__h">{{survey.name}}</h3>
+    <div class="header-block__text">{{survey.description}}</div>
+  </div>
+  <form class="main-block" [formGroup]="surveyForm" (ngSubmit)="submit()">
+    <div formArrayName="questions">
+      <div *ngFor="let question of questionsFroms.controls, let i = index" class="questions-list">
+        <app-question 
+          [formGroupName]="i"
+          [questionForm]="question"
+          [question]="questions![i]"
+          [index]="i">
+        </app-question>
       </div>
-    </form>
-    <div class="control-block">
-      <button (click)="submit()" class="btn-submit">Отправить</button>
     </div>
+  </form>
+  <div class="control-block">
+    <button (click)="submit()" class="btn-submit">Отправить</button>
   </div>
 </div>

@@ -15,6 +15,12 @@
   margin-bottom: 25px;
 }
 
+.marker-required {
+  color: rgb(218, 8, 8);
+  font-size: 2rem;
+  margin-left: 5px;
+}
+
 .block-answer {
   
 }

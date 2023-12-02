@@ -37,9 +37,9 @@ export const Surveys: SurveyBase<string>[] = [
         type: 0,
         isRequired: false,
         options: [ 
-          { id: "6", answer: "3" },
-          { id: "7", answer: "4" },
-          { id: "8", answer: "5" },
+          { id: "10", answer: "3" },
+          { id: "11", answer: "4" },
+          { id: "12", answer: "5" },
         ]
       },
       {
