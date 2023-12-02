@@ -1,4 +1,4 @@
-import { QuestionBase, SurveyBase } from "../core/interfaces/question-base";
+import { QuestionBase, SurveyBase } from "../interfaces/question-base";
 
 export const Surveys: SurveyBase<string>[] = [
   {

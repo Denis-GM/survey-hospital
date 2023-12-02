@@ -1,4 +1,4 @@
-import { NgModule, forwardRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { SurveysComponent } from './pages/surveys/surveys.component';
@@ -6,7 +6,7 @@ import { CreateSurveysComponent } from './pages/create-survey/create-surveys.com
 import { DetailsSurveyComponent } from './pages/details-survey/details-survey.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { Route, Router, RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './pages/main/main.component';
+import { MainPageComponent } from './main-page/main.component';
 import { SurveyBlockComponent } from './components/survey-block/survey-block.component';
 import { SurveysService } from '../core/api/surveys.service';
 
@@ -15,14 +15,18 @@ import {TuiDataListWrapperModule, TuiInputModule, TuiRadioModule, TuiSelectModul
 import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { QuestionComponent } from './components/question/question.component';
 import { OptionComponent } from './components/option/option.component';
+import { SurveySolutionModule } from '../survey-solution/survey-solution.module';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 const routes: Routes = [
-  { path: '', component: MainComponent, 
+  { path: '', component: MainPageComponent, 
     children: [
       { path: 'surveys', component: SurveysComponent},
       { path: 'details/:id', component: DetailsSurveyComponent },
       { path: 'cteate-survey', component: CreateSurveysComponent },
       { path: 'statistics', component: StatisticsComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: '**', component: SurveysComponent }
     ]
   }
@@ -30,14 +34,16 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    NavBarComponent,
     SurveysComponent,
     CreateSurveysComponent,
     DetailsSurveyComponent,
     StatisticsComponent,
-    MainComponent,
+    MainPageComponent,
     SurveyBlockComponent,
     QuestionComponent,
     OptionComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +51,7 @@ const routes: Routes = [
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
+    SurveySolutionModule,
 
     TuiInputModule,
     TuiTextareaModule,

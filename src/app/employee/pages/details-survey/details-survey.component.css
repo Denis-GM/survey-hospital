@@ -1,0 +1,7 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 786px;
+
+  font-size: 1.4rem;
+}

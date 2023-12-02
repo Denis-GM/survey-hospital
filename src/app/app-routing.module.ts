@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
+import { NotFoundComponent } from './shared/not-found-page/not-found.component';
 
 const routes: Routes = [
 	{ 
@@ -16,7 +16,7 @@ const routes: Routes = [
 			},
 			{ 
 				path: 'main', 
-				loadChildren: () => import('./administrative-analytical/admin-analytical.module')
+				loadChildren: () => import('./employee/employee.module')
 					.then(m => m.AdminAnalyticalModule) 
 			},
 		]

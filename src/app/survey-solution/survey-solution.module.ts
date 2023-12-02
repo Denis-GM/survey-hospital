@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { SurveySolutionComponent } from './pages/survey-solution/survey-solution.component';
+import { SurveySolutionComponent } from './survey/survey.component';
 import { SurveysService } from '../core/api/surveys.service';
-import { QuestionComponent } from './components/question/question.component';
+import { QuestionComponent } from './question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
-// const routes: Routes = [
-//   { path: 'survey/:id', component: SurveySolutionComponent, }
-// ]
 
 @NgModule({
   declarations: [
@@ -24,11 +20,9 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    // RouterModule.forChild(routes),
   ],
   exports: [
     SurveySolutionComponent,
-    // RouterModule
   ]
 })
 export class SurveySolutionModule { }

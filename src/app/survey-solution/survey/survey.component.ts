@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
@@ -7,11 +7,12 @@ import { QuestionBase, SurveyBase } from 'src/app/core/interfaces/question-base'
 
 @Component({
   selector: 'app-survey-solution',
-  templateUrl: './survey-solution.component.html',
-  styleUrls: ['./survey-solution.component.css']
+  templateUrl: './survey.component.html',
+  styleUrls: ['./survey.component.css']
 })
 export class SurveySolutionComponent implements OnInit {
   protected id!: number;
+  @Input() takePartSurvey?: boolean = true;
   protected survey: any = {};
   protected surveyForm!: FormGroup;
   protected questions!: QuestionBase<string>[] | null;

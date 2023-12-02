@@ -6,19 +6,19 @@ import {TuiTextfieldControllerModule} from '@taiga-ui/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NotFoundComponent } from './not-found-page/not-found.component';
 import { ButtonComponent } from './components/button/button.component';
 import { RouterModule } from "@angular/router";
 import { SearchComponent } from "./components/search/search.component";
+import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     NotFoundComponent,
-    NavBarComponent,
     ButtonComponent,
     SearchComponent,
+    ModalWindowComponent,
   ],
   imports: [
     CommonModule,
@@ -34,8 +34,9 @@ import { SearchComponent } from "./components/search/search.component";
   ],
   exports: [
     FooterComponent,
-    NavBarComponent,
     SearchComponent,
+    ButtonComponent,
+    ModalWindowComponent,
 
     TuiDialogModule,
     TuiAlertModule,

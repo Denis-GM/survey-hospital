@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpBackend, HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import { QuestionBase } from '../interfaces/question-base';
-import {Surveys} from '../../moks/surveys';
+import {Surveys} from '../moks/surveys';
 
 @Injectable({
   providedIn: 'root'

@@ -5,7 +5,7 @@ import { MainPatientComponent } from './pages/main-patient/main-patient.componen
 import { SurveysService } from '../core/api/surveys.service';
 import { PassingSurveyComponent } from './pages/passing-survey/passing-survey.component';
 import { SurveySolutionModule } from '../survey-solution/survey-solution.module';
-import { SurveySolutionComponent } from '../survey-solution/pages/survey-solution/survey-solution.component';
+import { SurveySolutionComponent } from '../survey-solution/survey/survey.component';
 
 const routes: Routes = [
   { path: '', component: MainPatientComponent },

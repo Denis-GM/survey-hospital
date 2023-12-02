@@ -15,7 +15,7 @@
       </div>
     </div>
   </form>
-  <div class="control-block">
+  <div *ngIf="takePartSurvey" class="control-block" >
     <button (click)="submit()" class="btn-submit">Отправить</button>
   </div>
 </div>
