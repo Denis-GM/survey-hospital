@@ -16,35 +16,45 @@
       <div [formGroupName]="i" class="question-block">
 
         <button class="removeQuestion" (click)="removeQuestion(i)"></button>
-
-        <tui-select class="tui-space_top-4 question-block__input-type" [tuiTextfieldLabelOutside]="true"
-          formControlName="type">
-          <select tuiSelect [items]="tupesQuestions"></select>
+        <tui-select
+          *tuiLet="items$ | async as items"
+          class="b-form question-block__input-type"
+          formControlName="type"
+          [tuiTextfieldLabelOutside]="true"
+          [valueContent]="stringify(items!)"
+        >
+          <ng-template tuiDataList>
+            <tui-data-list>
+              <button *ngFor="let item of items" tuiOption [value]="item.index">
+                {{ item.type }}
+              </button>
+            </tui-data-list>
+          </ng-template>
         </tui-select>
+
         <tui-input class="question-block__input-text" formControlName="title">
           Введите текст вопроса
           <input tuiTextfield type="text" />
         </tui-input>
         <input formControlName="number" [value]="i" type="hidden"/>
-      
         
         <div formArrayName="answerOptions">
-          <div class="answer-block" *ngFor="let option of getYourOptions(i).controls; let j=index">
-            <div [ngSwitch]="typeYourQuestion(i)">
-              <input *ngSwitchCase="'Один ответ'" type="radio" disabled class="answer-block__icon"/>
-              <input *ngSwitchCase="'Множественный ответ'" type="checkbox" disabled class="answer-block__icon"/>
+          <div *ngFor="let option of getYourOptions(i).controls; let j=index">
+            <div [formGroupName]="j" class="answer-block">
+              <div [ngSwitch]="typeYourQuestion(i)">
+                <input *ngSwitchCase="1" type="radio" disabled class="answer-block__icon"/>
+                <input *ngSwitchCase="2" type="checkbox" disabled class="answer-block__icon"/>
+              </div>
+              <div class="answer-block__control"
+                *ngIf="typeYourQuestion(i) == 1 || typeYourQuestion(i) == 2">
+                <input id="option-{{ j }}" formControlName="answer" type="text" 
+                  class="answer-block__input" placeholder="Ответ" />
+                <button (click)="removeOption(i, j)" class="removeOption"></button>
+              </div>
             </div>
-            <div class="answer-block__control"
-              *ngIf="typeYourQuestion(i) == 'Один ответ' || typeYourQuestion(i) == 'Множественный ответ'">
-              <input id="option-{{ j }}" [formControlName]="j" type="text" 
-              class="answer-block__input" placeholder="Ответ" />
-              <button (click)="removeOption(i, j)" class="removeOption"></button>
-            </div>
-            <!-- <div *ngIf="typeYourQuestion(i) == 'Выбор в диапазоне'">Выбор в диапазоне</div>
-            <div *ngIf="typeYourQuestion(i) == 'Вписать ответ'">Вписать ответ</div> -->
           </div>
         </div>
-        <button *ngIf="typeYourQuestion(i) == 'Один ответ' || typeYourQuestion(i) == 'Множественный ответ'"
+        <button *ngIf="typeYourQuestion(i) == 1 || typeYourQuestion(i) == 2"
          (click)="addOption(i)" class="addOption">
           <span>+</span> Ответ
         </button>

@@ -8,6 +8,12 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class QuestionControlService {
   constructor(private _fb: FormBuilder) { }
 
+  get optinGroup() {
+    return this._fb.group({
+      id: ['']
+    });
+  }
+
   get questionGroup() {
     return this._fb.group({
       id: ['', Validators.required],
@@ -24,16 +30,16 @@ export class QuestionControlService {
       let questionGroup = this.questionGroup
       if(question.isRequired){
         switch(question.type){
-          case 0:
-            questionGroup.get('selectedOptions')!.setValidators(Validators.required);
-            break
           case 1:
             questionGroup.get('selectedOptions')!.setValidators(Validators.required);
             break
           case 2:
-            questionGroup.get('rangeValue')!.setValidators(Validators.required);
+            questionGroup.get('selectedOptions')!.setValidators(Validators.required);
             break
           case 3:
+            questionGroup.get('rangeValue')!.setValidators(Validators.required);
+            break
+          case 0:
             questionGroup.get('textAnswer')!.setValidators(Validators.required);
             break
         }

@@ -18,13 +18,16 @@ export class SurveysService {
   );
 
   private apiUrl: string = "http://194.169.160.79:8080";
-  private apiGetSurveys: string = this.apiUrl + '/surveys';
+  private apiGetSurveys: string = this.apiUrl + '/admin/surveys';
+  private apiGetSurvey: string = this.apiUrl + '/survey/';
+
   private apiEditSurvey: string = "";
-  private apiDeleteSurvey: string = this.apiUrl + "/survey";
+  private apiDeleteSurvey: string = this.apiUrl + "/survey/";
   private apiPostSurvey: string = this.apiUrl + '/survey';
 
   // Patient
   private apiGetPatientSurveys: string = this.apiUrl + '/patient/surveys';
+  private apiPostPatientSurvey: string = this.apiUrl + '/patient/survey';
 
   constructor(private http: HttpClient) { }
 
@@ -35,15 +38,20 @@ export class SurveysService {
   }
 
   postSurvey(data: any): Observable<any> {
-    return this.http.post(this.apiPostSurvey, data, {headers: this.headers});
+    return this.http.post(this.apiPostSurvey, JSON.stringify(data), {headers: this.headers});
   }
 
   getSurvey(id: string): Observable<any> {
-    return of(this.surveys.find((survey: any) => survey.id == id))
+    return this.http.get(this.apiGetSurvey + id, {headers: this.headers});
   }
 
   getSurveysPatient(): Observable<any> {
     return this.http.get(this.apiGetPatientSurveys);
+  }
+
+  postSurveyPatient(data: any): Observable<any> {
+    return this.http.post(this.apiPostPatientSurvey, JSON.stringify(data),
+    {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', }});
   }
 
   editSurvey(data: any): Observable<any> {
@@ -55,7 +63,7 @@ export class SurveysService {
 
   deleteSurvey(id: number){
     console.log('delete');
-    return this.http.delete(this.apiUrl + this.apiDeleteSurvey + id, 
+    return this.http.delete(this.apiDeleteSurvey + id, 
       {headers: this.headers})
   }
 }

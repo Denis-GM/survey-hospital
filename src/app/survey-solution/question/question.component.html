@@ -7,7 +7,7 @@
     <div class="block-answer">
       <ul class="options-list">
         <li *ngFor="let option of options, let i = index" class="option">
-          <ng-conteiner *ngIf="question.type == 0" [formGroup]="radioForm">
+          <ng-conteiner *ngIf="question.type == 1" [formGroup]="radioForm">
             <input 
               [value]="option.id"
               type="radio"
@@ -15,7 +15,7 @@
               formControlName="proxyRadioControl"
               class="option-input" id="option-{{index}}" />
           </ng-conteiner>
-          <input *ngIf="question.type == 1"
+          <input *ngIf="question.type == 2"
             [value]="option.id" 
             type="checkbox"
             name="option-{{index}}"
@@ -26,7 +26,7 @@
         </li>
       </ul>
     </div>
-    <div *ngIf="question.type == 2">
+    <div *ngIf="question.type == 3">
       <div class="scale">
         <label class="scale-item">
           <span class="scale-item__text">1</span>
@@ -90,7 +90,7 @@
         </label>
       </div>
     </div>
-    <div *ngIf="question.type == 3">
+    <div *ngIf="question.type == 0">
       <input class="input-free-entry" type="text" 
       placeholder="Ответ" formControlName="textAnswer" />
     </div>

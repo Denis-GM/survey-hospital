@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from 'src/app/core/api/account.service';
 import { ILoginAccount } from 'src/app/core/interfaces/account-interfaces';
@@ -11,7 +12,7 @@ import { ILoginAccount } from 'src/app/core/interfaces/account-interfaces';
 })
 export class AuthorizationComponent {
 
-  constructor(private accountService: AccountService, private cookieService: CookieService) {}
+  constructor(private accountService: AccountService, private router: Router) {}
 
   loginForm = new FormGroup({
     login: new FormControl('', [ Validators.required ]),
@@ -27,6 +28,7 @@ export class AuthorizationComponent {
       (data: any) => {
         console.log(data);
         localStorage.setItem('auth-token', data.token);
+        this.router.navigate(['/employee/main/surveys']);
       },
       (err: any) => {
         console.log(err)

@@ -11,10 +11,10 @@ import { QuestionBase, SurveyBase } from 'src/app/core/interfaces/question-base'
   styleUrls: ['./survey.component.css']
 })
 export class SurveySolutionComponent implements OnInit {
-  protected id!: number;
+  protected id!: string;
   @Input() takePartSurvey?: boolean = true;
-  protected survey: any = {};
   protected surveyForm!: FormGroup;
+  protected survey: any = {};
   protected questions!: QuestionBase<string>[] | null;
 
   constructor(
@@ -24,12 +24,8 @@ export class SurveySolutionComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.activateRoute.snapshot.params["id"];
-    this.getSurvey(this.id + '');
-    console.log(this.questions);
-    this.surveyForm = this.fb.group({
-      id: [this.id, Validators.required],
-      questions: this.qcs.toFormArray(this.questions as QuestionBase<string>[]) 
-    });
+    this.getSurvey();
+    console.log(this.surveyForm.getRawValue())
   }
 
   get questionsFroms(): FormArray {
@@ -37,21 +33,39 @@ export class SurveySolutionComponent implements OnInit {
   }
 
   submit() {
-    if(this.surveyForm.valid)
-      console.log(this.surveyForm.value);
+    if(this.surveyForm.valid) {
+      const data = this.surveyForm.getRawValue();
+      console.log(data);
+      this.postSurvey(data);
+    }
     else
       console.log(this.surveyForm.valid)
   }
 
-  getSurvey(id: string): void {
-    this.surveysService.getSurvey(id).subscribe(
+  getSurvey(): void {
+    this.surveysService.getSurvey(this.id).subscribe(
       (data: any) => {
         this.survey = data;
         this.questions = data.questions;
+        this.surveyForm = this.fb.group({
+          id: [this.id, Validators.required],
+          questions: this.qcs.toFormArray(this.questions as QuestionBase<string>[]) 
+        });
       },
       (error: any) => {
         console.log(error);
       }
     );
+  }
+
+  postSurvey(data: any): void {
+    this.surveysService.postSurveyPatient(data).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    )
   }
 }

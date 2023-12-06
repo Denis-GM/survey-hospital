@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/core/api/account.service';
 import { IRegisterAccount } from 'src/app/core/interfaces/account-interfaces';
 
@@ -10,7 +11,7 @@ import { IRegisterAccount } from 'src/app/core/interfaces/account-interfaces';
 })
 export class RegistrationComponent implements OnInit{
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private router: Router) {}
 
   ngOnInit(): void { }
 
@@ -22,9 +23,9 @@ export class RegistrationComponent implements OnInit{
   regForm = new FormGroup({
     role: new FormControl( this.items[0], [ Validators.required ]),
     email: new FormControl('', [ Validators.required, Validators.email ]),
-    login: new FormControl('', [ Validators.required ]),
-    password1: new FormControl('', [ Validators.required ]),
-    password2: new FormControl('', [ Validators.required ]),
+    login: new FormControl('', [ Validators.required, Validators.min(8), Validators.min(20)]),
+    password1: new FormControl('', [ Validators.required, Validators.min(12) ]),
+    password2: new FormControl('', [ Validators.required, Validators.min(12) ]),
   });
 
   registerAccount() {
@@ -39,7 +40,8 @@ export class RegistrationComponent implements OnInit{
     console.log(newAccount)
     this.accountService.registerAccount(newAccount).subscribe(
       (data: any) => {
-        console.log(data)
+        console.log(data);
+        this.router.navigate(['/employee/account/login']);
       },
       (err: any) => {
         console.log(err)

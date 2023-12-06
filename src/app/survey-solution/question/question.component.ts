@@ -29,10 +29,10 @@ export class QuestionComponent implements OnInit{
   }
 
   protected questionTypes: any  = {
-    0 : 'radio',
-    1 : 'checkbox',
-    2 : 'radio',
-    3 : 'text'
+    0 : 'text',
+    1 : 'radio',
+    2 : 'checkbox',
+    3 : 'radio',
   };
 
   get selectedCountries() {
@@ -41,7 +41,9 @@ export class QuestionComponent implements OnInit{
 
   onCheckboxChange(event: any) {
     if (event.target.checked) {
-      this.selectedCountries.push(new FormControl(event.target.value));
+      this.selectedCountries.push(new FormGroup({
+        "id": new FormControl(event.target.value)
+      }));
     } 
     else {
       const index = this.selectedCountries.controls
@@ -53,7 +55,9 @@ export class QuestionComponent implements OnInit{
   radioControlListiner() {
     this.radioForm.get("proxyRadioControl")!.valueChanges.subscribe(selectedValue  => {
       this.selectedCountries.clear();
-      this.selectedCountries.push(new FormControl(selectedValue));
+      this.selectedCountries.push(new FormGroup({
+        "id": new FormControl(selectedValue)
+      }));
     })
   }
   

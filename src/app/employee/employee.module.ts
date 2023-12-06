@@ -12,13 +12,15 @@ import { SurveysService } from '../core/api/surveys.service';
 
 import {FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule} from '@angular/forms';
 import {TuiDataListWrapperModule, TuiInputModule, TuiRadioModule, TuiSelectModule, TuiTextareaModule, TuiToggleModule} from '@taiga-ui/kit';
-import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TUI_SANITIZER, TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { QuestionComponent } from './components/question/question.component';
 import { OptionComponent } from './components/option/option.component';
 import { SurveySolutionModule } from '../survey-solution/survey-solution.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ModalWindowControlService } from '../core/services/modal-window-control.service';
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
+import {TuiLetModule} from '@taiga-ui/cdk';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent, 
@@ -61,11 +63,16 @@ const routes: Routes = [
     TuiSelectModule,
     TuiTextfieldControllerModule,
     TuiRadioModule,
-    TuiToggleModule 
+    TuiToggleModule,
+    TuiLetModule
   ],
   providers: [
     SurveysService,
     ModalWindowControlService,
+    {
+      provide: TUI_SANITIZER,
+      useClass: NgDompurifySanitizer,
+    },
   ],
   exports: [RouterModule]
 })

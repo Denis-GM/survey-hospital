@@ -1,9 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 import { ISurvey, IQuestion, IAnswerOptions } from '../../../core/interfaces/ISurvey';
+import { TuiContextWithImplicit, TuiStringHandler, tuiPure } from '@taiga-ui/cdk';
 
+interface IInterface {
+  readonly index: number;
+  readonly type: string;
+}
 
 @Component({
   selector: 'app-create-surveys',
@@ -12,19 +17,45 @@ import { ISurvey, IQuestion, IAnswerOptions } from '../../../core/interfaces/ISu
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class CreateSurveysComponent {
-  protected tupesQuestions: string[] = [ 'Один ответ', 'Множественный ответ','Выбор в диапазоне','Вписать ответ' ];
-  protected inputTypeQuestion: string = this.tupesQuestions[0];
+  tupesQuestions: IInterface[] = [
+    {index: 0, type: 'Вписать ответ'},
+    {index: 1, type: 'Один ответ'},
+    {index: 2, type: 'Множественный ответ'},
+    {index: 3, type: 'Выбор в диапазоне'},
+  ];
+
+  readonly items$ = of(this.tupesQuestions);
+  // value = 1; 
+ 
+  @tuiPure
+  stringify(
+      items: IInterface[]): TuiStringHandler<TuiContextWithImplicit<number>> {
+      const map = new Map(items.map(({index, type}) => [index, type] as [number, string]));
+
+      return ({$implicit}: TuiContextWithImplicit<number>) => map.get($implicit) || '';
+  }
+  
+  // protected tupesQuestions: string[] = [ 'Один ответ', 'Множественный ответ','Выбор в диапазоне','Вписать ответ' ];
+  // protected inputTypeQuestion: string = this.tupesQuestions[0];
 
   constructor(private fb: FormBuilder, private surveysService: SurveysService, 
   ) { }
 
+  get optionGroup() : FormGroup {
+    return this.fb.group({
+      answer: [''],
+    });
+  }
+
   get questionGroup(): FormGroup {
     return this.fb.group({
       title: ['', Validators.required],
-      type: [this.tupesQuestions[0], Validators.required],
+      type: [1, Validators.required],
       number: [0, Validators.required],
       isRequired: [false],
-      answerOptions: this.fb.array([this.fb.control('')]),
+      answerOptions: this.fb.array(
+        [ this.optionGroup ]
+      ),
     });
   }
 
@@ -46,8 +77,8 @@ export class CreateSurveysComponent {
     return this.questions.at(index).get('answerOptions') as FormArray;
   }
 
-  typeYourQuestion(index: number): string {
-    return this.questions.at(index).get("type")?.value as string;
+  typeYourQuestion(index: number): number {
+    return this.questions.at(index).get("type")?.value as number;
   }
 
   addQuestion() {
@@ -67,7 +98,7 @@ export class CreateSurveysComponent {
 
   addOption(index: number) {
     let options: any = this.questions.at(index).get('answerOptions') as FormArray;
-    options.push(this.fb.control(''));
+    options.push(this.optionGroup);
     // this.changeDetection.detectChanges();
     console.log(options, index);
   }
@@ -77,8 +108,6 @@ export class CreateSurveysComponent {
   }
 
   postSurvey(data: any) {
-    data = {
-    }
     this.surveysService.postSurvey(data).subscribe(
       (data: any) => {
         console.log(data);
@@ -90,15 +119,15 @@ export class CreateSurveysComponent {
   }
 
   consoleLog() {
-    console.log(this.surveyForm.value);
-    console.log(this.questions.value);
+    console.log(this.surveyForm.getRawValue());
+    console.log(this.questions.getRawValue());
 
-    const reqSurvey: ISurvey = { 
+    const reqSurvey: any = { 
       name: this.surveyForm.get('name')!.value!,
       description: this.surveyForm.get('description')!.value!,
-      questions: this.questions.value
+      questions: this.questions.getRawValue(),
     }
     this.postSurvey(reqSurvey);
-    this.typeYourQuestion(0);
+    // console.log(JSON.stringify(reqSurvey));
   }
 }
