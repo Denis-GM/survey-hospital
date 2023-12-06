@@ -15,6 +15,7 @@ import { AdminAnalyticalModule } from "./employee/employee.module";
 import { HttpClientModule } from "@angular/common/http";
 import { PatientModule } from "./patient/patient.module";
 import { SurveySolutionModule } from "./survey-solution/survey-solution.module";
+import { CookieService } from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SurveySolutionModule } from "./survey-solution/survey-solution.module";
     PatientModule,
   ], 
   providers: [
-    {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}
+    {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},
+    CookieService,
   ],
   bootstrap: [AppComponent]
 })

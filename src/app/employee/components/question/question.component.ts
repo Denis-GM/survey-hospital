@@ -23,13 +23,6 @@ export class QuestionComponent implements OnInit{
     'Вписать ответ' 
   ];
 
-  // questionGroup = this.fb.group({
-  //   type: ['', Validators.required],
-  //   questionText: ['', Validators.required],
-  //   options: this.fb.array([this.fb.control('')]),
-  //   isRequired: [false]
-  // });
-
   protected inputTypeQuestion: string = this.tupesQuestions[0];
 
   constructor(private fb: FormBuilder) { }
@@ -39,12 +32,8 @@ export class QuestionComponent implements OnInit{
   }
 
   get options() {
-    return this.questionGroup.get('options') as FormArray;
+    return this.questionGroup.get('answerOptions') as FormArray;
   }
-
-  // get optionControl(): FormControl {
-  //   return this.fb.control('');
-  // }
 
   addOption() {
     this.options.push(this.fb.control(''));

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { SurveysService } from 'src/app/core/api/surveys.service';
+import { ModalWindowControlService } from 'src/app/core/services/modal-window-control.service';
 
 @Component({
   selector: 'app-survey-block',
@@ -9,10 +10,16 @@ import { SurveysService } from 'src/app/core/api/surveys.service';
 export class SurveyBlockComponent implements OnInit{
   @Input() survey: any = {};
 
-  constructor(private surveyService: SurveysService) {}
+  constructor(
+    private surveyService: SurveysService, private mwControl: ModalWindowControlService) {}
 
   ngOnInit(): void {
     console.log(this.survey);
+  }
+
+  showDialog(id: string) {
+    this.mwControl.emitStateModalWindowLink(true, id)
+    console.log(this.mwControl.emitStateModalWindowLink);
   }
 
   deleteSurvey(): void {

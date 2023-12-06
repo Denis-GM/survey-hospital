@@ -5,7 +5,7 @@ import { SurveysComponent } from './pages/surveys/surveys.component';
 import { CreateSurveysComponent } from './pages/create-survey/create-surveys.component';
 import { DetailsSurveyComponent } from './pages/details-survey/details-survey.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
-import { Route, Router, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main.component';
 import { SurveyBlockComponent } from './components/survey-block/survey-block.component';
 import { SurveysService } from '../core/api/surveys.service';
@@ -18,6 +18,7 @@ import { OptionComponent } from './components/option/option.component';
 import { SurveySolutionModule } from '../survey-solution/survey-solution.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { ModalWindowControlService } from '../core/services/modal-window-control.service';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent, 
@@ -62,7 +63,10 @@ const routes: Routes = [
     TuiRadioModule,
     TuiToggleModule 
   ],
-  providers: [SurveysService],
+  providers: [
+    SurveysService,
+    ModalWindowControlService,
+  ],
   exports: [RouterModule]
 })
 export class AdminAnalyticalModule { }

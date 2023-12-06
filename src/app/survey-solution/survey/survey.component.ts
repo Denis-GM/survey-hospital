@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
-import { QuestionControlService } from 'src/app/core/api/survey-solution/question-control.service';
+import { QuestionControlService } from 'src/app/core/services/question-control.service';
 import { QuestionBase, SurveyBase } from 'src/app/core/interfaces/question-base';
 
 @Component({

@@ -7,16 +7,16 @@ import { AccountService } from 'src/app/core/api/account.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  protected account: any;
+  protected account: any = {};
 
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.getAccount('1');
+    this.getAccount();
   }
 
-  getAccount(id: string) {
-    this.accountService.getSurvey(id).subscribe(
+  getAccount() {
+    this.accountService.getAccount().subscribe(
       (data: any) => {
         this.account = data;
         console.log(this.account);

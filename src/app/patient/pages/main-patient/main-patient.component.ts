@@ -12,10 +12,10 @@ export class MainPatientComponent implements OnInit{
   constructor(private surveysService: SurveysService) {}
 
   ngOnInit(): void {
-    this.getSurveys();
+    this.getSurveysPatient();
   }
 
-  getSurveys(): void {
+  getSurveysPatient(): void {
     this.surveysService.getSurveys().subscribe(
       (data: any) => {
         console.log(data);

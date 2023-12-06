@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
+import { ModalWindowControlService } from 'src/app/core/services/modal-window-control.service';
 
 @Component({
   selector: 'app-surveys',
@@ -10,11 +11,20 @@ import { SurveysService } from 'src/app/core/api/surveys.service';
 export class SurveysComponent implements OnInit{
   protected searchText: string = '';
   protected surveys: [] = [];
+  protected isOpenModal = true;
+  protected isOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private router: Router, private surveysService: SurveysService) {}
+  constructor(
+    private router: Router, private surveysService: SurveysService,
+    private mwControl: ModalWindowControlService) {}
 
   ngOnInit(): void {
     this.getSurveys();
+    this.getStateModalWindow();
+  }
+
+  protected manageDialog(isOpen: boolean) {
+    this.isOpenModal = false;
   }
 
   getSurveys(): void {
@@ -27,6 +37,18 @@ export class SurveysComponent implements OnInit{
         console.log(error);
       }
     );
+  }
+
+  getStateModalWindow() {
+    this.mwControl.getStateModalWindow().subscribe(
+      (data: boolean) => {
+        this.isOpen.emit(data);
+        console.log(data);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    )
   }
 
   contSubstring(survey: any): boolean {

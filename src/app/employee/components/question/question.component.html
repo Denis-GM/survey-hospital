@@ -3,13 +3,13 @@
     formControlName="type" [(ngModel)]="inputTypeQuestion">
     <select tuiSelect [items]="tupesQuestions"></select>
   </tui-select>
-  <tui-input class="question-block__input-text" formControlName="questionText">
+  <tui-input class="question-block__input-text" formControlName="title">
       Введите текст вопроса
       <input tuiTextfield type="text" />
   </tui-input>
 
   
-  <div formArrayName="options">
+  <div formArrayName="answerOptions">
     <div class="only-answer" *ngFor="let option of options.controls; let i=index">
       <input *ngIf="inputTypeQuestion == 'Один ответ'" type="radio" disabled/>
       <input *ngIf="inputTypeQuestion == 'Множественный ответ'" type="checkbox" disabled/>

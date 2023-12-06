@@ -1,7 +1,7 @@
 <form [formGroup]="surveyForm">
   <div class="header-block" >
     <h3 class="header-block__h">Создание опроса</h3>
-    <tui-input class="header-block__input" formControlName="title">Название опроса
+    <tui-input class="header-block__input" formControlName="name">Название опроса
       <input tuiTextfield type="text"/>
     </tui-input>
     <tui-textarea class="b-form header-block__input" formControlName="description" >
@@ -21,13 +21,14 @@
           formControlName="type">
           <select tuiSelect [items]="tupesQuestions"></select>
         </tui-select>
-        <tui-input class="question-block__input-text" formControlName="questionText">
+        <tui-input class="question-block__input-text" formControlName="title">
           Введите текст вопроса
           <input tuiTextfield type="text" />
         </tui-input>
+        <input formControlName="number" [value]="i" type="hidden"/>
       
         
-        <div formArrayName="options">
+        <div formArrayName="answerOptions">
           <div class="answer-block" *ngFor="let option of getYourOptions(i).controls; let j=index">
             <div [ngSwitch]="typeYourQuestion(i)">
               <input *ngSwitchCase="'Один ответ'" type="radio" disabled class="answer-block__icon"/>
@@ -67,4 +68,4 @@
   </div>
 </form>
 <button class="btn-add-question" (click)="addQuestion()">+ Добавить вопрос</button>
-<button class="btn-add-question" (click)="consoleLogQuestion()">Вывести вопросы</button>
+<button class="btn-add-question" (click)="consoleLog()">Вывести вопросы</button>

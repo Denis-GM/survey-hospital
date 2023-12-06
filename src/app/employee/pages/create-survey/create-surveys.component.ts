@@ -1,12 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { Observable } from 'rxjs';
-import { ISurvey, IQuestion, TypesQuestion } from 'src/app/core/interfaces/survey-interfaces';
+import { SurveysService } from 'src/app/core/api/surveys.service';
+import { ISurvey, IQuestion, IAnswerOptions } from '../../../core/interfaces/ISurvey';
 
-interface Questions {
-  readonly text: string;
-  readonly value: TypesQuestion;
-}
 
 @Component({
   selector: 'app-create-surveys',
@@ -18,21 +15,21 @@ export class CreateSurveysComponent {
   protected tupesQuestions: string[] = [ 'Один ответ', 'Множественный ответ','Выбор в диапазоне','Вписать ответ' ];
   protected inputTypeQuestion: string = this.tupesQuestions[0];
 
-  constructor(private fb: FormBuilder,
-    // private changeDetection: ChangeDetectorRef
+  constructor(private fb: FormBuilder, private surveysService: SurveysService, 
   ) { }
 
   get questionGroup(): FormGroup {
     return this.fb.group({
+      title: ['', Validators.required],
       type: [this.tupesQuestions[0], Validators.required],
-      questionText: ['', Validators.required],
-      options: this.fb.array([this.fb.control('')]),
-      isRequired: [false]
+      number: [0, Validators.required],
+      isRequired: [false],
+      answerOptions: this.fb.array([this.fb.control('')]),
     });
   }
 
   surveyForm = this.fb.group({
-    title: ['', Validators.required],
+    name: ['', Validators.required],
     description: [''],
     questions: this.fb.array([this.questionGroup]),
   });
@@ -41,8 +38,12 @@ export class CreateSurveysComponent {
     return this.surveyForm.get('questions') as FormArray;
   }
 
+  get options() {
+    return this.questions.get('answerOptions') as FormArray;
+  }
+
   getYourOptions(index: number): FormArray {
-    return this.questions.at(index).get('options') as FormArray;
+    return this.questions.at(index).get('answerOptions') as FormArray;
   }
 
   typeYourQuestion(index: number): string {
@@ -65,7 +66,7 @@ export class CreateSurveysComponent {
   }
 
   addOption(index: number) {
-    let options: any = this.questions.at(index).get('options') as FormArray;
+    let options: any = this.questions.at(index).get('answerOptions') as FormArray;
     options.push(this.fb.control(''));
     // this.changeDetection.detectChanges();
     console.log(options, index);
@@ -75,8 +76,29 @@ export class CreateSurveysComponent {
     this.getYourOptions(indexQuestion).removeAt(indexOption);
   }
 
+  postSurvey(data: any) {
+    data = {
+    }
+    this.surveysService.postSurvey(data).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    )
+  }
+
   consoleLog() {
-    console.log(this.questionGroup.value);
+    console.log(this.surveyForm.value);
+    console.log(this.questions.value);
+
+    const reqSurvey: ISurvey = { 
+      name: this.surveyForm.get('name')!.value!,
+      description: this.surveyForm.get('description')!.value!,
+      questions: this.questions.value
+    }
+    this.postSurvey(reqSurvey);
     this.typeYourQuestion(0);
   }
 }
