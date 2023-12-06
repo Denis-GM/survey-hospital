@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AccountModule } from './account/account.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule } from "@angular/forms";
 import { AdminAnalyticalModule } from "./employee/employee.module";
 import { HttpClientModule } from "@angular/common/http";
 import { PatientModule } from "./patient/patient.module";

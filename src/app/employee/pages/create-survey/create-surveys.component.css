@@ -33,6 +33,7 @@
   align-items: center;
   
   padding: 16px 0;
+  margin-bottom: 20px;
 }
 
 /* question */
@@ -155,6 +156,22 @@
 .toggle-required label {
   font-size: 1rem;
   margin-right: 7px;
+}
+
+.btn-submit {
+  user-select: none;
+  cursor: pointer;
+  
+  border: none;
+  width: 90%;
+  border-radius: 7px;
+
+  background: #526ED3;
+  color: #FFF;
+  justify-content: center;
+  align-items: center;
+  
+  padding: 16px 0;
 }
 
 

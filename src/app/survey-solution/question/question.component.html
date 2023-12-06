@@ -4,7 +4,7 @@
       {{question.title}} 
       <span *ngIf="question.isRequired" class="marker-required">*</span>
     </h3>
-    <div class="block-answer">
+    <div *ngIf="question.type == 1 || question.type == 2" class="block-answer">
       <ul class="options-list">
         <li *ngFor="let option of options, let i = index" class="option">
           <ng-conteiner *ngIf="question.type == 1" [formGroup]="radioForm">
@@ -27,6 +27,7 @@
       </ul>
     </div>
     <div *ngIf="question.type == 3">
+      <span class="scale__description">Оцените от 1 до 10</span>
       <div class="scale">
         <label class="scale-item">
           <span class="scale-item__text">1</span>

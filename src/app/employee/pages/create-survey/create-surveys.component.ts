@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 import { ISurvey, IQuestion, IAnswerOptions } from '../../../core/interfaces/ISurvey';
 import { TuiContextWithImplicit, TuiStringHandler, tuiPure } from '@taiga-ui/cdk';
@@ -39,7 +40,7 @@ export class CreateSurveysComponent {
   // protected inputTypeQuestion: string = this.tupesQuestions[0];
 
   constructor(private fb: FormBuilder, private surveysService: SurveysService, 
-  ) { }
+    private router: Router) { }
 
   get optionGroup() : FormGroup {
     return this.fb.group({
@@ -111,6 +112,7 @@ export class CreateSurveysComponent {
     this.surveysService.postSurvey(data).subscribe(
       (data: any) => {
         console.log(data);
+        this.router.navigate(['/employee/main/surveys']);
       },
       (err: any) => {
         console.log(err);

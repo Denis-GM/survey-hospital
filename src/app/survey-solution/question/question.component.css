@@ -68,6 +68,18 @@ input[type=radio] {
   margin: 25px auto 25px;
 }
 
+
+.scale__description {
+  position: relative;
+  top: -15px;
+
+  color: rgba(0, 0, 0, 0.67);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 .scale-item {
   width: 10%;
   text-align: center;
