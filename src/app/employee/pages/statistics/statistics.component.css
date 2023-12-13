@@ -11,12 +11,17 @@
 }
 
 .control-panel__name-survey {
+  margin-bottom: 25px;
+}
 
+.control-panel__select {
+  width: 20%;
 }
 
 .control-panel__stat-survey {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .main {

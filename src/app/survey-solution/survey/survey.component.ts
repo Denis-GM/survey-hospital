@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { QuestionControlService } from 'src/app/core/services/question-control.service';
@@ -19,7 +19,8 @@ export class SurveySolutionComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute, private surveysService: SurveysService, 
-    private fb: FormBuilder, private qcs: QuestionControlService
+    private fb: FormBuilder, private qcs: QuestionControlService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -62,6 +63,7 @@ export class SurveySolutionComponent implements OnInit {
     this.surveysService.postSurveyPatient(data).subscribe(
       (data: any) => {
         console.log(data);
+        this.router.navigate(['/patient']);
       },
       (err: any) => {
         console.log(err);

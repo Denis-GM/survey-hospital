@@ -1,9 +1,9 @@
-<div class="control-panel">
+<div [formGroup]="statForm" class="control-panel">
   <div class="control-panel__name-survey">
     <tui-select
         tuiTextfieldSize="l"
         class="tui-space_vertical-4"
-        [formControl]="testValue"
+        formControlName="nameSurvey"
         [tuiTextfieldLabelOutside]="true"
     >
         Название опроса
@@ -13,12 +13,61 @@
         />
         <tui-data-list-wrapper
             *tuiDataList
-            [items]="items"
+            [items]="nameSurveys"
         ></tui-data-list-wrapper>
     </tui-select>
   </div>
-  <div class="control-panel__stat-survey"></div>
+  <div class="control-panel__stat-survey">
+    <tui-select
+        tuiTextfieldSize="l"
+        class="tui-space_vertical-4 control-panel__select"
+        formControlName="type"
+        [tuiTextfieldLabelOutside]="true"
+    >
+        Тип опроса
+        <input
+            placeholder="Название опроса"
+            tuiTextfield
+        />
+        <tui-data-list-wrapper
+            *tuiDataList
+            [items]="types"
+        ></tui-data-list-wrapper>
+    </tui-select>
+    <tui-select
+        tuiTextfieldSize="l"
+        class="tui-space_vertical-4 control-panel__select"
+        formControlName="department"
+        [tuiTextfieldLabelOutside]="true"
+    >
+        Выбор отделения
+        <input
+            placeholder="Выбор отделения"
+            tuiTextfield
+        />
+        <tui-data-list-wrapper
+            *tuiDataList
+            [items]="departments"
+        ></tui-data-list-wrapper>
+    </tui-select>
+    <tui-input-date
+        class="control-panel__select"
+        formControlName="dateStart"
+        tuiTextfieldSize="l"
+    >
+      Дата начала
+    </tui-input-date>
+    <tui-input-date
+        class="control-panel__select"
+        formControlName="dateFinish"
+        tuiTextfieldSize="l"
+    >
+      Дата окончания
+    </tui-input-date>
+  </div>
 </div>
 <div class="main">
-  
+  <div *ngFor="let question of questions">
+    <div>{{question.id}}</div>
+  </div>
 </div>

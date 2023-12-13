@@ -11,7 +11,7 @@ import { SurveyBlockComponent } from './components/survey-block/survey-block.com
 import { SurveysService } from '../core/api/surveys.service';
 
 import {FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule} from '@angular/forms';
-import {TuiDataListWrapperModule, TuiInputModule, TuiRadioModule, TuiSelectModule, TuiTextareaModule, TuiToggleModule} from '@taiga-ui/kit';
+import {TuiDataListWrapperModule, TuiInputDateModule, TuiInputModule, TuiRadioModule, TuiSelectModule, TuiTextareaModule, TuiToggleModule} from '@taiga-ui/kit';
 import { TUI_SANITIZER, TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { QuestionComponent } from './components/question/question.component';
 import { OptionComponent } from './components/option/option.component';
@@ -64,7 +64,8 @@ const routes: Routes = [
     TuiTextfieldControllerModule,
     TuiRadioModule,
     TuiToggleModule,
-    TuiLetModule
+    TuiLetModule,
+    TuiInputDateModule,
   ],
   providers: [
     SurveysService,
