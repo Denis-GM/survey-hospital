@@ -1,0 +1,10 @@
+.bar-chart {
+  position: relative;
+  width: 100%;
+  padding: 0 30px 20px 30px;
+}
+
+.bar-chart__canvas {
+  height: 5vh;
+  height: 100%;
+}

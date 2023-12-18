@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from 'src/app/core/api/account.service';
 import { ILoginAccount } from 'src/app/core/interfaces/account-interfaces';
 

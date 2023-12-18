@@ -21,6 +21,11 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ModalWindowControlService } from '../core/services/modal-window-control.service';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import {TuiLetModule} from '@taiga-ui/cdk';
+import {TuiInputDateRangeModule} from '@taiga-ui/kit';
+
+import { BarChartComponent } from './pages/statistics/components/bar-chart/bar-chart.component';
+import { PieChartComponent } from './pages/statistics/components/pie-chart/pie-chart.component';
+import { StatBlockComponent } from './pages/statistics/components/stat-block/stat-block.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent, 
@@ -47,6 +52,9 @@ const routes: Routes = [
     QuestionComponent,
     OptionComponent,
     ProfileComponent,
+    BarChartComponent,
+    PieChartComponent,
+    StatBlockComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +74,7 @@ const routes: Routes = [
     TuiToggleModule,
     TuiLetModule,
     TuiInputDateModule,
+    TuiInputDateRangeModule,
   ],
   providers: [
     SurveysService,

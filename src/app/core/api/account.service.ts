@@ -15,7 +15,7 @@ export class AccountService {
       'Authorization': `Bearer ${localStorage.getItem('auth-token')}`}
   );
 
-  private apiUrl: string = "http://194.169.160.79:8080";
+  private apiUrl: string = "https://api.survey-manager.ru";
   private apiGetAccount: string = this.apiUrl + '/account';
   private apigetAccessKey: string = this.apiUrl + '/surveys/access-key'
   private apiRegister: string = this.apiUrl + '/account/register';

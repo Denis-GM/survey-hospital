@@ -62,7 +62,7 @@ export class CreateSurveysComponent {
 
   surveyForm = this.fb.group({
     name: ['', Validators.required],
-    description: [''],
+    description: ['', Validators.maxLength(1000)],
     questions: this.fb.array([this.questionGroup]),
   });
 

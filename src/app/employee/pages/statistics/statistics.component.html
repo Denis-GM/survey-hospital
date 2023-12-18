@@ -4,7 +4,6 @@
         tuiTextfieldSize="l"
         class="tui-space_vertical-4"
         formControlName="nameSurvey"
-        [tuiTextfieldLabelOutside]="true"
     >
         Название опроса
         <input
@@ -38,9 +37,8 @@
         tuiTextfieldSize="l"
         class="tui-space_vertical-4 control-panel__select"
         formControlName="department"
-        [tuiTextfieldLabelOutside]="true"
     >
-        Выбор отделения
+        Отделение
         <input
             placeholder="Выбор отделения"
             tuiTextfield
@@ -50,10 +48,11 @@
             [items]="departments"
         ></tui-data-list-wrapper>
     </tui-select>
-    <tui-input-date
+    <!-- <tui-input-date
         class="control-panel__select"
         formControlName="dateStart"
         tuiTextfieldSize="l"
+        [tuiTextfieldLabelOutside]="true"
     >
       Дата начала
     </tui-input-date>
@@ -63,11 +62,28 @@
         tuiTextfieldSize="l"
     >
       Дата окончания
-    </tui-input-date>
+    </tui-input-date> -->
+    <form
+      class="b-form control-panel__select"
+      [formGroup]="testForm"
+    >
+      <tui-input-date-range
+        formControlName="testValue"
+        tuiUnfinishedValidator="Finish filling the field"
+        [max]="max"
+        [min]="min"
+      >
+        Диапазон дат
+        <input
+          placeholder="From - To"
+          tuiTextfield
+        />
+      </tui-input-date-range>
+    </form>
   </div>
 </div>
 <div class="main">
-  <div *ngFor="let question of questions">
-    <div>{{question.id}}</div>
+  <div *ngFor="let question of questions; let i = index" class="stat-block">
+    <app-stat-block [question]="question" [index]="i"></app-stat-block>
   </div>
 </div>

@@ -1,0 +1,24 @@
+<div class="stat-block">
+  <div class="stat-block__flex-header">
+    <div class="stat-block__h">
+      <h3 style="margin-bottom: 20px;">Вопрос № {{index + 1}}</h3> 
+      <h4 class="stat-block__description">{{question.title}}</h4> 
+    </div>
+    <tui-select 
+      [formControl]="typeStat"
+      [tuiTextfieldLabelOutside]="true">
+      Формат отображения
+      <input
+          placeholder="Выберите тип диаграммы"
+          tuiTextfield
+      />
+      <tui-data-list-wrapper
+          *tuiDataList
+          [items]="items"
+      >
+      </tui-data-list-wrapper>
+    </tui-select>
+  </div>
+  <app-bar-chart *ngIf="typeStat.value == items[0]"></app-bar-chart>
+  <app-pie-chart *ngIf="typeStat.value == items[1]"></app-pie-chart>
+</div>

@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TuiDataListWrapperModule, TuiInputModule, TuiSelectModule } from '@taiga-ui/kit';
 import {TuiHintModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import { CookieService } from 'ngx-cookie-service';
 
 const routes: Routes = [
   { path: 'registration', component: RegistrationComponent},
@@ -37,7 +36,7 @@ const routes: Routes = [
     TuiDataListWrapperModule,
     TuiSelectModule 
   ],
-  providers: [CookieService],
+  providers: [],
   exports: [RouterModule]
 })
 export class AccountModule { }

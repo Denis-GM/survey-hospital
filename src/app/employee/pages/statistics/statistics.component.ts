@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TuiDay, TuiDayRange } from '@taiga-ui/cdk';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 
 @Component({
@@ -29,6 +30,15 @@ export class StatisticsComponent implements OnInit{
     })
     this.formListener();
   }
+
+  readonly testForm = new FormGroup({
+    testValue: new FormControl(
+        new TuiDayRange(new TuiDay(2023, 12, 1), new TuiDay(2023, 12, 18)),
+    ),
+  });
+
+  readonly min = new TuiDay(2000, 2, 20);
+  readonly max = new TuiDay(2060, 2, 20);
 
   getSurveys(): void {
     this.surveysService.getSurveys().subscribe(
