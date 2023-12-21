@@ -38,7 +38,7 @@ export class RegistrationComponent implements OnInit{
       passwordConfirm: this.regForm.get('password2')!.value!,
     }
     console.log(newAccount)
-    this.accountService.registerAccount(newAccount).subscribe(
+    this.accountService.register(newAccount).subscribe(
       (data: any) => {
         console.log(data);
         this.router.navigate(['/employee/account/login']);

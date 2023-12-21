@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs';
 import { AccountService } from 'src/app/core/api/account.service';
 import { ILoginAccount } from 'src/app/core/interfaces/account-interfaces';
 
@@ -9,39 +10,55 @@ import { ILoginAccount } from 'src/app/core/interfaces/account-interfaces';
   templateUrl: './authorization.component.html',
   styleUrls: ['./authorization.component.css']
 })
-export class AuthorizationComponent {
+export class AuthorizationComponent implements OnInit{
+    protected loginForm!: FormGroup;
+    loading = false;
+    submitted = false;
+    error = '';
 
-  constructor(private accountService: AccountService, private router: Router) {}
+    constructor(
+        private accountService: AccountService, 
+        private router: Router,
+        private route: ActivatedRoute
+    ) {}
 
-  loginForm = new FormGroup({
-    login: new FormControl('', [ Validators.required ]),
-    password: new FormControl('', [ Validators.required ]),
-  });
-
-  loginAccount() {
-    const account: ILoginAccount = {
-      login: this.loginForm.get('login')!.value!,
-      password: this.loginForm.get('password')!.value!,
+    ngOnInit(): void {
+        this.loginForm = new FormGroup({
+            login: new FormControl('', [ Validators.required ]),
+            password: new FormControl('', [ Validators.required ]),
+        });
     }
-    this.accountService.loginAccount(account).subscribe(
-      (data: any) => {
-        console.log(data);
-        localStorage.setItem('auth-token', data.token);
-        this.router.navigate(['/employee/main/surveys']);
-      },
-      (err: any) => {
-        console.log(err)
-      }
-    );
-  }
 
-  submit(): void {
-    if(this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      this.loginAccount();
+    login() {
+        const account: ILoginAccount = {
+            login: this.loginForm.get('login')!.value!,
+            password: this.loginForm.get('password')!.value!,
+        }
+        this.accountService.login(account).subscribe(
+            (data: any) => {
+                console.log(data);
+                localStorage.setItem('user', JSON.stringify(data));
+                // console.log(data);
+                // localStorage.setItem('auth-token', data.token);
+                // this.router.navigate(['/employee/main/surveys']);
+
+                // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/patient';
+                // this.router.navigateByUrl(returnUrl);
+            },
+            (err: any) => {
+                console.log(err)
+            }
+        );
     }
-    else {
-      console.log('invalid');
+
+    submit(): void {
+        if(this.loginForm.valid) {
+            this.loading = true;
+            console.log(this.loginForm.value);
+            this.login();
+        }
+        else {
+            console.log('invalid');
+        }
     }
-  }
 }

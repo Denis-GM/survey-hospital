@@ -6,7 +6,8 @@
     <div *ngIf="contSubstring(survey)">
       <app-survey-block [survey]="survey"></app-survey-block>
     </div>
-    <app-modal-window *ngIf="false"></app-modal-window>
     <!-- {{isOpen.next}} -->
 	</ng-container>
+  <button (click)="manageDialog()">modal</button>
+  <app-modal-window *ngIf="stateModal"></app-modal-window>
 </div>

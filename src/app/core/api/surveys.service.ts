@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpBackend, HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import { QuestionBase } from '../interfaces/question-base';
-import {Surveys} from '../moks/surveys';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -30,8 +28,6 @@ export class SurveysService {
   private apiPostPatientSurvey: string = this.apiUrl + '/patient/survey';
 
   constructor(private http: HttpClient) { }
-
-  private surveys: any  = Surveys;
 
   getSurveys(): Observable<any> {
     return this.http.get(this.apiGetSurveys, {headers: this.headers});

@@ -11,7 +11,7 @@ import { ModalWindowControlService } from 'src/app/core/services/modal-window-co
 export class SurveysComponent implements OnInit{
   protected searchText: string = '';
   protected surveys: [] = [];
-  protected isOpenModal = true;
+  protected stateModal = false;
   protected isOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
@@ -23,8 +23,8 @@ export class SurveysComponent implements OnInit{
     this.getStateModalWindow();
   }
 
-  protected manageDialog(isOpen: boolean) {
-    this.isOpenModal = false;
+  protected manageDialog() {
+    this.stateModal = true;
   }
 
   getSurveys(): void {
