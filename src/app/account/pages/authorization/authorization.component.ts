@@ -37,10 +37,10 @@ export class AuthorizationComponent implements OnInit{
         this.accountService.login(account).subscribe(
             (data: any) => {
                 console.log(data);
-                localStorage.setItem('user', JSON.stringify(data));
+                // localStorage.setItem('user', JSON.stringify(data));
                 // console.log(data);
                 // localStorage.setItem('auth-token', data.token);
-                // this.router.navigate(['/employee/main/surveys']);
+                this.router.navigate(['/employee/main/surveys']);
 
                 // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/patient';
                 // this.router.navigateByUrl(returnUrl);

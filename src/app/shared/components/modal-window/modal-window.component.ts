@@ -30,8 +30,7 @@ export class ModalWindowComponent implements OnInit{
     )
   }
 
-  manageDialog() {
-    // this.isOpen.emit(false);
-    this.mwControl.emitStateModalWindowLink(false);
+  protected closeDialog() {
+    this.isOpen.emit(false);
   }
 }

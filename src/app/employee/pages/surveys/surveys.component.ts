@@ -23,8 +23,12 @@ export class SurveysComponent implements OnInit{
     this.getStateModalWindow();
   }
 
-  protected manageDialog() {
+  protected openDialog() {
     this.stateModal = true;
+  }
+
+  protected manageDialog(isOpen: boolean) {
+    this.stateModal = false;
   }
 
   getSurveys(): void {

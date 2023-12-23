@@ -18,27 +18,17 @@ export class AuthGuard {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     const user = this.authService.userValue;
     if (user) {
-      // check if route is restricted by role
       const data: any = route.data;
       if (data.roles && data.roles.indexOf(user.role) === -1) {
-        this.router.navigate(['/emp/account/login']);
+        this.router.navigate(['/employee/account/login']);
+        console.log(data)
         return false;
       }
+      this.router.navigate(['/employee/main/surveys']);
       return true;
     }
-    this.router.navigate(['/emp/account/login'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/employee/account/login']);
     return false;
-    // this.authService.getAccount().subscribe(
-    //   (data: any) => {
-    //       this.isLoggedIn = true;
-    //       this.router.navigate(['/employee/main/surveys']);
-    //   },
-    //   (err: any) => {
-    //       this.isLoggedIn = false;
-    //       this.router.navigate(['/employee/account/login']);
-    //   }
-    // )
-    // return this.isLoggedIn;
   }
 }
 

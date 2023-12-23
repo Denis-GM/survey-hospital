@@ -8,6 +8,6 @@
     </div>
     <!-- {{isOpen.next}} -->
 	</ng-container>
-  <button (click)="manageDialog()">modal</button>
-  <app-modal-window *ngIf="stateModal"></app-modal-window>
+  <button (click)="openDialog()">modal</button>
+  <app-modal-window *ngIf="stateModal" (isOpen)="manageDialog($event)"></app-modal-window>
 </div>
