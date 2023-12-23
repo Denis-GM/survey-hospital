@@ -4,6 +4,13 @@ export interface ISurvey {
   questions: IQuestion[]
 }
 
+export interface ISurveyGet {
+  id: string,
+  name: string,
+  description: string,
+  questions: IQuestion[]
+}
+
 export interface IQuestion {
   title: string,
   type: number,

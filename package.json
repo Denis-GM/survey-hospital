@@ -27,6 +27,7 @@
     "angular-cli-ghpages": "^1.0.7",
     "chart.js": "^4.4.1",
     "dompurify": "2.2.9",
+    "ngx-clipboard": "^16.0.0",
     "ngx-permissions": "^16.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

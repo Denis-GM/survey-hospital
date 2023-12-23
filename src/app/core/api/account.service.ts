@@ -56,6 +56,7 @@ export class AccountService {
             .pipe(map(user => {
                 localStorage.setItem('user', JSON.stringify(user));
                 localStorage.setItem('auth-token', user.token);
+                localStorage.setItem('role', user.role);
                 this.userSubject.next(user as IUser);
                 return user;
             }));
@@ -64,6 +65,7 @@ export class AccountService {
     logout() {
         localStorage.removeItem('user');
         localStorage.removeItem('auth-token');
+        localStorage.removeItem('role');
         this.userSubject.next({} as IUser);
         this.router.navigate(['/employee/account/login']);
     }

@@ -5,7 +5,7 @@
     </div>
     <div class="nav-bar__content">
       <app-button routerLink="/employee/main/surveys">Опросы</app-button>
-      <app-button routerLink="/employee/main/cteate-survey">Создать опрос</app-button>
+      <app-button *ngIf="role == 2" routerLink="/employee/main/cteate-survey">Создать опрос</app-button>
       <app-button routerLink="/employee/main/statistics">Статистика</app-button>
       <app-button routerLink="/employee/main/profile">Ключ доступа</app-button>
       <app-button (click)="logout()">Выйти</app-button>

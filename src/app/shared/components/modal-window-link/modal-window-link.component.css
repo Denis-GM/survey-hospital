@@ -24,7 +24,7 @@
 
 .dialog__container_inner {
   background-color: #DAE1FA;
-  padding: 24px 42px;
+  padding: 34px 42px 34px;
   
   width: var(--width-dialog-window);
   height: var(--height-dialog-window);
@@ -56,9 +56,9 @@
 
 .dialog__title {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 20px;
-
+  line-height: 24px;
   /* border-left: 4px solid #526ED3; */
   /* padding-left: 10px; */
 
@@ -68,7 +68,10 @@
 }
 
 .dialog__text {
-
+  word-break: break-all;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 25px;
 }
 
 .dialog__buttons {

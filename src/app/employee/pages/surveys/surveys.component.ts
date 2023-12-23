@@ -1,30 +1,35 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
+import { ISurveyGet } from 'src/app/core/interfaces/ISurvey';
 import { ModalWindowControlService } from 'src/app/core/services/modal-window-control.service';
 
 @Component({
   selector: 'app-surveys',
   templateUrl: './surveys.component.html',
-  styleUrls: ['./surveys.component.css']
+  styleUrls: ['./surveys.component.css', './survey-block.component.css']
 })
 export class SurveysComponent implements OnInit{
+  private url: string = 'http://localhost:4200/patient/fill/survey/';
   protected searchText: string = '';
-  protected surveys: [] = [];
+  protected surveyLink: string = '';
+  protected surveys: ISurveyGet[] = [];
   protected stateModal = false;
-  protected isOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  protected role: number;
+  
   constructor(
     private router: Router, private surveysService: SurveysService,
-    private mwControl: ModalWindowControlService) {}
+    private mwControl: ModalWindowControlService, private surveyService: SurveysService) {
+      this.role = (localStorage.getItem('role') || 3) as number;
+    }
 
   ngOnInit(): void {
     this.getSurveys();
-    this.getStateModalWindow();
   }
 
-  protected openDialog() {
+  protected openDialog(id: string) {
     this.stateModal = true;
+    this.surveyLink = this.url + id;
   }
 
   protected manageDialog(isOpen: boolean) {
@@ -43,14 +48,14 @@ export class SurveysComponent implements OnInit{
     );
   }
 
-  getStateModalWindow() {
-    this.mwControl.getStateModalWindow().subscribe(
-      (data: boolean) => {
-        this.isOpen.emit(data);
-        console.log(data);
+  deleteSurvey(id: string): void {
+    this.surveyService.deleteSurvey(id)
+    .subscribe(
+      (res: any) => {
+        console.log(res)
       },
-      (err: any) => {
-        console.log(err);
+      (error: any) => {
+        console.log(error)
       }
     )
   }

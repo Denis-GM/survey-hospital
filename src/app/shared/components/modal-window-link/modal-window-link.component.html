@@ -3,9 +3,9 @@
     <div class="dialog__container_inner">
       <button (click)="closeDialog()" class="dialog__cancel"></button>
       <h2 class="dialog__title">Ссылка на опрос</h2>
-      <div class="dialog__text"></div>
+      <div class="dialog__text">{{link}}</div>
       <div class="dialog__buttons">
-        <button tuiButton type="submit" class="dialog__copy" size="m">
+        <button tuiButton (click)="copyContent()" class="dialog__copy" size="m">
           Скопировать
         </button>
         <!-- <button tuiButton type="button" appearance="outline"

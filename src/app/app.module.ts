@@ -15,6 +15,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { PatientModule } from "./patient/patient.module";
 import { SurveySolutionModule } from "./survey-solution/survey-solution.module";
 import { NgxPermissionsModule } from "ngx-permissions";
+import { ClipboardModule } from "ngx-clipboard";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgxPermissionsModule } from "ngx-permissions";
     SurveySolutionModule,
     PatientModule,
     
+    ClipboardModule,
     NgxPermissionsModule.forRoot()
   ], 
   providers: [

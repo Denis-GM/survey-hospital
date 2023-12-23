@@ -32,13 +32,13 @@ export class AuthGuard {
             });
             return this.http.get(this.apiGetAccount, {headers: headers}).subscribe(
                 (data: any) => {
-                    console.log(user);
+                    // console.log(user);
                     return true;
                 },
                 (error: any) => {
                     this.router.navigate(['/employee/account/login']);
                     console.log(error);
-                    console.log(user);
+                    // console.log(user);
                     return false;
                 }
             )

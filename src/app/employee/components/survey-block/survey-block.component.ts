@@ -1,5 +1,6 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { SurveysService } from 'src/app/core/api/surveys.service';
+import { ISurveyGet } from 'src/app/core/interfaces/ISurvey';
 import { ModalWindowControlService } from 'src/app/core/services/modal-window-control.service';
 
 @Component({
@@ -8,18 +9,20 @@ import { ModalWindowControlService } from 'src/app/core/services/modal-window-co
   styleUrls: ['./survey-block.component.css']
 })
 export class SurveyBlockComponent implements OnInit{
-  @Input() survey: any = {};
+  @Input() survey!: ISurveyGet;
+  private url: string = 'http://localhost:4200/patient/fill/'
+  @Output() link = new EventEmitter<string>();
 
   constructor(
     private surveyService: SurveysService, private mwControl: ModalWindowControlService) {}
 
   ngOnInit(): void {
     console.log(this.survey);
+    this.link.emit(this.url + this.survey.id)
   }
 
   showDialog(id: string) {
-    this.mwControl.emitStateModalWindowLink(true, id)
-    console.log(this.mwControl.emitStateModalWindowLink);
+
   }
 
   deleteSurvey(): void {

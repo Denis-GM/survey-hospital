@@ -10,7 +10,7 @@ import { NotFoundComponent } from './not-found-page/not-found.component';
 import { ButtonComponent } from './components/button/button.component';
 import { RouterModule } from "@angular/router";
 import { SearchComponent } from "./components/search/search.component";
-import { ModalWindowComponent } from './components/modal-window/modal-window.component';
+import { ModalWindowComponent } from './components/modal-window-link/modal-window-link.component';
 import { NgxPermissionsModule } from "ngx-permissions";
 
 @NgModule({

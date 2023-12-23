@@ -4,10 +4,29 @@
   </app-search>
 	<ng-container *ngFor="let survey of surveys">
     <div *ngIf="contSubstring(survey)">
-      <app-survey-block [survey]="survey"></app-survey-block>
+      <div class="wrapper">
+        <div class="name">{{survey.name}}</div>
+        <div routerLink="/employee/main/details/{{survey.id}}">
+          <img src="../../../../assets/img/view.png" alt="view"
+          class="btn__img">
+        </div>
+        <div>
+          <img src="../../../../assets/img/statistics.png" alt="stats"
+          class="btn__img">
+        </div>
+        <div (click)="openDialog(survey.id)">
+          <img src="../../../../assets/img/link.png" alt="link"
+          class="btn__img">
+        </div>
+        <div class="btn" *ngIf="role === 2" onclick="">Изменить</div>
+        <div class="btn" *ngIf="role === 2" (click)="deleteSurvey(survey.id)">Удалить</div>
+      </div>
+      <!-- <app-survey-block 
+        (click)="openDialog(survey.id)" 
+        [survey]="survey">
+      </app-survey-block> -->
     </div>
     <!-- {{isOpen.next}} -->
 	</ng-container>
-  <button (click)="openDialog()">modal</button>
-  <app-modal-window *ngIf="stateModal" (isOpen)="manageDialog($event)"></app-modal-window>
+  <app-modal-window-link *ngIf="stateModal" [link]="surveyLink" (isOpen)="manageDialog($event)"></app-modal-window-link>
 </div>

@@ -6,8 +6,6 @@ import { QuestionBase } from '../interfaces/question-base';
   providedIn: 'root'
 })
 export class SurveysService {
-  private authToken: string = '';
-
   private headers = new HttpHeaders(
     { 
       'Content-Type': 'application/json',
@@ -57,7 +55,7 @@ export class SurveysService {
     );
   }
 
-  deleteSurvey(id: number){
+  deleteSurvey(id: string){
     console.log('delete');
     return this.http.delete(this.apiDeleteSurvey + id, 
       {headers: this.headers})

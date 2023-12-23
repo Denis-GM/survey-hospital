@@ -5,6 +5,10 @@
   --background-color-main: rgba(255, 255, 255, 1);
   --text-blue-color: #6A88C1;
   --nav-bar-background: rgba(150, 167, 230, 1);
+
+  --patient-main-background-color: #DBD8D5;
+  --patient-title-background-color: #187A30;
+  --patient-block-background-color: #ffffff;
 }
 
 * {
