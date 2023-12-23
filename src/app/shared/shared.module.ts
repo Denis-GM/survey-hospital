@@ -11,6 +11,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { RouterModule } from "@angular/router";
 import { SearchComponent } from "./components/search/search.component";
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
+import { NgxPermissionsModule } from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,8 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
     TuiDialogModule,
     TuiAlertModule,
     TuiButtonModule,
+    
+    NgxPermissionsModule.forChild()
   ],
   exports: [
     FooterComponent,

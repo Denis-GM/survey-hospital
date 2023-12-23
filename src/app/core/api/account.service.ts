@@ -19,8 +19,7 @@ export class AccountService {
     public user: Observable<IUser>;
     // router: any;
     
-    private headers = new HttpHeaders(
-        { 
+    private headers = new HttpHeaders({ 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*', 
         'Authorization': `Bearer ${localStorage.getItem('auth-token') || ''}`
@@ -38,6 +37,10 @@ export class AccountService {
 
     getAccount(): Observable<any> {
         return this.http.get(this.apiGetAccount, {headers: this.headers})
+    }
+
+    getAccountGuard(headers: HttpHeaders): Observable<any> {
+        return this.http.get(this.apiGetAccount, {headers: headers})
     }
 
     getAccessKey(): Observable<any> {

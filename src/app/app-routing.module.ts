@@ -20,7 +20,7 @@ const routes: Routes = [
 				path: 'main', 
 				loadChildren: () => import('./employee/employee.module')
 					.then(m => m.AdminAnalyticalModule),
-				// canActivate: [AuthGuard],
+				canActivate: [AuthGuard],
 				// data: { roles: [Role.Admin] }
 			},
 		]

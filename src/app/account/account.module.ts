@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TuiDataListWrapperModule, TuiInputModule, TuiSelectModule } from '@taiga-ui/kit';
 import {TuiHintModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 const routes: Routes = [
   { path: 'registration', component: RegistrationComponent},
@@ -34,7 +35,9 @@ const routes: Routes = [
     TuiHintModule,
     TuiTextfieldControllerModule,
     TuiDataListWrapperModule,
-    TuiSelectModule 
+    TuiSelectModule,
+    
+    NgxPermissionsModule.forChild()
   ],
   providers: [],
   exports: [RouterModule]

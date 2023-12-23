@@ -14,6 +14,7 @@ import { AdminAnalyticalModule } from "./employee/employee.module";
 import { HttpClientModule } from "@angular/common/http";
 import { PatientModule } from "./patient/patient.module";
 import { SurveySolutionModule } from "./survey-solution/survey-solution.module";
+import { NgxPermissionsModule } from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,8 @@ import { SurveySolutionModule } from "./survey-solution/survey-solution.module";
     AdminAnalyticalModule,
     SurveySolutionModule,
     PatientModule,
+    
+    NgxPermissionsModule.forRoot()
   ], 
   providers: [
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},

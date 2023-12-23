@@ -26,6 +26,7 @@ import {TuiInputDateRangeModule} from '@taiga-ui/kit';
 import { BarChartComponent } from './pages/statistics/components/bar-chart/bar-chart.component';
 import { PieChartComponent } from './pages/statistics/components/pie-chart/pie-chart.component';
 import { StatBlockComponent } from './pages/statistics/components/stat-block/stat-block.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent, 
@@ -75,6 +76,8 @@ const routes: Routes = [
     TuiLetModule,
     TuiInputDateModule,
     TuiInputDateRangeModule,
+    
+    NgxPermissionsModule.forChild()
   ],
   providers: [
     SurveysService,

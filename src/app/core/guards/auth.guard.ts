@@ -2,7 +2,8 @@ import { Injectable, inject } from '@angular/core';
 // import { CanActivateFn, Router } from '@angular/router';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AccountService } from '../api/account.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 interface ICanActivate { 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
@@ -12,43 +13,52 @@ interface ICanActivate {
   providedIn: 'root'
 })
 export class AuthGuard {
-  isLoggedIn: boolean = false;
-  constructor(private router: Router, private authService: AccountService) { }
+    isAccess: boolean = false;
+    
+    private apiUrl: string = "https://api.survey-manager.ru";
+    private apiGetAccount: string = this.apiUrl + '/account';
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    const user = this.authService.userValue;
-    if (user) {
-      const data: any = route.data;
-      if (data.roles && data.roles.indexOf(user.role) === -1) {
+    constructor(private router: Router, private authService: AccountService,
+        private http: HttpClient) { }
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
+        const user = this.authService.userValue;
+        if (user) {
+            const headers = new HttpHeaders({ 
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*', 
+                // 'Authorization': `Bearer ${user.token}`
+                'Authorization': `Bearer ${localStorage.getItem('auth-token') || ''}`
+            });
+            return this.http.get(this.apiGetAccount, {headers: headers}).subscribe(
+                (data: any) => {
+                    console.log(user);
+                    return true;
+                },
+                (error: any) => {
+                    this.router.navigate(['/employee/account/login']);
+                    console.log(error);
+                    console.log(user);
+                    return false;
+                }
+            )
+            this.router.navigate(['/employee/account/login']);
+            return false;
+        // this.authService.getAccountGuard(headers).subscribe(
+        //   (data: any) => {
+        //     this.isAccess = true;
+        //     console.log(data);
+        //   },
+        //   (error: any) => {
+        //     this.router.navigate(['/employee/account/login']);
+        //     this.isAccess = false;
+        //     console.log(error);
+        //   }
+        // )
+        // console.log(user);
+        // return this.isAccess;
+        }
         this.router.navigate(['/employee/account/login']);
-        console.log(data)
         return false;
-      }
-      this.router.navigate(['/employee/main/surveys']);
-      return true;
     }
-    this.router.navigate(['/employee/account/login']);
-    return false;
-  }
 }
-
-// export const authGuard: CanActivateFn = (route, state) => {
-//   let isLoggedIn: boolean = false;
-//   const authService = inject(AccountService);
-//   const router = inject(Router);
-
-//   return authService.getAccount().map(
-//     (data: any) => {
-//         isLoggedIn = true;
-//         return true;
-//     },
-//     (err: any) => {
-//         isLoggedIn = false;
-//         router.navigate(['/employee/account/login']);
-//         return true;
-//     }
-//   )
-//   if(!isLoggedIn) 
-//     router.navigate(['/employee/account/login']);
-//   return isLoggedIn;
-// };
