@@ -112,7 +112,7 @@ export class CreateSurveysComponent {
     this.surveysService.postSurvey(data).subscribe(
       (data: any) => {
         console.log(data);
-        this.router.navigate(['/employee/main/surveys']);
+        this.router.navigate(['/main/surveys']);
       },
       (err: any) => {
         console.log(err);

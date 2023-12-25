@@ -36,29 +36,14 @@ export class AuthGuard {
                     return true;
                 },
                 (error: any) => {
-                    this.router.navigate(['/employee/account/login']);
+                    this.router.navigate(['/account/login']);
                     console.log(error);
                     // console.log(user);
                     return false;
                 }
             )
-            this.router.navigate(['/employee/account/login']);
-            return false;
-        // this.authService.getAccountGuard(headers).subscribe(
-        //   (data: any) => {
-        //     this.isAccess = true;
-        //     console.log(data);
-        //   },
-        //   (error: any) => {
-        //     this.router.navigate(['/employee/account/login']);
-        //     this.isAccess = false;
-        //     console.log(error);
-        //   }
-        // )
-        // console.log(user);
-        // return this.isAccess;
         }
-        this.router.navigate(['/employee/account/login']);
+        this.router.navigate(['/account/login']);
         return false;
     }
 }

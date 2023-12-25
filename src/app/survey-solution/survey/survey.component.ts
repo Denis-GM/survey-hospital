@@ -63,7 +63,7 @@ export class SurveySolutionComponent implements OnInit {
     this.surveysService.postSurveyPatient(data).subscribe(
       (data: any) => {
         console.log(data);
-        this.router.navigate(['/patient']);
+        this.router.navigate(['/']);
       },
       (err: any) => {
         console.log(err);

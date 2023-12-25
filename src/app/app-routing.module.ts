@@ -6,26 +6,20 @@ import { Role } from './core/interfaces/Role';
 
 const routes: Routes = [
 	{ 
-		path: 'patient', 
+		path: '', 
 		loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule)
 	},
 	{ 
-		path: 'employee', 
-		children: [
-			{ 
-				path: 'account', 
-				loadChildren: () => import('./account/account.module').then(m => m.AccountModule) 
-			},
-			{ 
-				path: 'main', 
-				loadChildren: () => import('./employee/employee.module')
-					.then(m => m.AdminAnalyticalModule),
-				canActivate: [AuthGuard],
-				// data: { roles: [Role.Admin] }
-			},
-		]
+		path: 'account', 
+		loadChildren: () => import('./account/account.module').then(m => m.AccountModule) 
 	},
-	// { path: 'employee',   redirectTo: '/employee', pathMatch: 'full' },
+	{ 
+		path: 'main', 
+		loadChildren: () => import('./employee/employee.module')
+			.then(m => m.AdminAnalyticalModule),
+		canActivate: [AuthGuard],
+		// data: { roles: [Role.Admin] }
+	},
 	{ 
 		path: 'fill', 
 		loadChildren: () => import('./survey-solution/survey-solution.module')

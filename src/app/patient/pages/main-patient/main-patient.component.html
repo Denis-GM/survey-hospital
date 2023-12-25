@@ -1,13 +1,16 @@
 <div class="outer">
   <div class="wrapper">
     <div class="header-block">
-      <h3 class="header-block__h">Опросы</h3>
-      <p class="header-block__text">от ГАУЗ СО "ЦГБ № 20"</p>
+      <!-- <img src="../../../../assets/img/logo.png" alt="logo" class="header-block__logo">
+      <div class="header-block__content"> -->
+        <h3 class="header-block__h">Опросы</h3>
+        <p class="header-block__text">Ваше здоровье – наша профессия</p>
+      <!-- </div> -->
     </div>
     <div class="main-block">
       <ul *ngFor="let survey of surveys" class="surveys-list">
         <li class="surveys-list__item">
-          <div class="link" routerLink="/patient/fill/survey/{{survey.id}}">
+          <div class="link" routerLink="/fill/{{survey.id}}">
             {{survey.name}}
           </div>
           <div class="btn">

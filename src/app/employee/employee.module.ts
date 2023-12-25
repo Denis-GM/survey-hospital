@@ -33,8 +33,9 @@ const routes: Routes = [
     children: [
       { path: 'surveys', component: SurveysComponent},
       { path: 'details/:id', component: DetailsSurveyComponent },
-      { path: 'cteate-survey', component: CreateSurveysComponent },
+      { path: 'create-survey', component: CreateSurveysComponent },
       { path: 'statistics', component: StatisticsComponent },
+      { path: 'statistics/:id', component: StatisticsComponent },
       { path: 'profile', component: ProfileComponent },
       { path: '**', component: SurveysComponent }
     ]

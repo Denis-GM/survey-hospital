@@ -1,13 +1,13 @@
 <div class="container">
   <div class="nav-bar">
-    <div class="title" routerLink="/employee/main/surveys">
+    <div class="title" routerLink="/main/surveys">
       <p>Survey</p><p>Hospital</p>
     </div>
     <div class="nav-bar__content">
-      <app-button routerLink="/employee/main/surveys">Опросы</app-button>
-      <app-button *ngIf="role == 2" routerLink="/employee/main/cteate-survey">Создать опрос</app-button>
-      <app-button routerLink="/employee/main/statistics">Статистика</app-button>
-      <app-button routerLink="/employee/main/profile">Ключ доступа</app-button>
+      <app-button routerLink="/main/surveys">Опросы</app-button>
+      <app-button *ngIf="role == 2" routerLink="/main/create-survey">Создать опрос</app-button>
+      <app-button routerLink="/main/statistics">Статистика</app-button>
+      <app-button routerLink="/main/profile">Ключ доступа</app-button>
       <app-button (click)="logout()">Выйти</app-button>
     </div>
     <div class="email">

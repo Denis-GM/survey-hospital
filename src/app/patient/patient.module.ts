@@ -9,7 +9,7 @@ import { SurveySolutionComponent } from '../survey-solution/survey/survey.compon
 
 const routes: Routes = [
   { path: '', component: MainPatientComponent },
-  { path: 'fill/survey/:id', component: PassingSurveyComponent, }
+  { path: 'fill/:id', component: PassingSurveyComponent, }
 ]
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TuiDay, TuiDayRange } from '@taiga-ui/cdk';
+import { StatisticsService } from 'src/app/core/api/statistics.service';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { SurveysService } from 'src/app/core/api/surveys.service';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit{
-  protected curSurvey: any;
+  protected curSurvey: any = {};
   protected surveys: any[] = [{questions: []}];
   protected questions: any;
   protected nameSurveys: [] = [];
@@ -17,7 +18,7 @@ export class StatisticsComponent implements OnInit{
   protected departments: string[] = ['1', '2', '3'];
   protected statForm!: FormGroup;
 
-  constructor(private surveysService: SurveysService) {}
+  constructor(private surveysService: SurveysService, private statisticsService: StatisticsService) {}
 
   ngOnInit(): void {
     this.getSurveys();
@@ -29,6 +30,8 @@ export class StatisticsComponent implements OnInit{
       dateFinish: new FormControl(),
     })
     this.formListener();
+    this.getCurrentSurveyId();
+    this.getSurvey(this.curSurvey.id)
   }
 
   readonly testForm = new FormGroup({
@@ -56,7 +59,21 @@ export class StatisticsComponent implements OnInit{
   getSurvey(id: string): void {
     this.surveysService.getSurvey(id).subscribe(
       (data: any) => {
+        console.log(data);
+        // this.statForm.setValue(data.name);
         this.questions = data.questions;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getCurrentSurveyId(): void {
+    this.statisticsService.getCurrentSurveyId().subscribe(
+      (data: any) => {
+        this.curSurvey.id = data;
+        console.log(data);
       },
       (error: any) => {
         console.log(error);

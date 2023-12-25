@@ -13,6 +13,7 @@
 
 .question__h {
   margin-bottom: 25px;
+	line-height: 25px;
 }
 
 .marker-required {

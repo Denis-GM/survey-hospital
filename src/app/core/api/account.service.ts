@@ -17,13 +17,17 @@ export class AccountService {
 
     private userSubject: BehaviorSubject<IUser>;
     public user: Observable<IUser>;
-    // router: any;
     
     private headers = new HttpHeaders({ 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*', 
         'Authorization': `Bearer ${localStorage.getItem('auth-token') || ''}`
         // 'Authorization': `Bearer ${this.userValue.token}`
+    });
+
+    private headersLogReg = new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*', 
     });
 
     constructor(private http: HttpClient, private router: Router) { 
@@ -48,11 +52,21 @@ export class AccountService {
     }
 
     register(newAccount: IRegisterAccount): Observable<any> {
-        return this.http.post(this.apiRegister, newAccount, { headers: this.headers });
+        return this.http.post(this.apiRegister, newAccount, { headers: this.headersLogReg });
+    }
+
+    deleteAccount(): Observable<any> {
+        const headers = this.headersLogReg.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
+        return this.http.delete(this.apiGetAccount, { headers: headers });
+    }
+
+    createKeyAccess(key: string): Observable<any> {
+        const headers = this.headersLogReg.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
+        return this.http.post(this.apiGetAccount + '/', { headers: headers });
     }
 
     login(account: ILoginAccount): Observable<any> {
-        return this.http.post<any>(this.apiLogin, account, { headers: this.headers })
+        return this.http.post<any>(this.apiLogin, account, { headers: this.headersLogReg })
             .pipe(map(user => {
                 localStorage.setItem('user', JSON.stringify(user));
                 localStorage.setItem('auth-token', user.token);
@@ -67,6 +81,8 @@ export class AccountService {
         localStorage.removeItem('auth-token');
         localStorage.removeItem('role');
         this.userSubject.next({} as IUser);
-        this.router.navigate(['/employee/account/login']);
+        this.router.navigate(['/account/login']);
     }
+
+    
 }

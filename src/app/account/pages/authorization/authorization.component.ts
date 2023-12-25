@@ -37,7 +37,7 @@ export class AuthorizationComponent implements OnInit{
         this.accountService.login(account).subscribe(
             (data: any) => {
                 console.log(data);
-                this.router.navigate(['/employee/main/surveys']);
+                this.router.navigate(['/main/surveys']);
             },
             (err: any) => {
                 console.log(err)

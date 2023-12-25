@@ -41,7 +41,7 @@ export class RegistrationComponent implements OnInit{
     this.accountService.register(newAccount).subscribe(
       (data: any) => {
         console.log(data);
-        this.router.navigate(['/employee/account/login']);
+        this.router.navigate(['/account/login']);
       },
       (err: any) => {
         console.log(err)
