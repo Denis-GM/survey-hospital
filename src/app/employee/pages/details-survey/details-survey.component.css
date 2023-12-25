@@ -1,7 +1,23 @@
 .container {
   width: 80%;
+  position: relative;
   margin: 0 auto;
   max-width: 786px;
 
   font-size: 1.4rem;
+}
+
+.arrow {
+  position: absolute;
+  top: 15px;
+  left: -10%;
+
+  cursor: pointer;
+
+  width: 30px;
+  height: 30px;
+
+  background-image: url('../../../../assets/img/arrow.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
 }

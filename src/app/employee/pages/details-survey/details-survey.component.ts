@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-details-survey',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./details-survey.component.css']
 })
 export class DetailsSurveyComponent {
+  constructor(private location: Location) {}
 
+  comeBack() {
+    this.location.back();
+  }
 }
