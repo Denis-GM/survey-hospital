@@ -26,7 +26,12 @@ export class SurveysComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit(): void {
-    this.getSurveys();
+    if(this.role != 3){
+      this.getSurveysAdmin();
+    }
+    else {
+      this.getSurveysAnalyst();
+    }
   }
   
   ngOnDestroy(): void {
@@ -42,8 +47,20 @@ export class SurveysComponent implements OnInit, OnDestroy {
     this.stateModal = false;
   }
 
-  getSurveys(): void {
-    this.surveysService.getSurveys().subscribe(
+  getSurveysAdmin(): void {
+    this.surveysService.getSurveysAdmin().subscribe(
+      (data: any) => {
+        console.log(data);
+        this.surveys = data;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getSurveysAnalyst(): void {
+    this.surveysService.getSurveysAnalyst().subscribe(
       (data: any) => {
         console.log(data);
         this.surveys = data;
@@ -64,7 +81,7 @@ export class SurveysComponent implements OnInit, OnDestroy {
     .subscribe(
       (res: any) => {
         console.log(res);
-        this.getSurveys();
+        this.getSurveysAdmin();
       },
       (error: any) => {
         console.log(error);

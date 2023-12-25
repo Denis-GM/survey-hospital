@@ -14,7 +14,8 @@ export class SurveysService {
   );
 
   private apiUrl: string = "https://api.survey-manager.ru";
-  private apiGetSurveys: string = this.apiUrl + '/admin/surveys';
+  private apiGetSurveysAdmin: string = this.apiUrl + '/admin/surveys';
+  private apiGetSurveysAnalyst: string = this.apiUrl + '/analyst/surveys';
   private apiGetSurvey: string = this.apiUrl + '/survey/';
 
   private apiEditSurvey: string = "";
@@ -27,8 +28,12 @@ export class SurveysService {
 
   constructor(private http: HttpClient) { }
 
-  getSurveys(): Observable<any> {
-    return this.http.get(this.apiGetSurveys, {headers: this.headers});
+  getSurveysAdmin(): Observable<any> {
+    return this.http.get(this.apiGetSurveysAdmin, {headers: this.headers});
+  }
+
+  getSurveysAnalyst(): Observable<any> {
+    return this.http.get(this.apiGetSurveysAnalyst, {headers: this.headers});
   }
 
   postSurvey(data: any): Observable<any> {

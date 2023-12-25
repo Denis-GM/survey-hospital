@@ -1,43 +1,32 @@
 .container {
-  position: relative;
-  width: 70%;
-  height: 100%;
-  align-items: center;
-
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-
-.container-left {
   display: flex;
-  height: 50%;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  /* width: 50%; */
+  padding-top: 5%;
 }
 
-.container-right {
+.title {
+  font-size: 2.0rem;
+  font-weight: 400;
+  margin-bottom: 50px;
+}
+
+.container-block {
   display: flex;
-  height: 50%;
-  flex-direction: column;
-  justify-content: space-between;
+  margin-bottom: 50px;
   align-items: center;
 }
 
-.key-access {
+.container__key-access {
   position: relative;
-  /* width: 70%; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.key-access__container {
-  position: relative;
-  /* width: 50%; */
-  margin-bottom: 30px;
+.sign {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
 }
 
 .key-access__input {
@@ -46,30 +35,26 @@
   border: none;
   background-color: aliceblue;
 
+  width: 60%;
   text-align: center;
-  margin-bottom: 10px;
 }
 
 .key-access__text {
+  margin-top: 20px;
   text-align: center;
-  width: 70%;
-  font-size: 1rem;
-  color: #608C4C;
+
+  width: 60%;
+  line-height: 20px;
+  font-size: 1.2rem;
 }
 
 .key-access__btns {
-  width: 50%;
   display: flex;
-  flex-direction: column;
-  /* justify-content: flex-end; */
+  /* align-items: center; */
 }
 
 .key-access__controls-btns {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 30px;
+
 }
 
 .key-access__btn {
@@ -79,42 +64,23 @@
   width: 100%;
 }
 
-/* .account-data {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 20px;
-} */
-
-.login {
+.account-data {
   border-radius: 12px;
   border: none;
   background-color: aliceblue;
 
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-
+  margin-right: 30px;
+  padding: 10px 30px;
+  
   font-size: 1.2rem;
-  width: 50%;
-  height: 60px;
+}
+
+.login {
+
 }
 
 .email {
-  border-radius: 12px;
-  border: none;
-  background-color: aliceblue;
 
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-
-  font-size: 1.2rem;
-  width: 50%;
-  height: 60px;
 }
 
 .btn-change {
@@ -126,11 +92,11 @@
   user-select: none;
   cursor: pointer;
   
-  font-size: 1.4rem;
+  font-size: 1.0rem;
   
   border: none;
-  width: 50%;
-  min-height: 60px !important;
+  max-width: 280px;
+  height: 40px;
   min-width: 150px;
   border-radius: 7px;
 
@@ -139,12 +105,12 @@
   justify-content: center;
   align-items: center;
   
-  /* padding: 20px 10px; */
+  margin-right: 20px;
   transition: font-size 500ms;
 }
 
 .btn:hover {
-  font-size: 1.5rem;
+  font-size: 1.025rem;
 }
 
 .btn_red {

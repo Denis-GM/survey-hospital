@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ClipboardService } from 'ngx-clipboard';
 import { AccessKeyService } from 'src/app/core/api/access-key.service';
 import { AccountService } from 'src/app/core/api/account.service';
 
@@ -15,17 +16,21 @@ export class ProfileComponent implements OnInit{
   protected inputElementAnalyst!: any | null;
   protected editingMode: boolean = false;
 
-  protected accessKey: string = 'ключ_доступа';
+  protected accessKey: any = {};
   protected message: string = 'Ключ действителен'
-  protected accessKeyControl: FormControl = new FormControl({value: '', disabled: true});
+  protected accessKeyControl: FormControl = new FormControl({value: '', disabled: false});
 
-  constructor(private accountService: AccountService, private accsessKeyService: AccessKeyService) {
+  constructor(private accountService: AccountService, private accsessKeyService: AccessKeyService,
+    private clipboardService: ClipboardService) {
     this.role = (localStorage.getItem('role') || 3) as number;
   }
 
   ngOnInit(): void {
     this.getAccount();
-    this.getAccessKey();
+    if(this.role != 3){
+      this.getAccessKey();
+      this.accessKeyControl.disable();
+    }
   }
 
   getAccount() {
@@ -44,7 +49,8 @@ export class ProfileComponent implements OnInit{
     this.accsessKeyService.getAccessKey().subscribe(
       (data: any) => {
         this.accessKey = data;
-        this.accessKeyControl.setValue(data);
+        console.log(data);
+        this.accessKeyControl.setValue(data.key);
       },
       (error: any) => {
         console.log(error);
@@ -71,6 +77,7 @@ export class ProfileComponent implements OnInit{
         },
         (error: any) => {
           console.log(error);
+          this.getAccessKey();
         }
       )
       this.undoEdits();
@@ -81,6 +88,23 @@ export class ProfileComponent implements OnInit{
     this.editingMode = false;
     this.inputElementAdmin.style.border = 'none';
     this.accessKeyControl.disable();
+  }
+
+  copyContent() {
+    this.clipboardService.copyFromContent(this.accessKeyControl.value);
+  }
+
+  // f0766e15-725f-4e06-9682-b4a50e3c0fd5
+  addKeyAccess() {
+    const res = {key: this.accessKeyControl.value} 
+    this.accsessKeyService.addAccessKeyАnalyst(res).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   deleteAccount() {

@@ -16,7 +16,7 @@ export class MainPatientComponent implements OnInit{
   }
 
   getSurveysPatient(): void {
-    this.surveysService.getSurveys().subscribe(
+    this.surveysService.getSurveysAdmin().subscribe(
       (data: any) => {
         console.log(data);
         this.surveys = data;

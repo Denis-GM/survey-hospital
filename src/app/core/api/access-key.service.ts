@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AccessKeyService {
     private apiUrl: string = "https://api.survey-manager.ru";
-    private apigetAccessKey: string = this.apiUrl + '/surveys/access-key'
+    private apiGetAccessKey: string = this.apiUrl + '/admin/surveys/access-key';
+    private apiAddAccessKey: string = this.apiUrl + '/analyst/surveys/add';
 
     private headers = new HttpHeaders({ 
         'Content-Type': 'application/json',
@@ -19,14 +20,14 @@ export class AccessKeyService {
     constructor(private http: HttpClient) { }
 
     getAccessKey(): Observable<any> {
-        return this.http.get(this.apigetAccessKey, {headers: this.headers})
+        return this.http.get(this.apiGetAccessKey, {headers: this.headers})
     }
 
-    editAccessKey(accessKey: string): Observable<any> {
-        return this.http.put(this.apigetAccessKey, accessKey, {headers: this.headers})
+    editAccessKey(accessKey: any): Observable<any> {
+        return this.http.put(this.apiGetAccessKey, accessKey, {headers: this.headers})
     }
 
-    addAccessKeyАnalyst(accessKey: string): Observable<any> {
-        return this.http.post(this.apigetAccessKey, accessKey, {headers: this.headers})
+    addAccessKeyАnalyst(accessKey: any): Observable<any> {
+        return this.http.post(this.apiAddAccessKey, accessKey, {headers: this.headers})
     }
 }

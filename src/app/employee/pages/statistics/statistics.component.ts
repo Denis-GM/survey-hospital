@@ -44,7 +44,7 @@ export class StatisticsComponent implements OnInit{
   readonly max = new TuiDay(2060, 2, 20);
 
   getSurveys(): void {
-    this.surveysService.getSurveys().subscribe(
+    this.surveysService.getSurveysAdmin().subscribe(
       (data: any) => {
         this.surveys = data;
         this.nameSurveys = data.map((survey: any) => survey.name);
