@@ -16,6 +16,7 @@ export class MainPatientComponent implements OnInit{
   public getScreenHeight!: number;
   protected surveyLink: string = '';
   protected stateModal = false;
+  private html:string ="<p style='color:red'>String with color:red </p><a href='https://google.com'>google.com</a><script>alert('aa')</script>"
 
   constructor(private surveysService: SurveysService, 
     private readonly dialogs: TuiMobileDialogService,
@@ -35,7 +36,7 @@ export class MainPatientComponent implements OnInit{
   }
   
   showDialog(id: string): void {
-    const actions = ['No thanks', 'Remind me later', 'Rate now'];
+    const actions = ['Закрыть', 'Скопировать'];
 
     if(this.getScreenWidth >= 900) {
       console.log(this.getScreenWidth)
@@ -44,13 +45,16 @@ export class MainPatientComponent implements OnInit{
     else {
       this.dialogs
         .open(
-            'If you like this app, please take a moment to leave a positive rating.',
+            `${this.url + id}`,
             {
-                label: 'What do you think?',
+                label: 'Ссылка на опрос',
                 actions,
+                data: ''
             },
         )
-        .pipe(switchMap(index => this.alerts.open(`Selected: ${actions[index]}`)))
+        .pipe(switchMap(index => (
+          index == 1 ? this.alerts.open(`Ссылка скопирована`) : ''
+        )))
         .subscribe();
     }
   }

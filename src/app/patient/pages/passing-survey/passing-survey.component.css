@@ -39,3 +39,37 @@
 	background-size: 10%;
 	background-position-x: left;
 }
+
+@media (min-width: 320px) {
+	.btn-back {
+		margin-left: 20px;
+	}
+}
+
+@media (min-width: 480px) {
+	.btn-back {
+		margin-left: 25px;
+	}
+}
+
+@media (min-width: 768px) {
+	.btn-back {
+		margin-left: 30px;
+	}
+}
+
+@media (min-width: 1280px) {
+	
+}
+
+@media (min-width: 1444px) {
+	
+}
+
+@media (min-width: 1600px) {
+	
+}
+
+@media (min-width: 1920px) {
+	
+}

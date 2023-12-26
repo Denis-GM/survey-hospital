@@ -13,9 +13,9 @@
           <div class="link" routerLink="/fill/{{survey.id}}">
             {{survey.name}}
           </div>
-          <div class="btn">
-            <button class="btn__img" (click)="showDialog(survey.id)"></button>
-          </div>
+          <img (click)="showDialog(survey.id)" class="btn__img" 
+            src="../../../../assets/img/link2.svg" alt="">
+          <!-- <button class="btn__img" (click)="showDialog(survey.id)"></button> -->
         </li>
       </ul>
     </div>

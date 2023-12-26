@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { TuiAlertService } from '@taiga-ui/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { ModalWindowControlService } from 'src/app/core/services/modal-window-control.service';
 
@@ -13,10 +14,15 @@ export class ModalWindowComponent{
   
   @Output() protected isOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private clipboardService: ClipboardService) {}
+  constructor(private clipboardService: ClipboardService,
+    private readonly alerts: TuiAlertService) {}
   
   copyContent() {
     this.clipboardService.copyFromContent(this.link);
+    this.alerts.open(`Ссылка скопирована`).subscribe({
+      complete: () => {
+        console.log('Notification is closed');
+      }});
     this.closeDialog();
   }
 
