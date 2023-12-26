@@ -5,7 +5,9 @@ import { MainPatientComponent } from './pages/main-patient/main-patient.componen
 import { SurveysService } from '../core/api/surveys.service';
 import { PassingSurveyComponent } from './pages/passing-survey/passing-survey.component';
 import { SurveySolutionModule } from '../survey-solution/survey-solution.module';
-import { SurveySolutionComponent } from '../survey-solution/survey/survey.component';
+import {TuiMobileDialogModule} from '@taiga-ui/addon-mobile';
+import { SharedModule } from '../shared/shared.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 const routes: Routes = [
   { path: '', component: MainPatientComponent },
@@ -23,6 +25,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SurveySolutionModule,
+    TuiMobileDialogModule,
+    SharedModule,
+    QRCodeModule,
     RouterModule.forChild(routes),
   ],
   exports: [

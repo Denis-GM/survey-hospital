@@ -96,7 +96,8 @@ export class ProfileComponent implements OnInit{
 
   // f0766e15-725f-4e06-9682-b4a50e3c0fd5
   addKeyAccess() {
-    const res = {key: this.accessKeyControl.value} 
+    const res = this.accessKeyControl.value;
+    console.log(res);
     this.accsessKeyService.addAccessKeyАnalyst(res).subscribe(
       data => {
         console.log(data);

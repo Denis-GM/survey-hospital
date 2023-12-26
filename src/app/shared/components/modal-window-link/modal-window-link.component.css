@@ -1,5 +1,5 @@
 :host {
-  --width-dialog-window: 30vw;
+  --width-dialog-window: 40vw;
   --height-dialog-window: 35vh;
 }
 
@@ -17,9 +17,10 @@
 .dialog__container_outer {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 15vh;
   margin-left: calc(-1 * var(--width-dialog-window) / 2);
-  margin-top: calc(-1 * var(--height-dialog-window) / 2);
+  /* margin-top: calc(-1 * var(--height-dialog-window) / 2); */
+  /* margin-top: -15vh; */
 }
 
 .dialog__container_inner {
@@ -27,7 +28,7 @@
   padding: 34px 42px 34px;
   
   width: var(--width-dialog-window);
-  height: var(--height-dialog-window);
+  /* height: var(--height-dialog-window); */
 /* 
   max-width: 500px; */
   border-radius: 7px;
@@ -72,6 +73,14 @@
   text-align: center;
   font-size: 1.4rem;
   line-height: 25px;
+
+  margin-bottom: 20px;
+}
+
+.qr-code {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .dialog__buttons {

@@ -40,8 +40,10 @@
   <div class="container-block">
     <label>
       <div class="sign">Роль</div>
-      <div *ngIf="account.role == 2" class="account-data">Администратор</div>
-      <div *ngIf="account.role == 3" class="account-data">Аналитик</div>
+      <div class="account-data">
+        <span *ngIf="account.role == 2">Администратор</span>
+        <span *ngIf="account.role == 3">Аналитик</span>
+      </div>
     </label>
     <label>
       <div class="sign">Логин</div>

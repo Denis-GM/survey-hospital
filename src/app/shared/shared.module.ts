@@ -12,6 +12,7 @@ import { RouterModule } from "@angular/router";
 import { SearchComponent } from "./components/search/search.component";
 import { ModalWindowComponent } from './components/modal-window-link/modal-window-link.component';
 import { NgxPermissionsModule } from "ngx-permissions";
+import { QRCodeModule } from "angularx-qrcode";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NgxPermissionsModule } from "ngx-permissions";
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    QRCodeModule,
 
     TuiInputModule,
     TuiTextfieldControllerModule,

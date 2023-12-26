@@ -14,7 +14,7 @@
             {{survey.name}}
           </div>
           <div class="btn">
-            <button class="btn__img"></button>
+            <button class="btn__img" (click)="showDialog(survey.id)"></button>
           </div>
         </li>
       </ul>
@@ -23,4 +23,5 @@
   
     </div>
   </div>
+  <app-modal-window-link *ngIf="stateModal" [link]="surveyLink" (isOpen)="manageDialog($event)"></app-modal-window-link>
 </div>

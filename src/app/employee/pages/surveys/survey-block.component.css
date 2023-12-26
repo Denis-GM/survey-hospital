@@ -24,6 +24,10 @@
   color: black;
 }
 
+.wrapper_analyst {
+  grid-template-columns: 79% 7% 7% 7%;
+}
+
 @media (min-width: 320px) {
   .wrapper{
     font-size: 1rem;

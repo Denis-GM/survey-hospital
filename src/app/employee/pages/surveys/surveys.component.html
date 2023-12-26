@@ -4,7 +4,7 @@
   </app-search>
 	<ng-container *ngFor="let survey of surveys">
     <div *ngIf="contSubstring(survey)">
-      <div class="wrapper">
+      <div class="wrapper wrapper_analyst">
         <div class="name">{{survey.name}}</div>
         <div routerLink="/main/details/{{survey.id}}">
           <img src="../../../../assets/img/view.png" alt="view"
@@ -18,15 +18,26 @@
           <img src="../../../../assets/img/link.png" alt="link"
           class="btn__img">
         </div>
-        <div class="btn" *ngIf="role == 2" onclick="">Изменить</div>
-        <div class="btn" *ngIf="role == 2" (click)="deleteSurvey(survey.id)">Удалить</div>
       </div>
-      <!-- <app-survey-block 
-        (click)="openDialog(survey.id)" 
-        [survey]="survey">
-      </app-survey-block> -->
+
+      <div *ngIf="role == 2" class="wrapper">
+        <div class="name">{{survey.name}}</div>
+        <div routerLink="/main/details/{{survey.id}}">
+          <img src="../../../../assets/img/view.png" alt="view"
+          class="btn__img">
+        </div>
+        <div (click)="openStatsSurvey(survey.id)">
+          <img src="../../../../assets/img/statistics.png" alt="stats"
+          class="btn__img">
+        </div>
+        <div (click)="openDialog(survey.id)">
+          <img src="../../../../assets/img/link.png" alt="link"
+          class="btn__img">
+        </div>
+        <div class="btn">Изменить</div>
+        <div class="btn" (click)="deleteSurvey(survey.id)">Удалить</div>
+      </div>
     </div>
-    <!-- {{isOpen.next}} -->
 	</ng-container>
   <app-modal-window-link *ngIf="stateModal" [link]="surveyLink" (isOpen)="manageDialog($event)"></app-modal-window-link>
 </div>

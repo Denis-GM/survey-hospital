@@ -8,6 +8,7 @@ import { ModalWindowControlService } from 'src/app/core/services/modal-window-co
   styleUrls: ['./modal-window-link.component.css']
 })
 export class ModalWindowComponent{
+  @Input() isShowQRCode?: boolean = true;
   @Input() link!: string;
   
   @Output() protected isOpen: EventEmitter<boolean> = new EventEmitter<boolean>();

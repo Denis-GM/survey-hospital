@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class AccountService {
     private apiUrl: string = "https://api.survey-manager.ru";
     private apiGetAccount: string = this.apiUrl + '/account';
-    private apigetAccessKey: string = this.apiUrl + '/surveys/access-key'
     private apiRegister: string = this.apiUrl + '/account/register';
     private apiLogin: string = this.apiUrl + "/account/login";
 
@@ -57,12 +56,12 @@ export class AccountService {
 
     deleteAccount(): Observable<any> {
         const headers = this.headersLogReg.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
-        return this.http.delete(this.apiGetAccount, { headers: headers });
+        return this.http.delete(this.apiGetAccount, { headers: this.headers });
     }
 
     createKeyAccess(key: string): Observable<any> {
         const headers = this.headersLogReg.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
-        return this.http.post(this.apiGetAccount + '/', { headers: headers });
+        return this.http.post(this.apiGetAccount, { headers: headers });
     }
 
     login(account: ILoginAccount): Observable<any> {

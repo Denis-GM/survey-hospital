@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpBackend, HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable, of} from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, of } from "rxjs";
 import { QuestionBase } from '../interfaces/question-base';
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,14 @@ export class SurveysService {
     { 
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*', 
-      'Authorization': `Bearer ${localStorage.getItem('auth-token')}`}
+      'Authorization': `Bearer ${localStorage.getItem('auth-token') || ''}`}
+  );
+
+  private headersNotAuth = new HttpHeaders(
+    { 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*', 
+    }
   );
 
   private apiUrl: string = "https://api.survey-manager.ru";
@@ -24,6 +31,7 @@ export class SurveysService {
 
   // Patient
   private apiGetPatientSurveys: string = this.apiUrl + '/patient/surveys';
+  private apiGetPatientSurvey: string = this.apiUrl + '/patient/survey';
   private apiPostPatientSurvey: string = this.apiUrl + '/patient/survey';
 
   constructor(private http: HttpClient) { }
@@ -33,7 +41,8 @@ export class SurveysService {
   }
 
   getSurveysAnalyst(): Observable<any> {
-    return this.http.get(this.apiGetSurveysAnalyst, {headers: this.headers});
+    return this.http.get(this.apiGetSurveysAnalyst, 
+      {headers: this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)});
   }
 
   postSurvey(data: any): Observable<any> {
@@ -42,6 +51,10 @@ export class SurveysService {
 
   getSurvey(id: string): Observable<any> {
     return this.http.get(this.apiGetSurvey + id, {headers: this.headers});
+  }
+
+  getSurveyPatient(id: string): Observable<any> {
+    return this.http.get(this.apiGetPatientSurvey + '/' + id, {headers: this.headers});
   }
 
   getSurveysPatient(): Observable<any> {

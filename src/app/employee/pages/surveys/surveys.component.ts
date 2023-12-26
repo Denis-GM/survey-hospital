@@ -11,7 +11,8 @@ import { ModalWindowControlService } from 'src/app/core/services/modal-window-co
   styleUrls: ['./surveys.component.css', './survey-block.component.css']
 })
 export class SurveysComponent implements OnInit, OnDestroy {
-  private url: string = 'http://localhost:4200/fill/';
+  // private url: string = 'http://localhost:4200/fill/';
+  private url: string = 'https://survey-manager.ru/fill/';
   protected searchText: string = '';
   protected surveyLink: string = '';
   protected surveys: ISurveyGet[] = [];
@@ -77,16 +78,18 @@ export class SurveysComponent implements OnInit, OnDestroy {
   }
 
   deleteSurvey(id: string): void {
-    this.surveyService.deleteSurvey(id)
-    .subscribe(
-      (res: any) => {
-        console.log(res);
-        this.getSurveysAdmin();
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    )
+    if(confirm("Удалить данный опрос?")){
+      this.surveyService.deleteSurvey(id)
+        .subscribe(
+          (res: any) => {
+            console.log(res);
+            this.getSurveysAdmin();
+          },
+          (error: any) => {
+            console.log(error);
+          }
+        )
+    }
   }
 
   contSubstring(survey: any): boolean {

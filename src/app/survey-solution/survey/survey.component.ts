@@ -14,7 +14,7 @@ export class SurveySolutionComponent implements OnInit {
   protected id!: string;
   @Input() takePartSurvey?: boolean = true;
   protected surveyForm!: FormGroup;
-  protected survey: any = {};
+  @Input() survey: any = {};
   protected questions!: QuestionBase<string>[] | null;
 
   constructor(
@@ -44,7 +44,7 @@ export class SurveySolutionComponent implements OnInit {
   }
 
   getSurvey(): void {
-    this.surveysService.getSurvey(this.id).subscribe(
+    this.surveysService.getSurveyPatient(this.id).subscribe(
       (data: any) => {
         this.survey = data;
         this.questions = data.questions;
