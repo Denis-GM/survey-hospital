@@ -95,3 +95,35 @@ input[type=radio] {
 .scale-item__input[type=radio] {
   transform: scale(1.5);
 }
+
+@media (min-width: 320px) {
+
+}
+
+@media (min-width: 480px) {
+  .question {
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .question {
+    border-radius: 10px;
+  }
+}
+
+@media (min-width: 1280px) {
+	
+}
+
+@media (min-width: 1444px) {
+	
+}
+
+@media (min-width: 1600px) {
+	
+}
+
+@media (min-width: 1920px) {
+	
+}

@@ -10,6 +10,7 @@ import { IRegisterAccount } from 'src/app/core/interfaces/account-interfaces';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit{
+  protected message: string = 'Логин должен содержать не менее 8 символов. Пароль должен состоять минимум из 12 символов'
 
   constructor(private accountService: AccountService, private router: Router) {}
 
@@ -45,6 +46,7 @@ export class RegistrationComponent implements OnInit{
       },
       (err: any) => {
         console.log(err)
+        this.message = 'Уже существует аккаунт с такой почтой или логином'
       }
     );
   }

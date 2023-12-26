@@ -20,15 +20,12 @@
 .nav-bar__content {
   position: relative;
 	display: flex;
-  /* height: 100%; */
-  /* max-height: 550px; */
+  max-height: 450px;
+
 	flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
   font-size: 1rem;
-
-  /* gap: 5vh; */
 }
 
 .title {
@@ -87,6 +84,10 @@
     font-size: 1.1rem;
     font-weight: 300;
   }
+
+  .nav-bar__content {
+    max-height: 500px;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -98,6 +99,10 @@
 
   .container {
     padding: 2vw 2vw 2vw 2vw;
+  }
+
+  .nav-bar__content {
+    max-height: 550px;
   }
 }
 

@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { TuiMobileDialogService } from '@taiga-ui/addon-mobile';
 import { TuiAlertService } from '@taiga-ui/core';
+import { ClipboardService } from 'ngx-clipboard';
 import { switchMap } from 'rxjs';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 
@@ -20,7 +21,8 @@ export class MainPatientComponent implements OnInit{
 
   constructor(private surveysService: SurveysService, 
     private readonly dialogs: TuiMobileDialogService,
-    private readonly alerts: TuiAlertService,) {}
+    private readonly alerts: TuiAlertService, 
+    private clipboardService: ClipboardService) {}
 
   ngOnInit(): void {
     this.getSurveysPatient();
@@ -38,25 +40,28 @@ export class MainPatientComponent implements OnInit{
   showDialog(id: string): void {
     const actions = ['Закрыть', 'Скопировать'];
 
-    if(this.getScreenWidth >= 900) {
+    // if(this.getScreenWidth >= 900) {
       console.log(this.getScreenWidth)
       this.openDialog(id);
-    }
-    else {
-      this.dialogs
-        .open(
-            `${this.url + id}`,
-            {
-                label: 'Ссылка на опрос',
-                actions,
-                data: ''
-            },
-        )
-        .pipe(switchMap(index => (
-          index == 1 ? this.alerts.open(`Ссылка скопирована`) : ''
-        )))
-        .subscribe();
-    }
+    // }
+    // else {
+    //   const link = this.url + id
+    //   this.dialogs
+    //     .open(
+    //         `${link}`,
+    //         {
+    //             label: 'Ссылка на опрос',
+    //             actions,
+    //             data: ''
+    //         },
+    //     )
+    //     .pipe(switchMap(index => (
+    //       if(true) this.clipboardService.copyFromContent(link);
+    //       // index == 1 ? this.alerts.open(`Ссылка скопирована`) : '' 
+    //     )))
+    //     .subscribe( 
+    //     );
+    // }
   }
 
   protected openDialog(id: string) {

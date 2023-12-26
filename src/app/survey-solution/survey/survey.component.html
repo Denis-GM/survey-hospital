@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header-block">
     <h3 class="header-block__h">{{survey.name}}</h3>
-    <div class="header-block__text">{{survey.description}}</div>
+    <div *ngIf="survey.description" class="header-block__text">{{survey.description}}</div>
   </div>
   <form class="main-block" [formGroup]="surveyForm" (ngSubmit)="submit()">
     <div formArrayName="questions">

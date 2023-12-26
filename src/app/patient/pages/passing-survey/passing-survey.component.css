@@ -48,28 +48,36 @@
 
 @media (min-width: 480px) {
 	.btn-back {
-		margin-left: 25px;
+		margin-left: 15px;
 	}
 }
 
 @media (min-width: 768px) {
 	.btn-back {
-		margin-left: 30px;
+		margin-left: 0;
 	}
 }
 
 @media (min-width: 1280px) {
-	
+	.btn-back {
+		margin-left: 0;
+	}
 }
 
 @media (min-width: 1444px) {
-	
+	.btn-back {
+		margin-left: 0;
+	}
 }
 
 @media (min-width: 1600px) {
-	
+	.btn-back {
+		margin-left: 0;
+	}
 }
 
 @media (min-width: 1920px) {
-	
+	.btn-back {
+		margin-left: 0;
+	}
 }
