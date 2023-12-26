@@ -10,7 +10,8 @@ export class SurveysService {
     { 
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*', 
-      'Authorization': `Bearer ${localStorage.getItem('auth-token') || ''}`}
+      'Authorization': `Bearer ${localStorage.getItem('auth-token') || ''}`
+    }
   );
 
   private headersNotAuth = new HttpHeaders(
@@ -37,7 +38,8 @@ export class SurveysService {
   constructor(private http: HttpClient) { }
 
   getSurveysAdmin(): Observable<any> {
-    return this.http.get(this.apiGetSurveysAdmin, {headers: this.headers});
+    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
+    return this.http.get(this.apiGetSurveysAdmin, {headers: headers});
   }
 
   getSurveysAnalyst(): Observable<any> {

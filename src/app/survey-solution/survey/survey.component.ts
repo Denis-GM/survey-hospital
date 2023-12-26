@@ -35,9 +35,11 @@ export class SurveySolutionComponent implements OnInit {
 
   submit() {
     if(this.surveyForm.valid) {
-      const data = this.surveyForm.getRawValue();
-      console.log(data);
-      this.postSurvey(data);
+      if(confirm("Закончить прохождение опроса?")){
+        const data = this.surveyForm.getRawValue();
+        console.log(data);
+        this.postSurvey(data);
+      }
     }
     else
       console.log(this.surveyForm.valid)

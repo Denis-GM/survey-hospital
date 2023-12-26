@@ -9,7 +9,7 @@ import { AccountService } from 'src/app/core/api/account.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
   protected role: number;
   protected account: any = {};
   protected inputElementAdmin!: any | null;

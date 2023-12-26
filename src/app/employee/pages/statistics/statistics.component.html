@@ -1,19 +1,25 @@
 <div [formGroup]="statForm" class="control-panel">
   <div class="control-panel__name-survey">
     <tui-select
-        tuiTextfieldSize="l"
-        class="tui-space_vertical-4"
-        formControlName="nameSurvey"
+      class="b-form"
+      [tuiTextfieldLabelOutside]="true"
+      [valueContent]="surveys ? stringify(surveys) : loading"
+      formControlName="nameSurvey"
     >
-        Название опроса
-        <input
-            placeholder="Название опроса"
-            tuiTextfield
-        />
-        <tui-data-list-wrapper
-            *tuiDataList
-            [items]="nameSurveys"
-        ></tui-data-list-wrapper>
+        <ng-template tuiDataList>
+            <tui-data-list *ngIf="surveys; else loading">
+                <button
+                    *ngFor="let item of surveys"
+                    tuiOption
+                    [value]="item.id"
+                >
+                    {{ item.name }}
+                </button>
+            </tui-data-list>
+        </ng-template>
+        <ng-template #loading>
+            <tui-loader class="tui-space_vertical-3 loader"></tui-loader>
+        </ng-template>
     </tui-select>
   </div>
   <div class="control-panel__stat-survey">
@@ -63,12 +69,10 @@
     >
       Дата окончания
     </tui-input-date> -->
-    <form
-      class="b-form control-panel__select"
-      [formGroup]="testForm"
-    >
+    <div
+      class="b-form control-panel__select">
       <tui-input-date-range
-        formControlName="testValue"
+        formControlName="dateValue"
         tuiUnfinishedValidator="Finish filling the field"
         [max]="max"
         [min]="min"
@@ -79,11 +83,14 @@
           tuiTextfield
         />
       </tui-input-date-range>
-    </form>
+    </div>
   </div>
 </div>
 <div class="main">
-  <div *ngFor="let question of questions; let i = index" class="stat-block">
-    <app-stat-block [question]="question" [index]="i"></app-stat-block>
-  </div>
+  <div *ngIf="message" style="font-size: 1.8rem; text-align: center; width: 90%;">{{message}}</div>
+  <ng-container *ngIf="!message">
+    <div *ngFor="let question of questions; let i = index" class="stat-block">
+      <app-stat-block [question]="question" [index]="i"></app-stat-block>
+    </div>
+  </ng-container>
 </div>
