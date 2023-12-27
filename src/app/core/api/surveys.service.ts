@@ -21,6 +21,9 @@ export class SurveysService {
     }
   );
 
+  
+  public currentSurveyId: string = '';
+  
   private apiUrl: string = "https://api.survey-manager.ru";
   private apiGetSurveysAdmin: string = this.apiUrl + '/admin/surveys';
   private apiGetSurveysAnalyst: string = this.apiUrl + '/analyst/surveys';
@@ -36,6 +39,11 @@ export class SurveysService {
   private apiPostPatientSurvey: string = this.apiUrl + '/patient/survey';
 
   constructor(private http: HttpClient) { }
+
+  getCurrentSurveyId(): Observable<string> {
+    const data = of(this.currentSurveyId);
+    return data;
+  }
 
   getSurveysAdmin(): Observable<any> {
     const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);

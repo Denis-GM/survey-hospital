@@ -19,6 +19,20 @@ export interface IQuestion {
   answerOptions: IAnswerOptions[],
 }
 
+export interface IQuestionGet {
+  id: string,
+  title: string,
+  type: number,
+  number: number,
+  isRequired: boolean,
+  options: IOptionGet[],
+}
+
 export interface IAnswerOptions {
   answer: string
+}
+
+export interface IOptionGet {
+  id: string,
+  answer: string,
 }

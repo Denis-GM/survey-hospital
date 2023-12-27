@@ -34,7 +34,7 @@
           <img src="../../../../assets/img/link.png" alt="link"
           class="btn__img">
         </div>
-        <div class="btn">Изменить</div>
+        <div routerLink="/main/edit-survey/{{survey.id}}" class="btn">Изменить</div>
         <div class="btn" (click)="deleteSurvey(survey.id)">Удалить</div>
       </div>
     </div>

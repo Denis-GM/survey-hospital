@@ -27,6 +27,7 @@ import { BarChartComponent } from './pages/statistics/components/bar-chart/bar-c
 import { PieChartComponent } from './pages/statistics/components/pie-chart/pie-chart.component';
 import { StatBlockComponent } from './pages/statistics/components/stat-block/stat-block.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { EditSurveyComponent } from './pages/edit-survey/edit-survey.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent, 
@@ -34,6 +35,7 @@ const routes: Routes = [
       { path: 'surveys', component: SurveysComponent},
       { path: 'details/:id', component: DetailsSurveyComponent },
       { path: 'create-survey', component: CreateSurveysComponent },
+      { path: 'edit-survey/:id', component: EditSurveyComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'statistics/:id', component: StatisticsComponent },
       { path: 'profile', component: ProfileComponent },
@@ -57,6 +59,7 @@ const routes: Routes = [
     BarChartComponent,
     PieChartComponent,
     StatBlockComponent,
+    EditSurveyComponent,
   ],
   imports: [
     CommonModule,

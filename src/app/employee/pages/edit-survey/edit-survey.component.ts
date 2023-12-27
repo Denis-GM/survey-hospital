@@ -3,8 +3,10 @@ import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@ang
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
-import { ISurvey, IQuestion, IAnswerOptions } from '../../../core/interfaces/ISurvey';
+import { ISurvey, IQuestion, IAnswerOptions, IQuestionGet } from '../../../core/interfaces/ISurvey';
 import { TuiContextWithImplicit, TuiStringHandler, tuiPure } from '@taiga-ui/cdk';
+import { QuestionBase } from 'src/app/core/interfaces/question-base';
+import { QuestionControlService } from 'src/app/core/services/question-control.service';
 
 interface IInterface {
   readonly index: number;
@@ -12,12 +14,11 @@ interface IInterface {
 }
 
 @Component({
-  selector: 'app-create-surveys',
-  templateUrl: './create-surveys.component.html',
-  styleUrls: ['./create-surveys.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  selector: 'app-edit-survey',
+  templateUrl: './edit-survey.component.html',
+  styleUrls: ['./edit-survey.component.css']
 })
-export class CreateSurveysComponent implements OnInit{
+export class EditSurveyComponent {
   tupesQuestions: IInterface[] = [
     {index: 0, type: 'Вписать ответ'},
     {index: 1, type: 'Один ответ'},
@@ -26,11 +27,21 @@ export class CreateSurveysComponent implements OnInit{
   ];
   protected editMode: boolean = false;
   readonly items$ = of(this.tupesQuestions);
+  protected surveyForm!: FormGroup;
+  protected survey!: any;
  
   constructor(private fb: FormBuilder, private surveysService: SurveysService, 
-    private router: Router, private activateRoute: ActivatedRoute) { }
+    private router: Router, private activateRoute: ActivatedRoute,
+    private qcs: QuestionControlService,) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    const idSurvey = this.activateRoute.snapshot.params["id"] || false;
+    this.getSurvey(idSurvey);
+  }
+
+  get questionsFroms(): FormArray {
+    return <FormArray> this.surveyForm.get('questions') as FormArray;
+  }
   
   @tuiPure
   stringify(
@@ -58,12 +69,6 @@ export class CreateSurveysComponent implements OnInit{
     });
   }
 
-  surveyForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(1)]],
-    description: ['', Validators.maxLength(1000)],
-    questions: this.fb.array([this.questionGroup]),
-  });
-
   get questions() {
     return this.surveyForm.get('questions') as FormArray;
   }
@@ -83,7 +88,6 @@ export class CreateSurveysComponent implements OnInit{
   addQuestion() {
     this.questions.push(this.questionGroup);
     // this.changeDetection.detectChanges();
-    // console.log('add question');
   }
 
   public removeQuestion(index: number): void {
@@ -113,11 +117,28 @@ export class CreateSurveysComponent implements OnInit{
       questions: this.questions.getRawValue(),
     }
     if(this.surveyForm.valid){
-      if(confirm('Создать опрос?'))
+      if(confirm('Изменить опрос?'))
         this.postSurvey(reqSurvey);
     }
     else
       alert('Заполните все обязательные поля формы')
+  }
+
+  getSurvey(id: string) {
+    this.surveysService.getSurvey(id).subscribe(
+      (data: any) => {
+        this.survey = data;
+        this.surveyForm = this.fb.group({
+          name: [data.name, [Validators.required, Validators.minLength(1)]],
+          description: [data.description, Validators.maxLength(1000)],
+          questions: this.qcs.toFormArrayEditSurvey(data.questions as IQuestionGet[]) 
+        });
+        console.log('surveyForm', this.surveyForm);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    )
   }
 
   postSurvey(data: any) {

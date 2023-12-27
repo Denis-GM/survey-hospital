@@ -1,13 +1,13 @@
 <form [formGroup]="surveyForm">
   <div class="header-block">
-    <h3 class="header-block__h">Создание опроса</h3>
+    <h3 class="header-block__h">Изменение опроса</h3>
     <tui-input class="header-block__input" formControlName="name">
       Название опроса
-      <input tuiTextfield type="text" minlength="1"/>
+      <input tuiTextfield type="text" value="{{survey.name}}" minlength="1"/>
     </tui-input>
     <tui-textarea class="b-form header-block__input" style="min-height: 100px;" formControlName="description" >
       Описание
-      <textarea maxlength="1000" tuiTextfield></textarea>
+      <textarea maxlength="1000" [value]="survey.description" tuiTextfield></textarea>
     </tui-textarea>
   </div>
 
@@ -56,7 +56,7 @@
           </div>
         </div>
         <button *ngIf="typeYourQuestion(i) == 1 || typeYourQuestion(i) == 2"
-         (click)="addOption(i)" class="addOption">
+          (click)="addOption(i)" class="addOption">
           <span>+</span> Ответ
         </button>
         <div class="toggle-required">
@@ -80,3 +80,4 @@
 </form>
 <button class="btn-add-question" (click)="addQuestion()">+ Добавить вопрос</button>
 <button class="btn-submit" (click)="consoleLog()">Сохранить</button>
+
