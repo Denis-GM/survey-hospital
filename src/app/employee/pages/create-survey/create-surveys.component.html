@@ -36,7 +36,7 @@
           Введите текст вопроса
           <input tuiTextfield type="text" />
         </tui-input>
-        <input formControlName="number" [value]="i" type="hidden"/>
+        <input formControlName="number" value="{{i}}" [ngModel]="i" type="hidden"/>
         
         <div formArrayName="answerOptions">
           <div *ngFor="let option of getYourOptions(i).controls; let j=index">

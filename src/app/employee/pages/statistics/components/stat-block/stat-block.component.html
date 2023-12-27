@@ -3,6 +3,13 @@
     <div class="stat-block__h">
       <h3 style="margin-bottom: 20px;">Вопрос № {{index + 1}}</h3> 
       <h4 class="stat-block__description">{{question.question.title}}</h4> 
+      <h5 [ngSwitch]="question.question.type" class="stat-block__type">
+        Тип ответа: 
+        <span *ngSwitchCase="0">Вписать ответ</span>
+        <span *ngSwitchCase="1">Один ответ</span>
+        <span *ngSwitchCase="2">Множественный ответ</span>
+        <span *ngSwitchCase="3">Выбор в диапазоне</span>
+      </h5>
     </div>
     <tui-select 
       [formControl]="typeStat"

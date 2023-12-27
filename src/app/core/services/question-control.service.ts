@@ -46,6 +46,7 @@ export class QuestionControlService {
       }
       array.push(questionGroup);
     });
+    // array.sort((a: any, b: any) => a.number - b.number);
     return array as FormArray;
   }
 
@@ -55,6 +56,7 @@ export class QuestionControlService {
     questions.forEach(question => {
       group[question.id] = this.questionGroup; 
     });
+    // group.sort((a: any, b: any) => a.number - b.number)
     return new FormGroup(group);
   }
 }

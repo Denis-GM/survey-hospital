@@ -49,7 +49,8 @@ export class SurveySolutionComponent implements OnInit {
     this.surveysService.getSurveyPatient(this.id).subscribe(
       (data: any) => {
         this.survey = data;
-        this.questions = data.questions;
+        this.questions = data.questions.sort((a: any, b: any) => a.number - b.number)
+        console.log(this.questions)
         this.surveyForm = this.fb.group({
           id: [this.id, Validators.required],
           questions: this.qcs.toFormArray(this.questions as QuestionBase<string>[]) 

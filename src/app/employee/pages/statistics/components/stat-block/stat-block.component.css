@@ -25,5 +25,13 @@
 .stat-block__description {
   line-height: 20px;
   width: 95%;
+  font-size: 1.4rem;
+
+  margin-bottom: 10px;
+}
+
+.stat-block__type {
+  line-height: 20px;
+  width: 95%;
   font-size: 1.2rem;
 }

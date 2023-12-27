@@ -85,7 +85,7 @@ export class CreateSurveysComponent {
   addQuestion() {
     this.questions.push(this.questionGroup);
     // this.changeDetection.detectChanges();
-    console.log('add question');
+    // console.log('add question');
   }
 
   public removeQuestion(index: number): void {
@@ -109,15 +109,15 @@ export class CreateSurveysComponent {
   }
 
   consoleLog() {
-    console.log(this.surveyForm.getRawValue());
-    console.log(this.questions.getRawValue());
+    // console.log(this.surveyForm.getRawValue());
+    // console.log(this.questions.getRawValue());
 
     const reqSurvey: any = { 
       name: this.surveyForm.get('name')!.value!,
       description: this.surveyForm.get('description')!.value!,
       questions: this.questions.getRawValue(),
     }
-    console.log(reqSurvey);
+    // console.log(reqSurvey);
     this.postSurvey(reqSurvey);
   }
 
