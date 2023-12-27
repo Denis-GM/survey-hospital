@@ -21,7 +21,7 @@ export class QuestionComponent implements OnInit{
   ngOnInit(): void {
     this.options = this.question.options;
     this.questionForm.get('id')?.setValue(this.question.id);
-    console.log(this.questionForm);
+    // console.log(this.questionForm);
     this.radioForm = this.fb.group({
       proxyRadioControl: [ ],
     });

@@ -39,7 +39,8 @@ export class AccountService {
     }
 
     getAccount(): Observable<any> {
-        return this.http.get(this.apiGetAccount, {headers: this.headers})
+        const headers = this.headersLogReg.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
+        return this.http.get(this.apiGetAccount, {headers: headers})
     }
 
     getAccountGuard(headers: HttpHeaders): Observable<any> {
@@ -47,7 +48,8 @@ export class AccountService {
     }
 
     getAccessKey(): Observable<any> {
-        return this.http.get(this.apiGetAccount, {headers: this.headers})
+        const headers = this.headersLogReg.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
+        return this.http.get(this.apiGetAccount, {headers: headers})
     }
 
     register(newAccount: IRegisterAccount): Observable<any> {

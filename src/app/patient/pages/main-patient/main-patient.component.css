@@ -90,11 +90,12 @@ html, body, div {
 
 .link {
   position: relative;
-  width: 80%;
+  width: 70%;
   height: 100%;
   cursor: pointer;
 
   display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
 }

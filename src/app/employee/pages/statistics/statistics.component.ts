@@ -119,7 +119,8 @@ export class StatisticsComponent implements OnInit{
                 if(data) {
                     this.message = '';
                     this.questions = data.questions;
-                    console.log('questions', data);
+                    console.log('stats', data);
+                    console.log('questions', this.questions);
                     this.cdr.detectChanges();
                 }
                 else

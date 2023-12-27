@@ -20,6 +20,7 @@
 .header-block__h {
 	min-height: 90px;
 	padding: 18px 0 18px 0;
+	min-height: 0 !important;
 
 	font-size: 3.2rem;
 	line-height: 30px;
@@ -99,18 +100,53 @@
 }
 
 @media (min-width: 320px) {
+	.header-block__h {
+		font-size: 1.8rem;
+		line-height: 20px;
+		border-radius: 0;
+	}
 
+	.header-block__text {
+		padding: 20px 10px;
+		font-size: 1.6rem;
+		line-height: 25px;
+	}
 }
 
 @media (min-width: 480px) {
 	.header-block__h {
+		font-size: 1.8rem;
+		line-height: 20px;
 		border-radius: 0;
+	}
+
+	.header-block__text {
+		font-size: 1.8rem;
+		line-height: 25px;
 	}
 }
 
 @media (min-width: 768px) {
 	.header-block__h {
+		font-size: 2.5rem;
 		border-radius: 7px;
+	}
+
+	.header-block__text {
+		font-size: 2.0rem;
+		line-height: 25px;
+	}
+}
+
+@media (min-width: 900px) {
+	.header-block__h {
+		font-size: 3.0rem;
+		line-height: 30px;
+	}
+	
+	.header-block__text { 
+		font-size: 2.0rem;
+		line-height: 30px;
 	}
 }
 

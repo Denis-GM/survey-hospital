@@ -50,7 +50,7 @@ export class CreateSurveysComponent {
 
   get questionGroup(): FormGroup {
     return this.fb.group({
-      title: ['', Validators.required],
+      title: [null, [Validators.required, Validators.minLength(1)]],
       type: [1, Validators.required],
       number: [0, Validators.required],
       isRequired: [false],
@@ -108,6 +108,19 @@ export class CreateSurveysComponent {
     this.getYourOptions(indexQuestion).removeAt(indexOption);
   }
 
+  consoleLog() {
+    console.log(this.surveyForm.getRawValue());
+    console.log(this.questions.getRawValue());
+
+    const reqSurvey: any = { 
+      name: this.surveyForm.get('name')!.value!,
+      description: this.surveyForm.get('description')!.value!,
+      questions: this.questions.getRawValue(),
+    }
+    console.log(reqSurvey);
+    this.postSurvey(reqSurvey);
+  }
+
   postSurvey(data: any) {
     this.surveysService.postSurvey(data).subscribe(
       (data: any) => {
@@ -118,18 +131,5 @@ export class CreateSurveysComponent {
         console.log(err);
       }
     )
-  }
-
-  consoleLog() {
-    console.log(this.surveyForm.getRawValue());
-    console.log(this.questions.getRawValue());
-
-    const reqSurvey: any = { 
-      name: this.surveyForm.get('name')!.value!,
-      description: this.surveyForm.get('description')!.value!,
-      questions: this.questions.getRawValue(),
-    }
-    this.postSurvey(reqSurvey);
-    // console.log(JSON.stringify(reqSurvey));
   }
 }

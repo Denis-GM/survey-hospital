@@ -42,7 +42,7 @@ export class SurveySolutionComponent implements OnInit {
       }
     }
     else
-      console.log(this.surveyForm.valid)
+      alert('Заполните все обязательные поля, чтобы закончить опрос')
   }
 
   getSurvey(): void {

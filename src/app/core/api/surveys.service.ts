@@ -38,25 +38,28 @@ export class SurveysService {
   constructor(private http: HttpClient) { }
 
   getSurveysAdmin(): Observable<any> {
-    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
+    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
     return this.http.get(this.apiGetSurveysAdmin, {headers: headers});
   }
 
   getSurveysAnalyst(): Observable<any> {
-    return this.http.get(this.apiGetSurveysAnalyst, 
-      {headers: this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)});
+    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
+    return this.http.get(this.apiGetSurveysAnalyst, {headers: headers});
   }
 
   postSurvey(data: any): Observable<any> {
-    return this.http.post(this.apiPostSurvey, JSON.stringify(data), {headers: this.headers});
+    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
+    return this.http.post(this.apiPostSurvey, JSON.stringify(data), {headers: headers});
   }
 
   getSurvey(id: string): Observable<any> {
-    return this.http.get(this.apiGetSurvey + id, {headers: this.headers});
+    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
+    return this.http.get(this.apiGetSurvey + id, {headers: headers});
   }
 
   getSurveyPatient(id: string): Observable<any> {
-    return this.http.get(this.apiGetPatientSurvey + '/' + id, {headers: this.headers});
+    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
+    return this.http.get(this.apiGetPatientSurvey + '/' + id, {headers: headers});
   }
 
   getSurveysPatient(): Observable<any> {
@@ -69,15 +72,12 @@ export class SurveysService {
   }
 
   editSurvey(data: any): Observable<any> {
-    console.log('edit');
-    return this.http.put(this.apiUrl + this.apiEditSurvey, data,
-      {headers: this.headers}
-    );
+    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
+    return this.http.put(this.apiUrl + this.apiEditSurvey, data, { headers: headers });
   }
 
   deleteSurvey(id: string){
-    console.log('delete');
-    return this.http.delete(this.apiDeleteSurvey + id, 
-      {headers: this.headers})
+    const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
+    return this.http.delete(this.apiDeleteSurvey + id, { headers: headers });
   }
 }

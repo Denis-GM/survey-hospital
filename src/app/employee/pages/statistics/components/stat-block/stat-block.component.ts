@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './stat-block.component.html',
   styleUrls: ['./stat-block.component.css']
 })
-export class StatBlockComponent {
+export class StatBlockComponent implements OnInit{
   @Input() question!: any;
   @Input() index!: number;
 
@@ -16,4 +16,9 @@ export class StatBlockComponent {
   ]
 
   typeStat = new FormControl(this.items[0]);
+
+  
+  ngOnInit(): void {
+    console.log('question', this.question)
+  }
 }

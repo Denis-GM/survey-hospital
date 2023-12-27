@@ -24,11 +24,13 @@ export class AccessKeyService {
     constructor(private http: HttpClient) { }
 
     getAccessKey(): Observable<any> {
-        return this.http.get(this.apiGetAccessKeyAdmin, {headers: this.headers})
+        const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`)
+        return this.http.get(this.apiGetAccessKeyAdmin, {headers: headers})
     }
 
     editAccessKey(accessKey: any): Observable<any> {
-        return this.http.put(this.apiGetAccessKeyAdmin, {}, {headers: this.headers})
+        const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`)
+        return this.http.put(this.apiGetAccessKeyAdmin, {}, {headers: headers})
     }
 
     addAccessKeyАnalyst(accessKey: string): Observable<any> {
