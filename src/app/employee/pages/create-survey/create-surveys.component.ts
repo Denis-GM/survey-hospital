@@ -50,7 +50,7 @@ export class CreateSurveysComponent {
 
   get questionGroup(): FormGroup {
     return this.fb.group({
-      title: [null, [Validators.required, Validators.minLength(1)]],
+      title: ['', [Validators.required, Validators.minLength(1)]],
       type: [1, Validators.required],
       number: [0, Validators.required],
       isRequired: [false],
@@ -61,7 +61,7 @@ export class CreateSurveysComponent {
   }
 
   surveyForm = this.fb.group({
-    name: ['', Validators.required],
+    name: ['', [Validators.required, Validators.minLength(1)]],
     description: ['', Validators.maxLength(1000)],
     questions: this.fb.array([this.questionGroup]),
   });
@@ -117,8 +117,12 @@ export class CreateSurveysComponent {
       description: this.surveyForm.get('description')!.value!,
       questions: this.questions.getRawValue(),
     }
-    // console.log(reqSurvey);
-    this.postSurvey(reqSurvey);
+    if(this.surveyForm.valid){
+      if(confirm('Создать опрос?'))
+        this.postSurvey(reqSurvey);
+    }
+    else
+      alert('Заполните все обязательные поля формы')
   }
 
   postSurvey(data: any) {

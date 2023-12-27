@@ -1,21 +1,18 @@
-html, body, div {
-  margin: 0;
-  height: 100%;
-}
-
 .outer {
   width: 100%;
+  min-height: 100vh;
   position: relative;
   margin: 0 auto;
   background-color: #96A7E6;
   padding: 10px 0 0 0;
-
-	/* height: 100vh; */
 }
 
 .wrapper {
   max-width: 768px;
   margin: 0 auto;
+
+  position: relative;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -63,9 +60,11 @@ html, body, div {
 
 .main-block {
   width: 80%;
+  height: 100%;
 }
 
 .surveys-list {
+  height: 100%;
   margin-top: 45px;
 
   list-style: none;
