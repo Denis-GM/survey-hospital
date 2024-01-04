@@ -10,8 +10,15 @@
     </h5>
   </div>
   <div class="flex-conteiner">
-    <div class="average-stat-block_number"><div>{{statFirst.count}}</div></div>
-    <div class="average-stat-block_number"><div>{{statSecond.count}}</div></div>
+    <ng-container *ngIf="questionFirst.question.type !== 3">
+      <div class="average-stat-block_number"><div>{{statFirst.answer.answer}}</div></div>
+      <div class="average-stat-block_number"><div>{{statSecond.answer.answer}}</div></div>
+    </ng-container>
+
+    <ng-container *ngIf="questionFirst.question.type == 3">
+      <div class="average-stat-block_number"><div>{{statFirst.rangeValue}}</div></div>
+      <div class="average-stat-block_number"><div>{{statSecond.rangeValue}}</div></div>
+    </ng-container>
   </div>
   <div class="flex-conteiner">
     <div class="average-stat-block_percent"><div>Процент: {{statFirst.percent}}</div></div>

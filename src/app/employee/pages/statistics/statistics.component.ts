@@ -30,7 +30,7 @@ export class StatisticsComponent implements OnInit, OnDestroy{
     protected role: number;
 
     protected uploadedSuccess: boolean = false;
-    protected message: string = '';
+    protected message: string = 'Статистика еще не сформировалась. Попробуйте выбрать другие диапазоны дат';
 
     value = this.curSurvey.id;
     private subscriptionFirst!: Subscription;
@@ -134,13 +134,13 @@ export class StatisticsComponent implements OnInit, OnDestroy{
                 }
                 else {
                     this.uploadedSuccess = false;
-                    this.message = 'Статистика еще не сформировалась';
+                    // this.message = 'Статистика еще не сформировалась';
                 }
                 this.cdr.detectChanges();
             },
             (error: any) => {
                 console.log(error);
-                this.message = 'Статистика еще не сформировалась';
+                // this.message = 'Статистика еще не сформировалась';
                 this.uploadedSuccess = false;
             }
         );
@@ -150,21 +150,21 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.statisticsService.getStatsSurveyAverage(from, to, surveyId).subscribe(
             (data: any) => {
                 if(data.questions && data.questions.length > 0) {
-                    // console.log(data.questions)
                     data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
                     this.questionsAverageFirst = data.questions;
+                    console.log(this.questionsAverageFirst.length)
                     this.uploadedSuccess = true;
                 }
                 else {
                     this.uploadedSuccess = false;
-                    this.message = 'Статистика еще не сформировалась';
+                    // this.message = 'Статистика еще не сформировалась. Попробуйте выбрать другие диапазоны дат';
                 }
                 this.cdr.detectChanges();
             },
             (error: any) => {
                 console.log(error);
                 this.uploadedSuccess = false;
-                this.message = 'Статистика еще не сформировалась';
+                // this.message = 'Статистика еще не сформировалась';
                 this.cdr.detectChanges();
             }
         );
@@ -174,25 +174,30 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.statisticsService.getStatsSurveyAverage(from, to, surveyId).subscribe(
             (data: any) => {
                 if(data.questions && data.questions.length > 0) {
-                    console.log(data.questions);
                     data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
                     this.questionsAverageSecond = data.questions;
+                    console.log(this.questionsAverageSecond.length)
                     this.uploadedSuccess = true;
                 }
                 else {
                     this.uploadedSuccess = false;
-                    this.message = 'Статистика еще не сформировалась';
+                    // this.message = 'Статистика еще не сформировалась';
                 }
                 this.cdr.detectChanges();
             },
             (error: any) => {
                 console.log(error);
                 this.uploadedSuccess = false;
-                this.message = 'Статистика еще не сформировалась';
+                // this.message = 'Статистика еще не сформировалась';
                 this.cdr.detectChanges();
             }
         );
     }
+
+    
+    detectChanges(): void {
+        this.cdr.detectChanges();
+    };
 
     formListener(): void {
         this.subscriptionFirst = this.statForm.valueChanges.subscribe((form: any) => {
