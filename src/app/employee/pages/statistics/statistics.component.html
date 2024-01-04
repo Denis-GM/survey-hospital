@@ -89,21 +89,44 @@
   </div>
 </div>
 <div class="main">
+
   <div *ngIf="!uploadedSuccess" style="font-size: 1.8rem; text-align: center; width: 90%;">{{message}}</div>
   <ng-container *ngIf="questionsAll && uploadedSuccess && type == 'Ответы участников'; else elseBlock">
     <div *ngFor="let question of questionsAll; let i = index" class="stat-block">
-      <app-stat-block [question]="question" [index]="i" [typeStatisticsDisplay]="type"></app-stat-block>
+      <app-stat-block 
+        [question]="question" 
+        [index]="i" 
+        [typeStatisticsDisplay]="type">
+      </app-stat-block>
     </div>
   </ng-container>
+
   <ng-container *ngIf="uploadedSuccess && type == 'Средний балл'">
-    <app-average-stat *ngIf="questionsAverageFirst" [questions]="questionsAverageFirst"></app-average-stat>
+    <div *ngIf="questionsAverageFirst" class="average-flex-container">
+      <div *ngFor="let question of questionsAverageFirst; let i = index" style="width: 30%;">
+        <app-average-stat  
+          [question]="question" 
+          [index]="i">
+        </app-average-stat>
+      </div> 
+    </div>
     <div *ngIf="uploadedSuccess && !questionsAverageFirst">loading...</div>
   </ng-container>
+
   <ng-container *ngIf="uploadedSuccess && type == 'Динамика'">
-    <app-dynamic-stat *ngIf="questionsAverageFirst && questionsAverageSecond" 
-      [questionsFirst]="questionsAverageFirst" [questionsSecond]="questionsAverageSecond">
-    </app-dynamic-stat>
+    <div *ngIf="questionsAverageFirst && questionsAverageSecond" class="average-flex-container">
+      <div *ngFor="let question of questionsAverageFirst; let i = index" style="width: 30%;">
+        <app-dynamic-stat 
+          [index]="i"
+          [questionFirst]="question"
+          [questionSecond]="questionsAverageSecond[i]">
+        </app-dynamic-stat>
+      </div> 
+    </div>
+    
     <div *ngIf="uploadedSuccess && (!questionsAverageFirst || !questionsAverageSecond)">loading...</div>
   </ng-container>
+
   <ng-template #elseBlock style="font-size: 1.8rem; text-align: center; width: 90%;"></ng-template>
+
 </div>

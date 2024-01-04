@@ -6,75 +6,62 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./dynamic-stat.component.css']
 })
 export class DynamicStatComponent {
-  @Input() questionsFirst!: any;
-  @Input() questionsSecond!: any;
-  protected newQuestionsFirst: any;
-  protected newQuestionsecond: any;
-  protected statsFirst!: any[];
-  protected statsSecond!: any[];
+  @Input() index!: number;
+  @Input() questionFirst!: any;
+  @Input() questionSecond!: any;
+  protected newQuestionFirst: any;
+  protected newQuestionSecond: any;
+  protected statFirst!: any;
+  protected statSecond!: any;
   
   protected isMessage: boolean = false;
   protected message: string = '';
   
   ngOnInit(): void {
-    let statsFirst = new Array();
-    let statsSecond = new Array();
-    let newQuestionsFirst = new Array()
-    let newQuestionsSecond = new Array()
-
-    if(this.questionsFirst) {
-      this.questionsFirst.forEach((element: any) => {
-        switch(element.question.type) {
-          case 0:
-            statsFirst.push(element.textAnswersStats);
-            break;
-          case 1:
-            statsFirst.push(element.optionStats);
-            newQuestionsFirst.push(element);
-            break;
-          case 2:
-            statsFirst.push(element.optionStats);
-            newQuestionsFirst.push(element);
-            break;
-          case 3:
-            statsFirst.push(element.averageRange);
-            newQuestionsFirst.push(element);
-            break;
-        }
-      });
+    if(this.questionFirst) {
+      switch(this.questionFirst.question.type) {
+        case 0:
+          this.statFirst = this.questionFirst.textAnswersStats;
+          break;
+        case 1:
+          this.statFirst = this.questionFirst.optionStats;
+          this.newQuestionFirst = this.questionFirst.question;
+          break;
+        case 2:
+          this.statFirst = this.questionFirst.optionStats;
+          this.newQuestionFirst = this.questionFirst.question;
+          break;
+        case 3:
+          this.statFirst = this.questionFirst.averageRange;
+          this.newQuestionFirst = this.questionFirst.question;
+          break;
+      };
     }
     else {
       this.isMessage = true;
     }
 
-    if(this.questionsSecond) {
-      this.questionsSecond.forEach((element: any) => {
-        switch(element.question.type) {
-          case 0:
-            statsSecond.push(element.textAnswersStats);
-            break;
-          case 1:
-            statsSecond.push(element.optionStats);
-            newQuestionsSecond.push(element);
-            break;
-          case 2:
-            statsSecond.push(element.optionStats);
-            newQuestionsSecond.push(element);
-            break;
-          case 3:
-            statsSecond.push(element.averageRange);
-            newQuestionsSecond.push(element);
-            break;
-        }
-      });
+    if(this.questionSecond) {
+      switch(this.questionSecond.question.type) {
+        case 0:
+          this.statSecond = this.questionSecond.textAnswersStats;
+          break;
+        case 1:
+          this.statSecond = this.questionSecond.optionStats;
+          this.newQuestionSecond = this.questionSecond.question;
+          break;
+        case 2:
+          this.statSecond = this.questionSecond.optionStats;
+          this.newQuestionSecond = this.questionSecond.question;
+          break;
+        case 3:
+          this.statSecond = this.questionSecond.averageRange;
+          this.newQuestionSecond = this.questionSecond.question;
+          break;
+      };
     }
     else {
       this.isMessage = true;
     }
-
-    this.statsFirst = statsFirst;
-    this.statsSecond = statsSecond;
-    this.newQuestionsFirst = newQuestionsFirst;
-    this.newQuestionsecond = newQuestionsSecond;
   }
 }

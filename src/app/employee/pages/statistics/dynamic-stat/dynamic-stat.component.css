@@ -1,14 +1,15 @@
-.average-flex-container {
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
 .average-stat-block {
   position: relative;
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-radius: 7px;
+  background: #FFF;
+  min-height: 230px;
+
+  margin-bottom: 40px;
+  padding: 20px 30px;
 }
 
 .average-stat-block__content {

@@ -6,35 +6,27 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./average-stat.component.css']
 })
 export class AverageStatComponent implements OnInit{
-  @Input() questions!: any;
-  protected newQuestions: any;
-  protected stats!: any[];
+  @Input() index!: number;
+  @Input() question!: any;
+  protected newQuestion: any;
+  protected stat!: any;
   
   ngOnInit(): void {
-    let stats = new Array();
-    let newQuestions = new Array()
-    this.questions.forEach((element: any) => {
-      console.log(element)
-      switch(element.question.type) {
-        case 0:
-          stats.push(element.textAnswersStats);
-          break;
-        case 1:
-          stats.push(element.optionStats);
-          newQuestions.push(element);
-          break;
-        case 2:
-          stats.push(element.optionStats);
-          newQuestions.push(element);
-          break;
-        case 3:
-          stats.push(element.averageRange);
-          newQuestions.push(element);
-          break;
-      }
-    });
-    this.stats = stats;
-    this.newQuestions = newQuestions;
-    console.log('stat', this.stats)
+    switch(this.question.question.type) {
+      case 0:
+        this.stat = this.question.textAnswersStats;
+        break;
+      case 1:
+        this.stat = this.question.optionStats;
+        break;
+      case 2:
+        this.stat = this.question.optionStats;
+        break;
+      case 3:
+        this.stat = this.question.averageRange;
+        break;
+    }
+    this.newQuestion = this.question.question;
+    console.log('stat', this.stat, this.newQuestion)
   }
 }

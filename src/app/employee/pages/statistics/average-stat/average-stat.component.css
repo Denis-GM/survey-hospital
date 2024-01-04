@@ -1,17 +1,9 @@
-.average-flex-container {
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.average-stat-block {
+/* .average-stat-block {
   position: relative;
   width: 30%;
-}
+} */
 
-.average-stat-block__content {
+.average-stat-block {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,7 +11,6 @@
 
   border-radius: 7px;
   background: #FFF;
-  /* width: 30%; */
   min-height: 230px;
 
   margin-bottom: 40px;
