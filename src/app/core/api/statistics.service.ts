@@ -22,7 +22,9 @@ export class StatisticsService {
     );
 
     private apiUrl: string = "https://api.survey-manager.ru";
-    private apiGetStat: string = this.apiUrl + '/analyst/survey';
+    // private apiGetStat: string = this.apiUrl + '/analyst/survey';
+    private apigetStatsSurveyAverage: string = this.apiUrl + '/analyst/survey/average';
+    private apiGetStatsSurveyAll: string = this.apiUrl + '/analyst/survey/all';
     constructor(private http: HttpClient) { }
 
     getCurrentSurveyId(): Observable<string> {
@@ -30,10 +32,17 @@ export class StatisticsService {
         return data;
     }
 
-    getStats(from: string, to: string, surveyId: string): Observable<any> {
+    getStatsSurveyAll(from: string, to: string, surveyId: string): Observable<any> {
       let headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`)
       let params = new HttpParams()
         .set("From", from).set("To", to).set("SurveyId", surveyId);
-      return this.http.get(this.apiGetStat, {headers: headers, params: params});
+      return this.http.get(this.apiGetStatsSurveyAll, {headers: headers, params: params});
+    }
+
+    getStatsSurveyAverage(from: string, to: string, surveyId: string): Observable<any> {
+      let headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`)
+      let params = new HttpParams()
+        .set("From", from).set("To", to).set("SurveyId", surveyId);
+      return this.http.get(this.apigetStatsSurveyAverage, {headers: headers, params: params});
     }
 }

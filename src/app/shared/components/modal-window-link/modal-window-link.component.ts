@@ -11,6 +11,7 @@ import { ModalWindowControlService } from 'src/app/core/services/modal-window-co
 export class ModalWindowComponent{
   @Input() isShowQRCode?: boolean = true;
   @Input() link!: string;
+  @Input() isMobile?: boolean = false;
   
   @Output() protected isOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
 

@@ -1,0 +1,21 @@
+<div class="average-flex-container">
+  <div *ngFor="let stat of stats; let i = index" class="average-stat-block">
+    <div *ngIf="questions[i].question.type > 0" class="average-stat-block__content">
+      <div>
+        <h3 class="stat-block__h">Вопрос № {{i + 1}}</h3> 
+        <h4 class="stat-block__description">{{newQuestions[i].question.title}}</h4>
+        <h5 [ngSwitch]="questions[i].question.type" class="stat-block__type">
+          Тип ответа: 
+          <span *ngSwitchCase="1">Один ответ</span>
+          <span *ngSwitchCase="2">Множественный ответ</span>
+          <span *ngSwitchCase="3">Выбор в диапазоне</span>
+        </h5>
+      </div>
+      <div class="average-stat-block_number"><div>{{stat.count}}</div></div>
+      <div class="average-stat-block_percent"><div>Процент: {{stat.percent}}</div></div>
+    </div>
+    <app-stat-block-text *ngIf="questions[i].question.type == 0" 
+      class="text-answer" [question]="questions[i]" [stats]="stat" [index]="i">
+    </app-stat-block-text>
+  </div>
+</div>

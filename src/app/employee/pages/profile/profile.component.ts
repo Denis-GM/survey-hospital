@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TuiAlertService } from '@taiga-ui/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { AccessKeyService } from 'src/app/core/api/access-key.service';
 import { AccountService } from 'src/app/core/api/account.service';
@@ -21,7 +22,7 @@ export class ProfileComponent implements OnInit {
   protected accessKeyControl: FormControl = new FormControl({value: '', disabled: false});
 
   constructor(private accountService: AccountService, private accsessKeyService: AccessKeyService,
-    private clipboardService: ClipboardService) {
+    private clipboardService: ClipboardService, private readonly alerts: TuiAlertService) {
     this.role = (localStorage.getItem('role') || 3) as number;
   }
 
@@ -61,7 +62,7 @@ export class ProfileComponent implements OnInit {
   editKeyAccess() {
     this.inputElementAdmin = document.getElementById('keyAccessAdmin');
     this.inputElementAnalyst = document.getElementById('keyAccessAnalyst');
-    this.accessKeyControl.enable();
+    // this.accessKeyControl.enable();
     this.editingMode = true;
     this.message = 'Введите ключ доступа в поле ввода';
     this.inputElementAdmin.style.border = '2px solid #526ED3';
@@ -87,14 +88,17 @@ export class ProfileComponent implements OnInit {
   undoEdits() {
     this.editingMode = false;
     this.inputElementAdmin.style.border = 'none';
-    this.accessKeyControl.disable();
+    // this.accessKeyControl.disable();
   }
 
   copyContent() {
     this.clipboardService.copyFromContent(this.accessKeyControl.value);
+    this.alerts.open(`Ссылка скопирована`).subscribe({
+      complete: () => {
+        console.log('Notification is closed');
+    }});
   }
 
-  // f0766e15-725f-4e06-9682-b4a50e3c0fd5
   addKeyAccess() {
     const res = this.accessKeyControl.value;
     console.log(res);
@@ -106,6 +110,10 @@ export class ProfileComponent implements OnInit {
         console.log(error);
       }
     )
+    this.alerts.open(`Подключение выполнено успешно!`).subscribe({
+      complete: () => {
+        console.log('Notification is closed');
+    }});
   }
 
   deleteAccount() {

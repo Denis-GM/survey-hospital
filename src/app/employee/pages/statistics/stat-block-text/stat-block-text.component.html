@@ -1,0 +1,15 @@
+<div class="stat-block">
+  <div class="stat-block__h">
+    <h3 style="margin-bottom: 20px;">Вопрос № {{index + 1}}</h3> 
+    <h4 class="stat-block__description">{{question.question.title}}</h4> 
+    <h5 class="stat-block__type">
+      Тип ответа: 
+      <span>Вписать ответ</span>
+    </h5>
+  </div>
+  <div class="answer-block">
+    <div *ngFor="let answer of stats.answers" class="answer-block__text">
+      <div>{{answer}}</div>
+    </div>
+  </div>
+</div>

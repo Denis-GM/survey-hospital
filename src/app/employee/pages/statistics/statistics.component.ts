@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TuiContextWithImplicit, TuiDay, TuiDayRange, TuiStringHandler, tuiPure } from '@taiga-ui/cdk';
 import { StatisticsService } from 'src/app/core/api/statistics.service';
 import { SurveysService } from 'src/app/core/api/surveys.service';
+import { Subscription } from 'rxjs';
 
 interface Survey {
     id: string,
@@ -16,15 +17,24 @@ interface Survey {
   styleUrls: ['./statistics.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StatisticsComponent implements OnInit{
+export class StatisticsComponent implements OnInit, OnDestroy{
     protected curSurvey: any = {};
     protected surveys: Survey[] = [];
-    protected questions: any;
+    protected questionsAll: any;
+    protected questionsAverageFirst: any;
+    protected questionsAverageSecond: any;
     protected types: string[] = ['Средний балл', 'Динамика', 'Ответы участников'];
-    protected departments: string[] = ['1', '2', '3'];
+    protected type!: string;
+    protected departments: string[] = ['Поликлиника'];
     protected statForm!: FormGroup;
     protected role: number;
+
+    protected uploadedSuccess: boolean = false;
     protected message: string = '';
+
+    value = this.curSurvey.id;
+    private subscriptionFirst!: Subscription;
+    private subscriptionSecond!: Subscription;
     
     constructor(private surveysService: SurveysService, 
         private statisticsService: StatisticsService, private cdr: ChangeDetectorRef) {
@@ -38,17 +48,27 @@ export class StatisticsComponent implements OnInit{
         else {
             this.getSurveysAnalyst();
         }
+        const dateEnd = new Date();
+        const dateStart = new Date();
+        dateStart.setMonth(dateEnd.getMonth() - 2);
         this.statForm = new FormGroup({
-            nameSurvey: new FormControl(this.surveys[0]),
-            type: new FormControl(this.types[0]),
-            department: new FormControl(),
-            dateValue: new FormControl(
-                new TuiDayRange(new TuiDay(2023, 11, 1), new TuiDay(2023, 11, 18)),
+            nameSurvey: new FormControl(),
+            type: new FormControl(this.types[2]),
+            department: new FormControl(this.departments[0]),
+            dateValueStart: new FormControl(
+                new TuiDayRange(new TuiDay(2023, dateStart.getMonth(), 1), new TuiDay(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate())),
+            ),
+            dateValueEnd: new FormControl(
+                new TuiDayRange(new TuiDay(2023, dateStart.getMonth() + 1, 1), new TuiDay(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate())),
             ),
         })
-        this.formListener();
         this.getCurrentSurveyId();
-        // this.getSurvey(this.curSurvey.id)
+        this.formListener();
+    }
+    
+    ngOnDestroy(): void {
+        this.subscriptionFirst.unsubscribe();
+        this.subscriptionSecond.unsubscribe()
     }
 
     readonly min = new TuiDay(2000, 2, 20);
@@ -63,8 +83,9 @@ export class StatisticsComponent implements OnInit{
         this.surveysService.getSurveysAdmin().subscribe(
             (data: any) => {
                 this.surveys = data;
-                this.curSurvey = this.surveys[0];
-                console.log(data);
+                // this.curSurvey = this.surveys[0];
+                this.value = this.curSurvey.id;
+                this.cdr.detectChanges();
             },
             (error: any) => {
                 console.log(error);
@@ -76,8 +97,9 @@ export class StatisticsComponent implements OnInit{
         this.surveysService.getSurveysAnalyst().subscribe(
             (data: any) => {
                 this.surveys = data;
-                this.curSurvey = this.surveys[0];
-                console.log(data);
+                // this.curSurvey = this.surveys[0];
+                this.value = this.curSurvey.id;
+                this.cdr.detectChanges();
             },
             (error: any) => {
                 console.log(error);
@@ -85,27 +107,14 @@ export class StatisticsComponent implements OnInit{
         );
     } 
 
-    getSurvey(id: string): void {
-        this.surveysService.getSurvey(id).subscribe(
-            (data: any) => {
-                console.log(data);
-                // this.statForm.setValue(data.name);
-                this.questions = data.questions;
-            },
-            (error: any) => {
-                console.log(error);
-            }
-        );
-    }
-
     getCurrentSurveyId(): void {
-        this.statisticsService.getCurrentSurveyId().subscribe(
+        this.subscriptionSecond = this.statisticsService.getCurrentSurveyId().subscribe(
             (data: any) => {
                 this.curSurvey.id = data;
                 const date: TuiDayRange = this.statForm.get('dateValue')?.value;
                 const from = `${date.from.month + 1}.${date.from.day}.${date.from.year % 100}`;
                 const to = `${date.to.month + 1}.${date.to.day}.${date.to.year % 100}`;
-                this.getStats(from, to, data);
+                this.getStatsSurveyAll(from, to, data);
             },
             (error: any) => {
                 console.log(error);
@@ -113,34 +122,102 @@ export class StatisticsComponent implements OnInit{
         );
     }
 
-    getStats(from: string, to: string, surveyId: string) {
-        this.statisticsService.getStats(from, to, surveyId).subscribe(
+    getStatsSurveyAll(from: string, to: string, surveyId: string) {
+        this.statisticsService.getStatsSurveyAll(from, to, surveyId).subscribe(
             (data: any) => {
                 if(data) {
-                    this.message = '';
-                    this.questions = data.questions;
-                    console.log('stats', data);
-                    console.log('questions', this.questions);
-                    this.cdr.detectChanges();
+                    // this.message = '';
+                    // console.log('stats', data);
+                    data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
+                    this.questionsAll = data.questions;
+                    this.uploadedSuccess = true;
                 }
-                else
-                    this.message = 'Статистика еще не сформировалась'
+                else {
+                    this.uploadedSuccess = false;
+                    this.message = 'Статистика еще не сформировалась';
+                }
+                this.cdr.detectChanges();
             },
             (error: any) => {
                 console.log(error);
+                this.message = 'Статистика еще не сформировалась';
+                this.uploadedSuccess = false;
+            }
+        );
+    }
+
+    getStatsSurveyAverage(from: string, to: string, surveyId: string) {
+        this.statisticsService.getStatsSurveyAverage(from, to, surveyId).subscribe(
+            (data: any) => {
+                if(data.questions && data.questions.length > 0) {
+                    // console.log(data.questions)
+                    data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
+                    this.questionsAverageFirst = data.questions;
+                    this.uploadedSuccess = true;
+                }
+                else {
+                    this.uploadedSuccess = false;
+                    this.message = 'Статистика еще не сформировалась';
+                }
+                this.cdr.detectChanges();
+            },
+            (error: any) => {
+                console.log(error);
+                this.uploadedSuccess = false;
+                this.message = 'Статистика еще не сформировалась';
+                this.cdr.detectChanges();
+            }
+        );
+    }
+
+    getStatsSurveyDynamic(from: string, to: string, surveyId: string) {
+        this.statisticsService.getStatsSurveyAverage(from, to, surveyId).subscribe(
+            (data: any) => {
+                if(data.questions && data.questions.length > 0) {
+                    console.log(data.questions);
+                    data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
+                    this.questionsAverageSecond = data.questions;
+                    this.uploadedSuccess = true;
+                }
+                else {
+                    this.uploadedSuccess = false;
+                    this.message = 'Статистика еще не сформировалась';
+                }
+                this.cdr.detectChanges();
+            },
+            (error: any) => {
+                console.log(error);
+                this.uploadedSuccess = false;
+                this.message = 'Статистика еще не сформировалась';
+                this.cdr.detectChanges();
             }
         );
     }
 
     formListener(): void {
-        this.statForm.valueChanges.subscribe((form: any) => {
-            // this.curSurvey = this.surveys.find((survey: any) => survey.name == form.nameSurvey);
-            const date: TuiDayRange = form.dateValue;
-            const from = `${date.from.month + 1}.${date.from.day}.${date.from.year % 100}`;
-            const to = `${date.to.month + 1}.${date.to.day}.${date.to.year % 100}`;
+        this.subscriptionFirst = this.statForm.valueChanges.subscribe((form: any) => {
+            const dateFirst: TuiDayRange = form.dateValueStart;
+            const from = `${dateFirst.from.month + 1}.${dateFirst.from.day}.${dateFirst.from.year % 100}`;
+            const to = `${dateFirst.to.month + 1}.${dateFirst.to.day}.${dateFirst.to.year % 100}`;
 
             const idSurvey = form.nameSurvey || this.curSurvey.id;
-            this.getStats(from, to, idSurvey);
+            this.type = form.type;
+            switch(form.type) {
+                case 'Ответы участников':
+                    this.getStatsSurveyAll(from, to, idSurvey);
+                    break;
+                case 'Средний балл':
+                    this.getStatsSurveyAverage(from, to, idSurvey);
+                    break;
+                case 'Динамика':
+                    const dateSecond: TuiDayRange = form.dateValueEnd;
+                    const fromSec = `${dateSecond.from.month + 1}.${dateSecond.from.day}.${dateSecond.from.year % 100}`;
+                    const toSec = `${dateSecond.to.month + 1}.${dateSecond.to.day}.${dateSecond.to.year % 100}`;
+
+                    this.getStatsSurveyAverage(from, to, idSurvey);
+                    this.getStatsSurveyDynamic(fromSec, toSec, idSurvey);
+                    break;
+            }
         })
     }
 }

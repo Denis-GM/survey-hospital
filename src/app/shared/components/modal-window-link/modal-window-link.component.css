@@ -51,6 +51,7 @@
   background-repeat: no-repeat;
 
   border: none;
+  z-index: 100;
 }
 
 .dialog__title {
@@ -170,8 +171,8 @@
   }
 
   .dialog__cancel {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -194,6 +195,11 @@
     top: 20vh;
     margin-left: calc(-1 * 50vw / 2);
   }
+
+  .dialog__cancel {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -215,6 +221,11 @@
     left: 50%;
     top: 15vh;
     margin-left: calc(-1 * 50vw / 2);
+  }
+
+  .dialog__cancel {
+    width: 30px;
+    height: 30px;
   }
 }
 

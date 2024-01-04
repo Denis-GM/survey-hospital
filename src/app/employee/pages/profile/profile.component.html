@@ -30,7 +30,7 @@
       <div class="key-access__btns">
         <button *ngIf="!editingMode" (click)="editKeyAccess()" class="btn">Изменить ключ доступа</button>
         <div *ngIf="editingMode" class="key-access__controls-btns">
-          <button (click)="saveKeyAccess()" class="btn btn_green">Сохранить</button>
+          <button (click)="saveKeyAccess()" class="btn btn_green">Подтвердить</button>
           <button (click)="undoEdits()" class="btn btn_red">Отмена</button>
         </div>
       </div>

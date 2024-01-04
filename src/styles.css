@@ -18,15 +18,20 @@
 
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff #bebebe;
 }
 
 html {
+	height: 100%;
   font-size: 62.5%;
   font-family: 'Montserrat', sans-serif;
+  /* overflow-y: scroll; */
 }
 
-html, body {
-	height: 100%;
+body {
+  overflow-y: scroll;
 }
 
 @media (min-width: 1920px) {

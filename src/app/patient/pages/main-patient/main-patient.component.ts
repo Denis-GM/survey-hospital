@@ -84,5 +84,4 @@ export class MainPatientComponent implements OnInit{
       }
     );
   }
-
 }

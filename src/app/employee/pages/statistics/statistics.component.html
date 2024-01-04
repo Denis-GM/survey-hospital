@@ -2,10 +2,12 @@
   <div class="control-panel__name-survey">
     <tui-select
       class="b-form"
-      [tuiTextfieldLabelOutside]="true"
+      [tuiTextfieldLabelOutside]="false"
       [valueContent]="surveys ? stringify(surveys) : loading"
       formControlName="nameSurvey"
+      [(ngModel)]="value"
     >
+      Название опроса
         <ng-template tuiDataList>
             <tui-data-list *ngIf="surveys; else loading">
                 <button
@@ -27,11 +29,10 @@
         tuiTextfieldSize="l"
         class="tui-space_vertical-4 control-panel__select"
         formControlName="type"
-        [tuiTextfieldLabelOutside]="true"
+        [tuiTextfieldLabelOutside]="false"
     >
         Тип опроса
         <input
-            placeholder="Название опроса"
             tuiTextfield
         />
         <tui-data-list-wrapper
@@ -54,25 +55,26 @@
             [items]="departments"
         ></tui-data-list-wrapper>
     </tui-select>
-    <!-- <tui-input-date
-        class="control-panel__select"
-        formControlName="dateStart"
-        tuiTextfieldSize="l"
-        [tuiTextfieldLabelOutside]="true"
-    >
-      Дата начала
-    </tui-input-date>
-    <tui-input-date
-        class="control-panel__select"
-        formControlName="dateFinish"
-        tuiTextfieldSize="l"
-    >
-      Дата окончания
-    </tui-input-date> -->
     <div
       class="b-form control-panel__select">
       <tui-input-date-range
-        formControlName="dateValue"
+        formControlName="dateValueStart"
+        tuiUnfinishedValidator="Finish filling the field"
+        [max]="max"
+        [min]="min"
+      >
+        Диапазон дат
+        <input
+          placeholder="From - To"
+          tuiTextfield
+        />
+      </tui-input-date-range>
+    </div>
+  </div>
+  <div *ngIf="type == 'Динамика'" class="control-panel__stat-survey_second">
+    <div class="b-form control-panel__select">
+      <tui-input-date-range
+        formControlName="dateValueEnd"
         tuiUnfinishedValidator="Finish filling the field"
         [max]="max"
         [min]="min"
@@ -87,10 +89,21 @@
   </div>
 </div>
 <div class="main">
-  <div *ngIf="message" style="font-size: 1.8rem; text-align: center; width: 90%;">{{message}}</div>
-  <ng-container *ngIf="!message">
-    <div *ngFor="let question of questions; let i = index" class="stat-block">
-      <app-stat-block [question]="question" [index]="i"></app-stat-block>
+  <div *ngIf="!uploadedSuccess" style="font-size: 1.8rem; text-align: center; width: 90%;">{{message}}</div>
+  <ng-container *ngIf="questionsAll && uploadedSuccess && type == 'Ответы участников'; else elseBlock">
+    <div *ngFor="let question of questionsAll; let i = index" class="stat-block">
+      <app-stat-block [question]="question" [index]="i" [typeStatisticsDisplay]="type"></app-stat-block>
     </div>
   </ng-container>
+  <ng-container *ngIf="uploadedSuccess && type == 'Средний балл'">
+    <app-average-stat *ngIf="questionsAverageFirst" [questions]="questionsAverageFirst"></app-average-stat>
+    <div *ngIf="uploadedSuccess && !questionsAverageFirst">loading...</div>
+  </ng-container>
+  <ng-container *ngIf="uploadedSuccess && type == 'Динамика'">
+    <app-dynamic-stat *ngIf="questionsAverageFirst && questionsAverageSecond" 
+      [questionsFirst]="questionsAverageFirst" [questionsSecond]="questionsAverageSecond">
+    </app-dynamic-stat>
+    <div *ngIf="uploadedSuccess && (!questionsAverageFirst || !questionsAverageSecond)">loading...</div>
+  </ng-container>
+  <ng-template #elseBlock style="font-size: 1.8rem; text-align: center; width: 90%;"></ng-template>
 </div>

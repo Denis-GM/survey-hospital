@@ -28,6 +28,9 @@ import { PieChartComponent } from './pages/statistics/components/pie-chart/pie-c
 import { StatBlockComponent } from './pages/statistics/components/stat-block/stat-block.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { EditSurveyComponent } from './pages/edit-survey/edit-survey.component';
+import { AverageStatComponent } from './pages/statistics/average-stat/average-stat.component';
+import { StatBlockTextComponent } from './pages/statistics/stat-block-text/stat-block-text.component';
+import { DynamicStatComponent } from './pages/statistics/dynamic-stat/dynamic-stat.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent, 
@@ -60,6 +63,9 @@ const routes: Routes = [
     PieChartComponent,
     StatBlockComponent,
     EditSurveyComponent,
+    AverageStatComponent,
+    StatBlockTextComponent,
+    DynamicStatComponent,
   ],
   imports: [
     CommonModule,

@@ -20,7 +20,6 @@ export class SurveysService {
       'Access-Control-Allow-Origin': '*', 
     }
   );
-
   
   public currentSurveyId: string = '';
   

@@ -1,9 +1,10 @@
-<div class="stat-block">
-  <div class="stat-block__flex-header">
+<div [ngSwitch]="typeQuestion" class="stat-block">
+  <div *ngIf="typeQuestion == 0 || typeStatisticsDisplay == 'Ответы участников'"
+    class="stat-block__flex-header">
     <div class="stat-block__h">
       <h3 style="margin-bottom: 20px;">Вопрос № {{index + 1}}</h3> 
       <h4 class="stat-block__description">{{question.question.title}}</h4> 
-      <h5 [ngSwitch]="question.question.type" class="stat-block__type">
+      <h5 class="stat-block__type">
         Тип ответа: 
         <span *ngSwitchCase="0">Вписать ответ</span>
         <span *ngSwitchCase="1">Один ответ</span>
@@ -11,8 +12,8 @@
         <span *ngSwitchCase="3">Выбор в диапазоне</span>
       </h5>
     </div>
-    <tui-select 
-      [formControl]="typeStat"
+    <tui-select *ngIf="typeQuestion > 0 && typeQuestion != 2"
+      [formControl]="typeStatDisplay"
       [tuiTextfieldLabelOutside]="true">
       Формат отображения
       <input
@@ -26,6 +27,18 @@
       </tui-data-list-wrapper>
     </tui-select>
   </div>
-  <app-bar-chart *ngIf="typeStat.value == items[0]"></app-bar-chart>
-  <app-pie-chart *ngIf="typeStat.value == items[1]"></app-pie-chart>
+
+  <ng-container *ngIf="typeQuestion > 0 && typeStatisticsDisplay == 'Ответы участников'">
+    <app-bar-chart *ngIf=" typeStatDisplay.value == items[0]"
+      [dataStat]="stats" [typeQuestion]="typeQuestion"></app-bar-chart>
+    <app-pie-chart *ngIf="typeQuestion != 2 && typeStatDisplay.value == items[1]"
+      [dataStat]="stats" [typeQuestion]="typeQuestion">
+    </app-pie-chart>
+  </ng-container>
+
+  <div *ngIf="typeQuestion == 0" class="answer-block">
+    <div *ngFor="let answer of stats.answers" class="answer-block__text">
+      <div>{{answer}}</div>
+    </div>
+  </div>
 </div>
