@@ -6,7 +6,9 @@
   --text-blue-color: #6A88C1;
   --nav-bar-background: rgba(150, 167, 230, 1);
 
+  /* --patient-main-background-color: #96A7E6; */
   --patient-main-background-color: #DBD8D5;
+  --patient-block-survey-color: #F1F1F1;
   --patient-title-background-color: #187A30;
   --patient-block-background-color: #ffffff;
 }
@@ -33,6 +35,24 @@ html {
 body {
   overflow-y: scroll;
 }
+
+[tuiWrapper][data-appearance='custom-green'] {
+    background: #187A30;
+    color: #fff;
+
+    .wrapper-hover{
+        background: #1f8e3a;
+    };
+
+    .wrapper-active{
+        background: #1f8e3a;
+    };
+
+    .wrapper-disabled{
+        background: #eaecee;
+    };
+}
+
 
 @media (min-width: 1920px) {
   body {

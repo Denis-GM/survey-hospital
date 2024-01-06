@@ -10,6 +10,7 @@ import { ModalWindowControlService } from 'src/app/core/services/modal-window-co
 })
 export class ModalWindowComponent{
   @Input() isShowQRCode?: boolean = true;
+  @Input() isPatient?: boolean = false;
   @Input() link!: string;
   @Input() isMobile?: boolean = false;
   

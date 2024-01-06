@@ -1,20 +1,20 @@
 <div class="outer">
   <div class="wrapper">
     <div class="header-block">
-      <!-- <img src="../../../../assets/img/logo.png" alt="logo" class="header-block__logo">
-      <div class="header-block__content"> -->
+      <img src="../../../../assets/img/logo2.svg" alt="logo" class="header-block__logo">
+      <div class="header-block__content">
         <h3 class="header-block__h">Опросы</h3>
         <p class="header-block__text">Ваше здоровье – наша профессия</p>
-      <!-- </div> -->
+      </div>
     </div>
     <div class="main-block">
-      <ul *ngFor="let survey of surveys" class="surveys-list">
-        <li class="surveys-list__item">
+      <ul class="surveys-list">
+        <li *ngFor="let survey of surveys" class="surveys-list__item">
           <div class="link" routerLink="/fill/{{survey.id}}">
             {{survey.name}}
           </div>
           <img (click)="showDialog(survey.id)" class="btn__img" 
-            src="../../../../assets/img/link2.svg" alt="">
+            src="../../../../assets/img/link3.svg" alt="">
           <!-- <button class="btn__img" (click)="showDialog(survey.id)"></button> -->
         </li>
       </ul>
@@ -23,5 +23,10 @@
   
     </div>
   </div>
-  <app-modal-window-link *ngIf="stateModal" [link]="surveyLink" (isOpen)="manageDialog($event)"></app-modal-window-link>
+  <app-modal-window-link *ngIf="stateModal" 
+    [link]="surveyLink" 
+    (isOpen)="manageDialog($event)"
+    [isPatient]="true"
+  >
+  </app-modal-window-link>
 </div>

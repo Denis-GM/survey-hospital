@@ -11,10 +11,11 @@ import { QuestionBase, SurveyBase } from 'src/app/core/interfaces/question-base'
   styleUrls: ['./survey.component.css']
 })
 export class SurveySolutionComponent implements OnInit {
-  protected id!: string;
   @Input() takePartSurvey?: boolean = true;
-  protected surveyForm!: FormGroup;
+  @Input() isPatient?: boolean = false;
   @Input() survey: any = {};
+  protected id!: string;
+  protected surveyForm!: FormGroup;
   protected questions!: QuestionBase<string>[] | null;
 
   constructor(

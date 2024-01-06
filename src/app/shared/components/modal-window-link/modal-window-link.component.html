@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="dialog__container_outer">
-    <div class="dialog__container_inner">
+    <div class="dialog__container_inner" [ngClass]="{patient: isPatient}" >
       <button (click)="closeDialog()" class="dialog__cancel"></button>
       <h2 class="dialog__title">Ссылка на опрос</h2>
       <div class="dialog__text">{{link}}</div>
@@ -8,7 +8,19 @@
         <qrcode [qrdata]=link [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
       </div>
       <div class="dialog__buttons">
-        <button tuiButton (click)="copyContent()" class="dialog__copy" size="m">
+        <button *ngIf="!isPatient" tuiButton 
+          (click)="copyContent()" 
+          class="tui-space_right-3 tui-space_bottom-3"
+          size="m"
+        >
+          Скопировать
+        </button>
+        <button *ngIf="isPatient" appearance="custom-green" tuiButton 
+          (click)="copyContent()" 
+          class="tui-space_right-3 tui-space_bottom-3"
+          [ngClass]="{patient: isPatient}"
+          size="m"
+        >
           Скопировать
         </button>
         <!-- <button tuiButton type="button" appearance="outline"

@@ -19,8 +19,6 @@
   left: 50%;
   top: 15vh;
   margin-left: calc(-1 * var(--width-dialog-window) / 2);
-  /* margin-top: calc(-1 * var(--height-dialog-window) / 2); */
-  /* margin-top: -15vh; */
 }
 
 .dialog__container_inner {
@@ -28,7 +26,6 @@
   padding: 34px 42px 34px;
   
   width: var(--width-dialog-window);
-  /* height: var(--height-dialog-window); */
   border-radius: 7px;
 
   display: flex;
@@ -45,8 +42,8 @@
   right: 20px;
   top: 20px;
 
-  background-image: url('../../../../assets/img/btn-close.svg');
-  background-color: #DAE1FA;
+  background-image: url('../../../../assets/img/btn-close2.svg');
+  background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
 
@@ -59,8 +56,6 @@
   font-size: 1.8rem;
   line-height: 20px;
   line-height: 24px;
-  /* border-left: 4px solid #526ED3; */
-  /* padding-left: 10px; */
 
   margin-bottom: 20px;
   display: inline-block;
@@ -93,13 +88,15 @@
 }
 
 .dialog__copy {
-  /* position: absolute; */
-  /* left: 0; */
+  background-color: #526ed3 !important;
+}
+
+.patient {
+  background-color: var(--patient-main-background-color) !important;
 }
 
 @media (min-width: 320px) {
   .dialog__container_inner {
-    background-color: #DAE1FA;
     padding: 34px 42px 34px;
     
     width: 70vw;
@@ -139,7 +136,6 @@
 
 @media (min-width: 480px) {
   .dialog__container_inner {
-    background-color: #DAE1FA;
     padding: 34px 42px 34px;
     
     width: 60vw;
@@ -204,7 +200,6 @@
 
 @media (min-width: 768px) {
   .dialog__container_inner {
-    background-color: #DAE1FA;
     padding: 34px 42px 34px;
     
     width: 50vw;
@@ -231,7 +226,6 @@
 
 @media (min-width: 900px) {
   .dialog__container_inner {
-    background-color: #DAE1FA;
     padding: 34px 42px 34px;
     
     width: 40vw;
@@ -253,7 +247,6 @@
 
 @media (min-width: 1280px) {
   .dialog__container_inner {
-    background-color: #DAE1FA;
     padding: 34px 42px 34px;
     
     width: 40vw;
