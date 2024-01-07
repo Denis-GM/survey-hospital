@@ -10,7 +10,7 @@
     <div class="main-block">
       <ul class="surveys-list">
         <li *ngFor="let survey of surveys" class="surveys-list__item">
-          <div class="link" routerLink="/fill/{{survey.id}}">
+          <div class="link" [ngClass]="{track: survey.name.length > 50}" routerLink="/fill/{{survey.id}}">
             {{survey.name}}
           </div>
           <img (click)="showDialog(survey.id)" class="btn__img" 

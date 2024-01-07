@@ -23,7 +23,7 @@
   line-height: normal;
   color: black;
 
-  z-index: 1000;
+  /* z-index: 1000; */
   padding: 10px 20px 10px;
 }
 
