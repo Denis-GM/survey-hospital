@@ -1,10 +1,12 @@
 <form [formGroup]="surveyForm">
   <div class="header-block">
     <h3 class="header-block__h">Изменение опроса</h3>
-    <tui-input class="header-block__input" formControlName="name">
+    <!-- <tui-input class="header-block__input" formControlName="name">
       Название опроса
       <input tuiTextfield type="text" value="{{survey.name}}" minlength="1"/>
-    </tui-input>
+    </tui-input> -->
+    <h3 class="header-block__h2">{{survey.name}}</h3>
+    <input type="text" formControlName="name" value="{{survey.name}}" type="hidden" minlength="1"/>
     <tui-textarea class="b-form header-block__input" style="min-height: 100px;" formControlName="description" >
       Описание
       <textarea maxlength="1000" [value]="survey.description" tuiTextfield></textarea>
@@ -37,7 +39,7 @@
           Введите текст вопроса
           <input tuiTextfield type="text" />
         </tui-input>
-        <input formControlName="number" value="{{i}}" [ngModel]="i" type="hidden"/>
+        <input formControlName="number" value="{{i + 20}}" [ngModel]="i + 20" type="hidden"/>
         
         <div formArrayName="answerOptions">
           <div *ngFor="let option of getYourOptions(i).controls; let j=index">
@@ -68,13 +70,6 @@
           ></tui-toggle>
         </div>
       </div>
-      
-      <!-- <app-question id="question-{{ i }}" 
-        [idx]="i" formGroupName="{{i}}"
-        [(questionGroup)]="questionGroup"
-        (idxToRemove)="removeQuestion($event)">
-      </app-question> -->
-
     </div>
   </div>
 </form>

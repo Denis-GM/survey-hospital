@@ -118,7 +118,7 @@ export class EditSurveyComponent {
     }
     if(this.surveyForm.valid){
       if(confirm('Изменить опрос?'))
-        this.postSurvey(reqSurvey);
+        this.editSurvey(reqSurvey);
     }
     else
       alert('Заполните все обязательные поля формы')
@@ -141,8 +141,8 @@ export class EditSurveyComponent {
     )
   }
 
-  postSurvey(data: any) {
-    this.surveysService.postSurvey(data).subscribe(
+  editSurvey(data: any) {
+    this.surveysService.editSurvey(this.survey.id, data).subscribe(
       (data: any) => {
         console.log(data);
         this.router.navigate(['/main/surveys']);

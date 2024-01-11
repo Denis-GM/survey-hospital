@@ -10,6 +10,16 @@
   .header-block__h {
     font-weight: 500;
     font-size: 3.2rem;
+    line-height: 30px;
+  
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .header-block__h2 {
+    font-weight: 500;
+    font-size: 2.0rem;
+    line-height: 30px;
   
     margin-top: 24px;
     margin-bottom: 24px;

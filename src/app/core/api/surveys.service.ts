@@ -28,7 +28,7 @@ export class SurveysService {
   private apiGetSurveysAnalyst: string = this.apiUrl + '/analyst/surveys';
   private apiGetSurvey: string = this.apiUrl + '/survey/';
 
-  private apiEditSurvey: string = "";
+  private apiEditSurvey: string = this.apiUrl + "/survey/";
   private apiDeleteSurvey: string = this.apiUrl + "/survey/";
   private apiPostSurvey: string = this.apiUrl + '/survey';
 
@@ -78,9 +78,9 @@ export class SurveysService {
     {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', }});
   }
 
-  editSurvey(data: any): Observable<any> {
+  editSurvey(idSurvey: string, data: any): Observable<any> {
     const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`)
-    return this.http.put(this.apiUrl + this.apiEditSurvey, data, { headers: headers });
+    return this.http.put(this.apiEditSurvey + idSurvey, data, { headers: headers });
   }
 
   deleteSurvey(id: string){

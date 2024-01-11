@@ -25,6 +25,8 @@ export class StatisticsService {
     // private apiGetStat: string = this.apiUrl + '/analyst/survey';
     private apigetStatsSurveyAverage: string = this.apiUrl + '/analyst/survey/average';
     private apiGetStatsSurveyAll: string = this.apiUrl + '/analyst/survey/all';
+    private apiGetDepartment: string = this.apiUrl + '/analyst/department';
+
     constructor(private http: HttpClient) { }
 
     getCurrentSurveyId(): Observable<string> {
@@ -32,17 +34,22 @@ export class StatisticsService {
         return data;
     }
 
-    getStatsSurveyAll(from: string, to: string, surveyId: string): Observable<any> {
+    getStatsSurveyAll(from: string, to: string, surveyId: string, department: string): Observable<any> {
       let headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`)
       let params = new HttpParams()
-        .set("From", from).set("To", to).set("SurveyId", surveyId);
+        .set("From", from).set("To", to).set("SurveyId", surveyId).set("Department", department);
       return this.http.get(this.apiGetStatsSurveyAll, {headers: headers, params: params});
     }
 
-    getStatsSurveyAverage(from: string, to: string, surveyId: string): Observable<any> {
+    getStatsSurveyAverage(from: string, to: string, surveyId: string, department: string): Observable<any> {
       let headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`)
       let params = new HttpParams()
-        .set("From", from).set("To", to).set("SurveyId", surveyId);
+        .set("From", from).set("To", to).set("SurveyId", surveyId).set("Department", department);
       return this.http.get(this.apigetStatsSurveyAverage, {headers: headers, params: params});
+    }
+
+    getDepartment(): Observable<any> {
+      let headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`)
+      return this.http.get(this.apiGetDepartment, {headers: headers});
     }
 }

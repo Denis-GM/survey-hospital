@@ -106,7 +106,7 @@
 .link {
   position: relative;
   right: -3px;
-  width: 88%;
+  width: 87%;
   height: 100%;
   cursor: pointer;
 
@@ -181,12 +181,8 @@
     font-weight: 500;
   }
 
-  .surveys-list__item {
-    /* width: 90%;
-    height: 70px;
-
-    padding: 0 0 0 20px;
-    margin-bottom: 30px; */
+  .link {
+    width: 80%;
   }
 }
 
@@ -198,6 +194,10 @@
   .header-block__content {
     width: 50%;
     left: 35%;
+  }
+
+  .link {
+    width: 80%;
   }
 }
 
@@ -219,6 +219,10 @@
   .header-block__text { 
     font-size: 1.5rem;
     font-weight: 700;
+  }
+
+  .link {
+    width: 87%;
   }
 }
 

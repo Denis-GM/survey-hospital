@@ -25,7 +25,8 @@ export class StatisticsComponent implements OnInit, OnDestroy{
     protected questionsAverageSecond: any;
     protected types: string[] = ['Средний балл', 'Динамика', 'Ответы участников'];
     protected type!: string;
-    protected departments: string[] = ['Поликлиника'];
+    // protected departments: string[] = ['Поликлиника'];
+    protected departments: string[] = [];
     protected statForm!: FormGroup;
     protected role: number;
 
@@ -63,6 +64,7 @@ export class StatisticsComponent implements OnInit, OnDestroy{
             ),
         })
         this.getCurrentSurveyId();
+        this.getDepartment();
         this.formListener();
     }
     
@@ -114,7 +116,7 @@ export class StatisticsComponent implements OnInit, OnDestroy{
                 const date: TuiDayRange = this.statForm.get('dateValue')?.value;
                 const from = `${date.from.month + 1}.${date.from.day}.${date.from.year % 100}`;
                 const to = `${date.to.month + 1}.${date.to.day}.${date.to.year % 100}`;
-                this.getStatsSurveyAll(from, to, data);
+                this.getStatsSurveyAll(from, to, data, '');
             },
             (error: any) => {
                 console.log(error);
@@ -122,8 +124,8 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         );
     }
 
-    getStatsSurveyAll(from: string, to: string, surveyId: string) {
-        this.statisticsService.getStatsSurveyAll(from, to, surveyId).subscribe(
+    getStatsSurveyAll(from: string, to: string, surveyId: string, department: string = '') {
+        this.statisticsService.getStatsSurveyAll(from, to, surveyId, department).subscribe(
             (data: any) => {
                 if(data) {
                     // this.message = '';
@@ -146,8 +148,8 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         );
     }
 
-    getStatsSurveyAverage(from: string, to: string, surveyId: string) {
-        this.statisticsService.getStatsSurveyAverage(from, to, surveyId).subscribe(
+    getStatsSurveyAverage(from: string, to: string, surveyId: string, department: string = '') {
+        this.statisticsService.getStatsSurveyAverage(from, to, surveyId, department).subscribe(
             (data: any) => {
                 if(data.questions && data.questions.length > 0) {
                     data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
@@ -170,8 +172,8 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         );
     }
 
-    getStatsSurveyDynamic(from: string, to: string, surveyId: string) {
-        this.statisticsService.getStatsSurveyAverage(from, to, surveyId).subscribe(
+    getStatsSurveyDynamic(from: string, to: string, surveyId: string, department: string = '') {
+        this.statisticsService.getStatsSurveyAverage(from, to, surveyId, department).subscribe(
             (data: any) => {
                 if(data.questions && data.questions.length > 0) {
                     data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
@@ -194,6 +196,19 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         );
     }
 
+    getDepartment() {
+        this.statisticsService.getDepartment().subscribe(
+            (data: any) => {
+                let array = data.map((el: any) => el.name);
+                array.unshift('Поликлиника');
+                console.log(array)
+                this.departments = array;
+            },
+            (err: any)=> {
+                console.log(err)
+            },
+        )
+    }
     
     detectChanges(): void {
         this.cdr.detectChanges();
@@ -207,20 +222,21 @@ export class StatisticsComponent implements OnInit, OnDestroy{
 
             const idSurvey = form.nameSurvey || this.curSurvey.id;
             this.type = form.type;
+            const department = form.department != 'Поликлиника' ? form.department : '';
             switch(form.type) {
                 case 'Ответы участников':
-                    this.getStatsSurveyAll(from, to, idSurvey);
+                    this.getStatsSurveyAll(from, to, idSurvey, department);
                     break;
                 case 'Средний балл':
-                    this.getStatsSurveyAverage(from, to, idSurvey);
+                    this.getStatsSurveyAverage(from, to, idSurvey, department);
                     break;
                 case 'Динамика':
                     const dateSecond: TuiDayRange = form.dateValueEnd;
                     const fromSec = `${dateSecond.from.month + 1}.${dateSecond.from.day}.${dateSecond.from.year % 100}`;
                     const toSec = `${dateSecond.to.month + 1}.${dateSecond.to.day}.${dateSecond.to.year % 100}`;
 
-                    this.getStatsSurveyAverage(from, to, idSurvey);
-                    this.getStatsSurveyDynamic(fromSec, toSec, idSurvey);
+                    this.getStatsSurveyAverage(from, to, idSurvey, department);
+                    this.getStatsSurveyDynamic(fromSec, toSec, idSurvey, department);
                     break;
             }
         })
