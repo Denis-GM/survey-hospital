@@ -26,7 +26,7 @@ export class StatisticsComponent implements OnInit, OnDestroy{
     protected types: string[] = ['Средний балл', 'Динамика', 'Ответы участников'];
     protected type!: string;
     // protected departments: string[] = ['Поликлиника'];
-    protected departments: string[] = [];
+    protected departments: string[] = ['Поликлиника'];
     protected statForm!: FormGroup;
     protected role: number;
 
@@ -85,8 +85,9 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.surveysService.getSurveysAdmin().subscribe(
             (data: any) => {
                 this.surveys = data;
-                // this.curSurvey = this.surveys[0];
+                this.surveys.unshift({id: '', name: 'Общие', description: ''})
                 this.value = this.curSurvey.id;
+                console.log(data)
                 this.cdr.detectChanges();
             },
             (error: any) => {
@@ -99,8 +100,9 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.surveysService.getSurveysAnalyst().subscribe(
             (data: any) => {
                 this.surveys = data;
-                // this.curSurvey = this.surveys[0];
+                this.surveys.unshift({id: '', name: 'Общие', description: ''})
                 this.value = this.curSurvey.id;
+                console.log(data)
                 this.cdr.detectChanges();
             },
             (error: any) => {
@@ -148,17 +150,18 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         );
     }
 
-    getStatsSurveyAverage(from: string, to: string, surveyId: string, department: string = '') {
+    getStatsSurveyAverageFirst(from: string, to: string, surveyId: string, department: string = '') {
         this.statisticsService.getStatsSurveyAverage(from, to, surveyId, department).subscribe(
             (data: any) => {
-                if(data.questions && data.questions.length > 0) {
+                if(data && data.questions && data.questions.length > 0) {
                     data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
                     this.questionsAverageFirst = data.questions;
-                    console.log(this.questionsAverageFirst.length)
+                    console.log(this.questionsAverageFirst)
                     this.uploadedSuccess = true;
                 }
                 else {
                     this.uploadedSuccess = false;
+                    this.questionsAverageFirst = null;
                     // this.message = 'Статистика еще не сформировалась. Попробуйте выбрать другие диапазоны дат';
                 }
                 this.cdr.detectChanges();
@@ -172,17 +175,18 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         );
     }
 
-    getStatsSurveyDynamic(from: string, to: string, surveyId: string, department: string = '') {
+    getStatsSurveyAverageSecond(from: string, to: string, surveyId: string, department: string = '') {
         this.statisticsService.getStatsSurveyAverage(from, to, surveyId, department).subscribe(
             (data: any) => {
-                if(data.questions && data.questions.length > 0) {
+                if(data && data.questions && data.questions.length > 0) {
                     data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
                     this.questionsAverageSecond = data.questions;
-                    console.log(this.questionsAverageSecond.length)
+                    console.log(this.questionsAverageSecond)
                     this.uploadedSuccess = true;
                 }
                 else {
                     this.uploadedSuccess = false;
+                    this.questionsAverageSecond = null;
                     // this.message = 'Статистика еще не сформировалась';
                 }
                 this.cdr.detectChanges();
@@ -200,14 +204,18 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.statisticsService.getDepartment().subscribe(
             (data: any) => {
                 let array = data.map((el: any) => el.name);
-                array.unshift('Поликлиника');
-                console.log(array)
                 this.departments = array;
+                this.departments.unshift('Поликлиника');
             },
             (err: any)=> {
                 console.log(err)
             },
         )
+    }
+
+    getStatsSurveyDynamic(from: string, fromSec: string, to: string, toSec: string, idSurvey: string, department: string) {
+        this.getStatsSurveyAverageFirst(from, to, idSurvey, department);
+        this.getStatsSurveyAverageSecond(fromSec, toSec, idSurvey, department);
     }
     
     detectChanges(): void {
@@ -216,27 +224,26 @@ export class StatisticsComponent implements OnInit, OnDestroy{
 
     formListener(): void {
         this.subscriptionFirst = this.statForm.valueChanges.subscribe((form: any) => {
-            const dateFirst: TuiDayRange = form.dateValueStart;
-            const from = `${dateFirst.from.month + 1}.${dateFirst.from.day}.${dateFirst.from.year % 100}`;
-            const to = `${dateFirst.to.month + 1}.${dateFirst.to.day}.${dateFirst.to.year % 100}`;
-
-            const idSurvey = form.nameSurvey || this.curSurvey.id;
             this.type = form.type;
-            const department = form.department != 'Поликлиника' ? form.department : '';
+            const idSurvey: string = form.nameSurvey === 'Общие' ? '' : form.nameSurvey || this.curSurvey.id;
+
+            const dateFirst: TuiDayRange = form.dateValueStart;
+            const from: string = `${dateFirst.from.month + 1}.${dateFirst.from.day}.${dateFirst.from.year % 100}`;
+            const to: string = `${dateFirst.to.month + 1}.${dateFirst.to.day}.${dateFirst.to.year % 100}`;
+            const department: string = (form.department && form.department != 'Поликлиника') ? form.department : '';
+            
             switch(form.type) {
                 case 'Ответы участников':
                     this.getStatsSurveyAll(from, to, idSurvey, department);
                     break;
                 case 'Средний балл':
-                    this.getStatsSurveyAverage(from, to, idSurvey, department);
+                    this.getStatsSurveyAverageFirst(from, to, idSurvey, department);
                     break;
                 case 'Динамика':
                     const dateSecond: TuiDayRange = form.dateValueEnd;
                     const fromSec = `${dateSecond.from.month + 1}.${dateSecond.from.day}.${dateSecond.from.year % 100}`;
                     const toSec = `${dateSecond.to.month + 1}.${dateSecond.to.day}.${dateSecond.to.year % 100}`;
-
-                    this.getStatsSurveyAverage(from, to, idSurvey, department);
-                    this.getStatsSurveyDynamic(fromSec, toSec, idSurvey, department);
+                    this.getStatsSurveyDynamic(from, fromSec, to, toSec, idSurvey, department)
                     break;
             }
         })

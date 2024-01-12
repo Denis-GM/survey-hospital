@@ -86,16 +86,16 @@
         />
       </tui-input-date-range>
     </div>
-  </div>
+  </div>  
+  <!-- style="position: fixed; top: -200px;" -->
   <button *ngIf="type == 'Динамика'"
     appearance="secondary"
     tuiButton
     type="button"
-    style="position: fixed; top: -200px;"
     class="tui-space_right-3 tui-space_bottom-3 
     control-panel__stat-survey_second"
     (click)="detectChanges()">
-    Принять изменения
+    Обновить
   </button>
 </div>
 <div class="main">
@@ -115,7 +115,7 @@
 
   <ng-container *ngIf="uploadedSuccess && type == 'Средний балл'">
     <div *ngIf="questionsAverageFirst" class="average-flex-container">
-      <div *ngFor="let question of questionsAverageFirst; let i = index" style="width: 30%;">
+      <div *ngFor="let question of questionsAverageFirst; let i = index">
         <app-average-stat  
           [question]="question" 
           [index]="i">
@@ -126,16 +126,27 @@
   </ng-container>
 
   <ng-container *ngIf="uploadedSuccess && type == 'Динамика'">
-    <div *ngIf="questionsAverageFirst && questionsAverageSecond 
-      && this.questionsAverageSecond.length > 0 && this.questionsAverageSecond.length > 0" 
+    <div *ngIf="(questionsAverageFirst && questionsAverageSecond) 
+      && this.questionsAverageFirst.length > 0 && this.questionsAverageSecond.length > 0" 
       class="average-flex-container">
-      <div *ngFor="let question of questionsAverageFirst; let i = index" style="width: 30%;">
-        <app-dynamic-stat 
-          [index]="i"
-          [questionFirst]="question"
-          [questionSecond]="questionsAverageSecond[i]">
-        </app-dynamic-stat>
-      </div> 
+      <ng-container *ngIf="questionsAverageFirst.length <= questionsAverageSecond.length">
+        <div *ngFor="let question of questionsAverageFirst; let i = index">
+          <app-dynamic-stat 
+            [index]="i"
+            [questionFirst]="question"
+            [questionSecond]="questionsAverageSecond[i]">
+          </app-dynamic-stat>
+        </div> 
+      </ng-container>
+      <ng-container *ngIf="questionsAverageFirst.length > questionsAverageSecond.length">
+        <div *ngFor="let question of questionsAverageSecond; let i = index">
+          <app-dynamic-stat 
+            [index]="i"
+            [questionFirst]="question"
+            [questionSecond]="questionsAverageSecond[i]">
+          </app-dynamic-stat>
+        </div> 
+      </ng-container>
     </div>
     
     <div *ngIf="uploadedSuccess && (!questionsAverageFirst || !questionsAverageSecond)">loading...</div>

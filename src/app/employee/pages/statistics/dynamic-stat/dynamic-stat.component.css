@@ -1,15 +1,14 @@
 .average-stat-block {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   border-radius: 7px;
   background: #FFF;
-  min-height: 230px;
 
-  margin-bottom: 40px;
-  padding: 20px 30px;
+  position: relative;
+
+  width: 90%;
+  min-height: 100px;
+
+  padding: 30px 30px 10px 30px;
+  margin-bottom: 30px;
 }
 
 .average-stat-block__content {
@@ -51,6 +50,10 @@
   justify-content: space-between;
 }
 
+.average-stat-main-block {
+  padding: 50px;
+}
+
 .average-stat-block_number {
   position: relative;
   display: flex;
@@ -60,8 +63,9 @@
   background-color: #D0D4E3;
 
   border-radius: 7px;
-  width: 50px;
-  height: 50px;
+  padding: 10px 20px;
+  min-width: 50px;
+  min-height: 50px;
 }
 
 .average-stat-block_number div {
