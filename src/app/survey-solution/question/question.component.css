@@ -97,7 +97,9 @@ input[type=radio] {
 }
 
 @media (min-width: 320px) {
-
+  .question {
+    border-radius: 0;
+  }
 }
 
 @media (min-width: 480px) {

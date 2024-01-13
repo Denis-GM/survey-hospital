@@ -55,7 +55,7 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.statForm = new FormGroup({
             nameSurvey: new FormControl(),
             type: new FormControl(this.types[2]),
-            department: new FormControl(this.departments[0]),
+            department: new FormControl('Поликлиника'),
             dateValueStart: new FormControl(
                 new TuiDayRange(new TuiDay(2023, dateStart.getMonth(), 1), new TuiDay(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate())),
             ),
