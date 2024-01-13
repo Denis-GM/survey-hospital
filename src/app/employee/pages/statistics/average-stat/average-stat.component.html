@@ -10,10 +10,12 @@
     </h5>
   </div>
   
-  <div *ngIf="newQuestion.type !== 3" class="average-stat-block_number"><div>{{stat.answer.answer}}</div></div>
-  <div *ngIf="newQuestion.type == 3" class="average-stat-block_number"><div>{{stat.rangeValue}}</div></div>
+  <div class="average-stat-main-block">
+    <div *ngIf="newQuestion.type !== 3" class="average-stat-block_number"><div>{{stat.answer.answer}}</div></div>
+    <div *ngIf="newQuestion.type == 3" class="average-stat-block_number"><div>{{stat.rangeValue}}</div></div>
+  </div>
 
-  <div class="average-stat-block_percent"><div>Процент: {{stat.percent}}</div></div>
+  <div class="average-stat-block_percent"><div>Процент: {{stat.percent}} - {{stat.count}}</div></div>
 </div>
 <app-stat-block-text *ngIf="newQuestion.type == 0" 
   class="text-answer" [question]="question" [stats]="stat" [index]="index">

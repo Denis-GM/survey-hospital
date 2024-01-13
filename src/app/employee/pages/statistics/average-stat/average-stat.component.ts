@@ -27,6 +27,5 @@ export class AverageStatComponent implements OnInit{
         break;
     }
     this.newQuestion = this.question.question;
-    console.log('stat', this.stat, this.newQuestion)
   }
 }
