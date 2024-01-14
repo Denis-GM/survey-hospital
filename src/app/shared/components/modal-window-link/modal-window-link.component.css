@@ -52,10 +52,8 @@
 }
 
 .dialog__title {
+  text-align: center;
   font-weight: 500;
-  font-size: 1.8rem;
-  line-height: 20px;
-  line-height: 24px;
 
   margin-bottom: 20px;
   display: inline-block;
@@ -91,6 +89,10 @@
   background-color: #526ed3 !important;
 }
 
+.copy-btn {
+  font-size: 1.3rem !important;
+}
+
 .patient {
   background-color: var(--patient-main-background-color) !important;
 }
@@ -100,7 +102,6 @@
     padding: 34px 42px 34px;
     
     width: 70vw;
-    /* height: var(--height-dialog-window); */
     border-radius: 7px;
   
     display: flex;
@@ -119,18 +120,17 @@
     text-align: center;
     font-weight: 500;
     font-size: 1.4rem;
-    line-height: 14px;
   }
   
   .dialog__text {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     line-height: 20px;
   }
 
   .dialog__cancel {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -139,7 +139,6 @@
     padding: 34px 42px 34px;
     
     width: 60vw;
-    /* height: var(--height-dialog-window); */
     border-radius: 7px;
   
     display: flex;
@@ -155,10 +154,7 @@
   }
 
   .dialog__title {
-    text-align: center;
-    font-weight: 500;
-    font-size: 1.4rem;
-    line-height: 14px;
+    font-size: 1.6rem;
   }
   
   .dialog__text {
@@ -167,17 +163,14 @@
   }
 
   .dialog__cancel {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 }
 
 @media (min-width: 600px) {
   .dialog__title {
-    text-align: center;
-    font-weight: 500;
-    font-size: 1.4rem;
-    line-height: 14px;
+    font-size: 1.6rem;
   }
   
   .dialog__text {
@@ -203,7 +196,6 @@
     padding: 34px 42px 34px;
     
     width: 50vw;
-    /* height: var(--height-dialog-window); */
     border-radius: 7px;
   
     display: flex;
@@ -218,6 +210,10 @@
     margin-left: calc(-1 * 50vw / 2);
   }
 
+  .dialog__title {
+    font-size: 1.8rem;
+  }
+
   .dialog__cancel {
     width: 30px;
     height: 30px;
@@ -229,7 +225,6 @@
     padding: 34px 42px 34px;
     
     width: 40vw;
-    /* height: var(--height-dialog-window); */
     border-radius: 7px;
   
     display: flex;
@@ -250,7 +245,6 @@
     padding: 34px 42px 34px;
     
     width: 40vw;
-    /* height: var(--height-dialog-window); */
     border-radius: 7px;
   
     display: flex;

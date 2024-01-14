@@ -2,11 +2,42 @@
   position: relative;
   width: 100%;
   padding: 0 30px 20px 30px;
-  height: 300px;
 }
 
 .bar-chart__canvas {
   margin: 0 auto;
-  width: 50%;
-  height: 100%;
+}
+
+@media (min-width: 320px) {
+  .bar-chart {
+    padding: 0;
+    height: 100%;
+  }
+}
+
+@media (min-width: 480px) {
+  
+}
+
+@media (min-width: 768px) {
+  .bar-chart {
+    padding: 0 30px 20px 30px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 1280px) {
+  
+}
+
+@media (min-width: 1444px) {
+  
+}
+
+@media (min-width: 1600px) {
+  
+}
+
+@media (min-width: 1920px) {
+  
 }

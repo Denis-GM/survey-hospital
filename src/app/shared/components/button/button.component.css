@@ -14,10 +14,7 @@
   user-select: none;
   cursor: pointer;
 
-  /* width: 15vw; */
-  width: 11vw;
-  min-width: 190px;
-  /* max-width: 350px; */
+  width: 15vw;
 }
 
 .btn:hover {
@@ -47,17 +44,17 @@
     font-size: 1rem;
     font-weight: 300;
 
-    /* max-width: 190px; */
+    max-width: 190px;
     padding: 10px 0;
   }
 }
 
 @media (min-width: 768px) {
   .btn{
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     font-weight: 400;
 
-    /* max-width: 160px; */
+    /* max-width: 190px; */
     padding: 11px 0;
   }
 }
@@ -67,7 +64,7 @@
     font-size: 1.2rem;
     font-weight: 500;
 
-    /* max-width: 170px; */
+    /* max-width: 150px; */
     padding: 14px 0;
   }
 }

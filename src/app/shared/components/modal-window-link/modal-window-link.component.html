@@ -5,7 +5,7 @@
       <h2 class="dialog__title">Ссылка на опрос</h2>
       <div class="dialog__text">{{link}}</div>
       <div *ngIf="isShowQRCode" class="qr-code">
-        <qrcode [qrdata]=link [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+        <qrcode [qrdata]=link [width]="170" [errorCorrectionLevel]="'M'"></qrcode>
       </div>
       <div class="dialog__buttons">
         <button *ngIf="!isPatient" tuiButton 
@@ -17,9 +17,9 @@
         </button>
         <button *ngIf="isPatient" appearance="custom-green" tuiButton 
           (click)="copyContent()" 
-          class="tui-space_right-3 tui-space_bottom-3"
+          class="tui-space_right-3 tui-space_bottom-3 copy-btn"
           [ngClass]="{patient: isPatient}"
-          size="m"
+          size="l"
         >
           Скопировать
         </button>

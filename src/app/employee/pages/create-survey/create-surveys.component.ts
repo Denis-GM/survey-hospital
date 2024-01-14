@@ -82,8 +82,6 @@ export class CreateSurveysComponent implements OnInit{
 
   addQuestion() {
     this.questions.push(this.questionGroup);
-    // this.changeDetection.detectChanges();
-    // console.log('add question');
   }
 
   public removeQuestion(index: number): void {

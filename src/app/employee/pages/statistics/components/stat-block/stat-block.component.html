@@ -2,7 +2,7 @@
   <div *ngIf="typeQuestion == 0 || typeStatisticsDisplay == 'Ответы участников'"
     class="stat-block__flex-header">
     <div class="stat-block__h">
-      <h3 style="margin-bottom: 20px;">Вопрос № {{index + 1}}</h3> 
+      <h3 style="margin-bottom: 20px; font-size: 1.4rem;">Вопрос № {{index + 1}}</h3> 
       <h4 class="stat-block__description">{{question.question.title}}</h4> 
       <h5 class="stat-block__type">
         Тип ответа: 
@@ -13,7 +13,7 @@
       </h5>
     </div>
     <tui-select *ngIf="typeQuestion > 0 && typeQuestion != 2"
-      [formControl]="typeStatDisplay"
+      [formControl]="typeStatDisplay" class="select-type-display"
       [tuiTextfieldLabelOutside]="true">
       Формат отображения
       <input

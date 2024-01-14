@@ -1,4 +1,5 @@
 .container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding-top: 5%;
@@ -12,6 +13,7 @@
 
 .container-block {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 50px;
   align-items: center;
 }
@@ -22,6 +24,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.cnt {
+  margin-bottom: 15px;
 }
 
 .sign {
@@ -37,6 +43,8 @@
 
   width: 60%;
   text-align: center;
+
+  margin: 0 30px 15px 0;
 }
 
 .key-access__text {
@@ -69,7 +77,7 @@
   border: none;
   background-color: aliceblue;
 
-  margin-right: 30px;
+  margin: 0 30px 15px 0;
   padding: 10px 30px;
   
   font-size: 1.2rem;
@@ -117,3 +125,90 @@
   background: rgb(210, 102, 75);
 }
 
+@media (min-width: 320px) {
+  .container { 
+    align-items: center;
+  }
+
+  .container-block {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .account-data {
+    margin: 0 15px 15px 15px;
+  }
+  
+  .container__key-access {
+    align-items: center;
+  }
+
+  .cnt {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .cnt button {
+    margin-right: 0;
+  }
+
+  .key-access__input {
+    width: 100%;
+  }
+
+  .key-access__btns button{
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 480px) {
+  
+}
+
+@media (min-width: 768px) {
+  .container { 
+    align-items: normal;
+  }
+
+  .container-block {
+    align-items: center;
+    justify-content: normal;
+  }
+
+  .account-data {
+    margin: 0 30px 15px 0;
+  }
+  
+  
+  .container__key-access {
+    align-items: normal;
+  }
+
+  .cnt {
+    display: block;
+  }
+
+  .key-access__input {
+    height: 60px;
+    width: 60%;
+  }
+}
+
+@media (min-width: 1280px) {
+  
+}
+
+@media (min-width: 1444px) {
+  
+}
+
+@media (min-width: 1600px) {
+  
+}
+
+@media (min-width: 1920px) {
+  
+}

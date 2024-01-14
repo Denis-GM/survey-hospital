@@ -87,7 +87,6 @@ export class EditSurveyComponent {
 
   addQuestion() {
     this.questions.push(this.questionGroup);
-    // this.changeDetection.detectChanges();
   }
 
   public removeQuestion(index: number): void {
@@ -102,8 +101,6 @@ export class EditSurveyComponent {
   addOption(index: number) {
     let options: any = this.questions.at(index).get('answerOptions') as FormArray;
     options.push(this.optionGroup);
-    // this.changeDetection.detectChanges();
-    console.log(options, index);
   }
 
   public removeOption(indexQuestion: number, indexOption: number): void {
@@ -128,12 +125,12 @@ export class EditSurveyComponent {
     this.surveysService.getSurvey(id).subscribe(
       (data: any) => {
         this.survey = data;
+        const nameSurvey = data.name;
         this.surveyForm = this.fb.group({
-          name: [data.name, [Validators.required, Validators.minLength(1)]],
+          name: [nameSurvey, [Validators.required, Validators.minLength(1)]],
           description: [data.description, Validators.maxLength(1000)],
           questions: this.qcs.toFormArrayEditSurvey(data.questions as IQuestionGet[]) 
         });
-        console.log('surveyForm', this.surveyForm);
       },
       (err: any) => {
         console.log(err);

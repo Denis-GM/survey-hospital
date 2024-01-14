@@ -5,7 +5,7 @@
       Название опроса
       <input tuiTextfield type="text" minlength="1"/>
     </tui-input>
-    <tui-textarea class="b-form header-block__input" style="min-height: 100px;" formControlName="description" >
+    <tui-textarea class="b-form header-block__textarea" style="min-height: 100px;" formControlName="description" >
       Описание
       <textarea maxlength="1000" tuiTextfield></textarea>
     </tui-textarea>
@@ -45,6 +45,7 @@
               <div [ngSwitch]="typeYourQuestion(i)">
                 <input *ngSwitchCase="1" type="radio" disabled class="answer-block__icon"/>
                 <input *ngSwitchCase="2" type="checkbox" disabled class="answer-block__icon"/>
+                <!-- <input formControlName="number" value="{{i}}" [ngModel]="i" type="hidden"/> -->
               </div>
               <div class="answer-block__control"
                 *ngIf="typeYourQuestion(i) == 1 || typeYourQuestion(i) == 2">
@@ -68,13 +69,6 @@
           ></tui-toggle>
         </div>
       </div>
-      
-      <!-- <app-question id="question-{{ i }}" 
-        [idx]="i" formGroupName="{{i}}"
-        [(questionGroup)]="questionGroup"
-        (idxToRemove)="removeQuestion($event)">
-      </app-question> -->
-
     </div>
   </div>
 </form>

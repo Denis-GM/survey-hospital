@@ -72,7 +72,6 @@ export class QuestionControlService {
     questions.forEach(question => {
       let optinsArr: any = new FormArray([])
       const answerOptions = question.options;
-      console.log(answerOptions)
 
       answerOptions.forEach(answerOption => {
         let optinGroupEditSurvey = this._fb.group({answer: [answerOption.answer]});

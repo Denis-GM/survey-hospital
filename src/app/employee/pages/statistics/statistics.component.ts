@@ -217,15 +217,12 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.getStatsSurveyAverageFirst(from, to, idSurvey, department);
         this.getStatsSurveyAverageSecond(fromSec, toSec, idSurvey, department);
     }
-    
-    detectChanges(): void {
-        this.cdr.detectChanges();
-    };
 
     formListener(): void {
         this.subscriptionFirst = this.statForm.valueChanges.subscribe((form: any) => {
             this.type = form.type;
-            const idSurvey: string = form.nameSurvey === 'Общие' ? '' : form.nameSurvey || this.curSurvey.id;
+            const idSurvey: string = form.nameSurvey === 'Общие' || form.nameSurvey === '' ? '' : 
+                form.nameSurvey || this.curSurvey.id;
 
             const dateFirst: TuiDayRange = form.dateValueStart;
             const from: string = `${dateFirst.from.month + 1}.${dateFirst.from.day}.${dateFirst.from.year % 100}`;

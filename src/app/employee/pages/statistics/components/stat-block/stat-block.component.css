@@ -3,17 +3,12 @@
   background: #FFF;
 
   position: relative;
-
-  width: 90%;
   min-height: 100px;
-
-  padding: 30px 30px 10px 30px;
   margin-bottom: 30px;
 }
 
 .stat-block__flex-header {
   display: grid;
-  grid-template-columns: 70% 30%;
   
   margin: 0 auto;
   margin-bottom: 10px;
@@ -34,8 +29,6 @@
 
 .stat-block__type {
   line-height: 20px;
-  width: 95%;
-  font-size: 1.2rem;
 }
 
 .answer-block {
@@ -74,4 +67,83 @@
 
 .answer-block__text:nth-child(2n) {
   background-color: #f6f6f6;
+}
+
+@media (min-width: 320px) {
+  .stat-block {
+    width: 100%;
+  
+    padding: 20px 5% 20px 5%;
+    margin-bottom: 30px;
+  }
+
+  .stat-block__flex-header {
+    font-size: 1.2rem;
+    grid-template-columns: 60% 40%;
+  }
+
+  .stat-block__description {
+    line-height: 15px;
+    width: 150%;
+    font-size: 1.0rem;
+  }
+
+  .stat-block__type {
+    width: 150%;
+    font-size: 0.8rem;
+  }
+
+  .select-type-display {
+    position: relative;
+    top: -5%;
+  }
+}
+
+@media (min-width: 480px) {
+  
+}
+
+@media (min-width: 768px) {
+  .stat-block {
+    width: 100%;
+  
+    padding: 30px 30px 10px 30px;
+    margin-bottom: 30px;
+  }
+
+  .stat-block__flex-header {
+    grid-template-columns: 70% 30%;
+  }
+
+  .stat-block__description {
+    line-height: 20px;
+    width: 95%;
+    font-size: 1.4rem;
+  }
+
+  .stat-block__type {
+    width: 95%;
+    font-size: 1.2rem;
+  }
+
+  .select-type-display {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  
+}
+
+@media (min-width: 1444px) {
+  
+}
+
+@media (min-width: 1600px) {
+  
+}
+
+@media (min-width: 1920px) {
+  
 }

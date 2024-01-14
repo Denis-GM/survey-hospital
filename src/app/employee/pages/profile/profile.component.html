@@ -2,11 +2,11 @@
   <h2 class="title">Страница профиля</h2>
   <div class="container-block">
     <div *ngIf="role == 3" class="container__key-access">
-      <div style="margin-bottom: 30px;">
+      <div class="cnt">
         <label>
           <div class="sign">Ключ доступа</div>
           <input id="keyAccessAdmin" value="{{accessKey.key}}" [formControl]="accessKeyControl" 
-            class="key-access__input account-data" />
+            class="key-access__input" />
         </label>
         <button *ngIf="!editingMode" (click)="addKeyAccess()" class="btn">Подключиться</button>
         <div class="key-access__text">
@@ -18,13 +18,12 @@
     </div>
   
     <div *ngIf="role == 2" class="container__key-access">
-      <div style="margin-bottom: 30px;">
+      <div class="cnt">
         <label>
           <div class="sign">Ключ доступа (для аналитика)</div>
           <input id="keyAccessAdmin" value="{{accessKey.key}}" [formControl]="accessKeyControl" 
-            class="key-access__input account-data" />
+            class="key-access__input" />
         </label>
-        <!-- <div class="key-access__text">{{message}}</div> -->
         <button *ngIf="!editingMode" (click)="copyContent()" class="btn">Скопировать</button>
       </div>
       <div class="key-access__btns">

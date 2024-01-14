@@ -1,3 +1,61 @@
+
+<div class="container-mobile">
+  <div class="nav-bar-mobile">
+    <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
+    <label for="burger-checkbox" class="burger"></label>
+    <ul *ngIf="role !== 2" class="menu-list">
+      <li>
+        <a routerLink="/main/surveys" class="menu-item" routerLinkActive="btn-active">
+          Опросы
+        </a>
+      <li>
+      <li>
+        <a routerLink="/main/statistics" class="menu-item" routerLinkActive="btn-active">
+          Статистика
+        </a>
+      <li>
+      <li>
+        <a routerLink="/main/profile" class="menu-item" routerLinkActive="btn-active">
+          Ключ доступа
+        </a>
+      <li>
+      <li>
+        <a (click)="logout()" href="#" class="menu-item">
+          Выйти
+        </a>
+      <li>
+    </ul>
+
+    <ul *ngIf="role == 2" class="menu-list">
+      <li>
+        <a routerLink="/main/surveys" class="menu-item" routerLinkActive="btn-active">
+          Опросы
+        </a>
+      <li>
+      <li >
+        <a routerLink="/main/create-survey" class="menu-item" routerLinkActive="btn-active">
+          Создать опрос
+        </a>
+      <li>
+      <li>
+        <a routerLink="/main/statistics" class="menu-item" routerLinkActive="btn-active">
+          Статистика
+        </a>
+      <li>
+      <li>
+        <a routerLink="/main/profile" class="menu-item" routerLinkActive="btn-active">
+          Ключ доступа
+        </a>
+      <li>
+      <li>
+        <a (click)="logout()" href="#" class="menu-item">
+          Выйти
+        </a>
+      <li>
+    </ul>
+
+  </div>
+</div>
 <div class="container">
   <div class="nav-bar">
     <div class="title" routerLink="/main/surveys">

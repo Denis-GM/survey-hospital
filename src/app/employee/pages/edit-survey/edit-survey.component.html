@@ -1,15 +1,14 @@
 <form [formGroup]="surveyForm">
   <div class="header-block">
     <h3 class="header-block__h">Изменение опроса</h3>
-    <!-- <tui-input class="header-block__input" formControlName="name">
+    <input [value]="survey.name" type="text" minlength="1" type="hidden" disabled />
+    <tui-input class="header-block__input" formControlName="name">
       Название опроса
-      <input tuiTextfield type="text" value="{{survey.name}}" minlength="1"/>
-    </tui-input> -->
-    <h3 class="header-block__h2">{{survey.name}}</h3>
-    <input type="text" formControlName="name" value="{{survey.name}}" type="hidden" minlength="1"/>
+      <input tuiTextfield type="text" minlength="1"/>
+    </tui-input>
     <tui-textarea class="b-form header-block__input" style="min-height: 100px;" formControlName="description" >
       Описание
-      <textarea maxlength="1000" [value]="survey.description" tuiTextfield></textarea>
+      <textarea maxlength="1000" tuiTextfield></textarea>
     </tui-textarea>
   </div>
 

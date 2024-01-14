@@ -1,22 +1,22 @@
 .header-block {
   border-radius: 7px;
   background-color: #FFF;
-  width: 90%;
-  padding: 2vh 30% 2vh 99px;
 
   margin-bottom: 30px;
 }
 
 .header-block__h {
   font-weight: 500;
-  font-size: 3.2rem;
-
-  margin-top: 24px;
-  margin-bottom: 24px;
+  line-height: 32px;
 }
 
 .header-block__input {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.header-block__textarea {
+  font-size: 1.2rem;
   margin-bottom: 20px;
 }
 
@@ -25,7 +25,7 @@
   cursor: pointer;
   
   border: none;
-  width: 90%;
+  width: 100%;
   border-radius: 7px;
 
   background: #FFF;
@@ -43,10 +43,6 @@
 
   border-radius: 7px;
   background-color: #FFF;
-  width: 90%;
-  padding: 32px 100px 30px 99px;
-
-  margin-bottom: 15px;
 }
 
 .removeQuestion {
@@ -86,7 +82,6 @@
 
   margin-bottom: 10px;
   position: relative;
-  width: 70%;
 }
 
 .answer-block__icon {
@@ -109,7 +104,6 @@
   border: none;
   margin-left: 5px;
   width: 100%;
-  /* transition: border 2s; */
 }
 
 .answer-block__input:focus {
@@ -163,7 +157,7 @@
   cursor: pointer;
   
   border: none;
-  width: 90%;
+  width: 100%;
   border-radius: 7px;
 
   background: #526ED3;
@@ -174,10 +168,38 @@
   padding: 16px 0;
 }
 
-
-
 @media (min-width: 320px) {
+  .header-block {
+    padding: 2vh 10% 2vh 10%;
+  }
+
+  .header-block__h {
+    font-size: 2.2rem;
+    line-height: 30px;
   
+    margin-top: 18px;
+    margin-bottom: 18px;
+  }
+
+  .question-block {
+    padding: 32px 10% 32px 10%;
+  
+    margin-bottom: 10px;
+  }
+
+  .question-block__input-type {
+    width: 70%;
+    margin-bottom: 18px;
+  }
+  
+  .question-block__input-text {
+    width: 100%;
+    margin-bottom: 18px;
+  }
+
+  .answer-block {
+    width: 100%;
+  }
 }
 
 @media (min-width: 480px) {
@@ -185,7 +207,37 @@
 }
 
 @media (min-width: 768px) {
+  .header-block {
+    padding: 2vh 30% 2vh 99px;
+  }
+
+  .header-block__h {
+    font-size: 3.2rem;
+    line-height: 32px;
   
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .question-block {
+    padding: 32px 100px 30px 99px;
+  
+    margin-bottom: 15px;
+  }
+
+  .question-block__input-type {
+    width: 35%;
+    margin-bottom: 24px;
+  }
+  
+  .question-block__input-text {
+    width: 70%;
+    margin-bottom: 24px;
+  }
+
+  .answer-block {
+    width: 70%;
+  }
 }
 
 @media (min-width: 1280px) {

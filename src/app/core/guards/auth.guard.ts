@@ -32,13 +32,11 @@ export class AuthGuard {
             });
             return this.http.get(this.apiGetAccount, {headers: headers}).subscribe(
                 (data: any) => {
-                    // console.log(user);
                     return true;
                 },
                 (error: any) => {
                     this.router.navigate(['/account/login']);
                     console.log(error);
-                    // console.log(user);
                     return false;
                 }
             )
