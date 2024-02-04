@@ -18,6 +18,7 @@
 .header-block__textarea {
   font-size: 1.2rem;
   margin-bottom: 20px;
+  min-height: 100px;
 }
 
 .btn-add-question {

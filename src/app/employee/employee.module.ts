@@ -25,12 +25,12 @@ import {TuiInputDateRangeModule} from '@taiga-ui/kit';
 
 import { BarChartComponent } from './pages/statistics/components/bar-chart/bar-chart.component';
 import { PieChartComponent } from './pages/statistics/components/pie-chart/pie-chart.component';
-import { StatBlockComponent } from './pages/statistics/components/stat-block/stat-block.component';
+import { AllStat } from './pages/statistics/components/all-stat/all-stat.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { EditSurveyComponent } from './pages/edit-survey/edit-survey.component';
-import { AverageStatComponent } from './pages/statistics/average-stat/average-stat.component';
-import { StatBlockTextComponent } from './pages/statistics/stat-block-text/stat-block-text.component';
-import { DynamicStatComponent } from './pages/statistics/dynamic-stat/dynamic-stat.component';
+import { AverageStatComponent } from './pages/statistics/components/average-stat/average-stat.component';
+import { StatBlockTextComponent } from './pages/statistics/components/stat-block-text/stat-block-text.component';
+import { DynamicStatComponent } from './pages/statistics/components/dynamic-stat/dynamic-stat.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent, 
@@ -61,7 +61,7 @@ const routes: Routes = [
     ProfileComponent,
     BarChartComponent,
     PieChartComponent,
-    StatBlockComponent,
+    AllStat,
     EditSurveyComponent,
     AverageStatComponent,
     StatBlockTextComponent,

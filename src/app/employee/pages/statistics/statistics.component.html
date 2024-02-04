@@ -93,13 +93,13 @@
   <div *ngIf="!uploadedSuccess" style="font-size: 1.8rem; text-align: center; line-height: 30px;">
     {{message}}
   </div>
-  <ng-container *ngIf="questionsAll && uploadedSuccess && type == 'Ответы участников'; else elseBlock">
+
+  <ng-container *ngIf="uploadedSuccess && questionsAll && type == 'Ответы участников'">
     <div *ngFor="let question of questionsAll; let i = index" class="stat-block">
-      <app-stat-block 
+      <app-all-stat 
         [question]="question" 
         [index]="i" 
-        [typeStatisticsDisplay]="type">
-      </app-stat-block>
+        [typeStatisticsDisplay]="type" />
     </div>
   </ng-container>
 
@@ -108,8 +108,7 @@
       <div *ngFor="let question of questionsAverageFirst; let i = index">
         <app-average-stat  
           [question]="question" 
-          [index]="i">
-        </app-average-stat>
+          [index]="i" />
       </div> 
     </div>
     <div *ngIf="uploadedSuccess && !questionsAverageFirst">loading...</div>
@@ -122,10 +121,9 @@
       <ng-container *ngIf="questionsAverageFirst.length <= questionsAverageSecond.length">
         <div *ngFor="let question of questionsAverageFirst; let i = index">
           <app-dynamic-stat 
-            [index]="i"
             [questionFirst]="question"
-            [questionSecond]="questionsAverageSecond[i]">
-          </app-dynamic-stat>
+            [questionSecond]="questionsAverageSecond[i]"
+            [index]="i" />
         </div> 
       </ng-container>
       <ng-container *ngIf="questionsAverageFirst.length > questionsAverageSecond.length">
@@ -141,7 +139,4 @@
     
     <div *ngIf="uploadedSuccess && (!questionsAverageFirst || !questionsAverageSecond)">loading...</div>
   </ng-container>
-
-  <ng-template #elseBlock style="font-size: 1.8rem; text-align: center; width: 90%;"></ng-template>
-
 </div>

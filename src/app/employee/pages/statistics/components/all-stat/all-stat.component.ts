@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-stat-block',
-  templateUrl: './stat-block.component.html',
-  styleUrls: ['./stat-block.component.css']
+  selector: 'app-all-stat',
+  templateUrl: './all-stat.component.html',
+  styleUrls: ['./all-stat.component.css']
 })
-export class StatBlockComponent implements OnInit{
-  @Input() question!: any;
+export class AllStat implements OnInit{
+	@Input() question!: any;
   @Input() index!: number;
   @Input() typeStatisticsDisplay!: string;
   protected typeQuestion!: number;

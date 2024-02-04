@@ -25,8 +25,7 @@ export class StatisticsComponent implements OnInit, OnDestroy{
     protected questionsAverageSecond: any;
     protected types: string[] = ['Средний балл', 'Динамика', 'Ответы участников'];
     protected type!: string;
-    // protected departments: string[] = ['Поликлиника'];
-    protected departments: string[] = ['Поликлиника'];
+    protected departments: string[] = [];
     protected statForm!: FormGroup;
     protected role: number;
 
@@ -53,9 +52,9 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         const dateStart = new Date();
         dateStart.setMonth(dateEnd.getMonth() - 2);
         this.statForm = new FormGroup({
-            nameSurvey: new FormControl(),
+            nameSurvey: new FormControl('Общие данные'),
             type: new FormControl(this.types[2]),
-            department: new FormControl('Поликлиника'),
+            department: new FormControl(),
             dateValueStart: new FormControl(
                 new TuiDayRange(new TuiDay(2023, dateStart.getMonth(), 1), new TuiDay(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate())),
             ),
@@ -85,8 +84,8 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.surveysService.getSurveysAdmin().subscribe(
             (data: any) => {
                 this.surveys = data;
-                this.surveys.unshift({id: '', name: 'Общие', description: ''})
                 this.value = this.curSurvey.id;
+                this.surveys.unshift({id: '', name: 'Общие данные', description: ''})
                 console.log(data)
                 this.cdr.detectChanges();
             },
@@ -100,8 +99,8 @@ export class StatisticsComponent implements OnInit, OnDestroy{
         this.surveysService.getSurveysAnalyst().subscribe(
             (data: any) => {
                 this.surveys = data;
-                this.surveys.unshift({id: '', name: 'Общие', description: ''})
                 this.value = this.curSurvey.id;
+                this.surveys.unshift({id: '', name: 'Общие данные', description: ''})
                 console.log(data)
                 this.cdr.detectChanges();
             },
@@ -129,9 +128,8 @@ export class StatisticsComponent implements OnInit, OnDestroy{
     getStatsSurveyAll(from: string, to: string, surveyId: string, department: string = '') {
         this.statisticsService.getStatsSurveyAll(from, to, surveyId, department).subscribe(
             (data: any) => {
-                if(data) {
+                if(data && data.questions && data.questions.length > 0) {
                     // this.message = '';
-                    // console.log('stats', data);
                     data.questions.sort((a: any, b: any) => a.question.number - b.question.number);
                     this.questionsAll = data.questions;
                     this.uploadedSuccess = true;
@@ -203,9 +201,10 @@ export class StatisticsComponent implements OnInit, OnDestroy{
     getDepartment() {
         this.statisticsService.getDepartment().subscribe(
             (data: any) => {
+                // console.log('getDepartment', data);
                 let array = data.map((el: any) => el.name);
                 this.departments = array;
-                this.departments.unshift('Поликлиника');
+                // this.departments.unshift('Cтационар');
             },
             (err: any)=> {
                 console.log(err)
@@ -221,13 +220,12 @@ export class StatisticsComponent implements OnInit, OnDestroy{
     formListener(): void {
         this.subscriptionFirst = this.statForm.valueChanges.subscribe((form: any) => {
             this.type = form.type;
-            const idSurvey: string = form.nameSurvey === 'Общие' || form.nameSurvey === '' ? '' : 
-                form.nameSurvey || this.curSurvey.id;
+            const idSurvey: string = form.nameSurvey === '' ? '' : form.nameSurvey || this.curSurvey.id;
 
             const dateFirst: TuiDayRange = form.dateValueStart;
             const from: string = `${dateFirst.from.month + 1}.${dateFirst.from.day}.${dateFirst.from.year % 100}`;
             const to: string = `${dateFirst.to.month + 1}.${dateFirst.to.day}.${dateFirst.to.year % 100}`;
-            const department: string = (form.department && form.department != 'Поликлиника') ? form.department : '';
+            const department: string = (form.department && idSurvey !== '') ? form.department : '';
             
             switch(form.type) {
                 case 'Ответы участников':

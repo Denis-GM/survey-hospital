@@ -58,7 +58,7 @@ export class AccountService {
 
     deleteAccount(): Observable<any> {
         const headers = this.headersLogReg.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
-        return this.http.delete(this.apiGetAccount, { headers: this.headers });
+        return this.http.delete(this.apiGetAccount, { headers: headers });
     }
 
     createKeyAccess(key: string): Observable<any> {
@@ -67,7 +67,8 @@ export class AccountService {
     }
 
     login(account: ILoginAccount): Observable<any> {
-        return this.http.post<any>(this.apiLogin, account, { headers: this.headersLogReg })
+        const headers = this.headersLogReg.set('Authorization', `Bearer ${localStorage.getItem('auth-token') || ''}`);
+        return this.http.post<any>(this.apiLogin, account, { headers: headers })
             .pipe(map(user => {
                 localStorage.setItem('user', JSON.stringify(user));
                 localStorage.setItem('auth-token', user.token);
@@ -84,6 +85,4 @@ export class AccountService {
         this.userSubject.next({} as IUser);
         this.router.navigate(['/account/login']);
     }
-
-    
 }

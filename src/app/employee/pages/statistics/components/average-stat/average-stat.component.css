@@ -44,6 +44,8 @@
 }
 
 .average-stat-block_number div {
+  line-height: 30px;
+  text-align: center;
   border-radius: 7px;
   padding: 20px 15px;
   background-color: #D0D4E3;

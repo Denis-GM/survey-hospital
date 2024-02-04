@@ -96,3 +96,15 @@
   font-size: 1.1rem;
   color: rgb(110, 110, 110);
 }
+
+.alert {
+  text-align: center;
+  font-size: 1.0rem;
+  line-height: 16px;
+
+  margin: 10px 0;
+}
+
+.alert-danger {
+  color: brown;
+}

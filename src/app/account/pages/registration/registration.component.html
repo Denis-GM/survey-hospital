@@ -11,26 +11,82 @@
               <input placeholder="Choose your hero" tuiTextfield name="role"/>
               <tui-data-list-wrapper *tuiDataList [items]="items"></tui-data-list-wrapper>
             </tui-select>
-            <tui-input formControlName="email" tuiTextfieldSize="l" class="input_margin-bottom_20px">
-              Почта
-              <input autocomplete="email" tuiTextfield type="text" name="email"/>
-            </tui-input>
-            <tui-input formControlName="login" tuiTextfieldSize="l" class="input_margin-bottom_20px">
-              Логин
-              <input autocomplete="nickname" tuiTextfield type="text" name="login"/>
-            </tui-input>  
-            <tui-input formControlName="password1" tuiTextfieldSize="l" class="input_margin-bottom_20px">
-              Пароль
-              <input autocomplete="new-password" tuiTextfield type="password" name="password1"/>
-            </tui-input>
-            <tui-input formControlName="password2" tuiTextfieldSize="l" >
-              Подтвердите пароль
-              <input autocomplete="new-password" tuiTextfield type="password" name="password2"/>
-            </tui-input>
+            
+            <label class="input_margin-bottom_20px">
+              <tui-input formControlName="email" tuiTextfieldSize="l">
+                Почта
+                <input autocomplete="email" tuiTextfield type="text" name="email"/>
+              </tui-input>
+
+              <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                class="alert alert-danger"
+              >
+                <div *ngIf="email.errors?.['required']">Обязательное поле.</div>
+                <div *ngIf="email.errors?.['email']">
+                  Email должен содержать @.
+                </div>
+              </div>
+            </label>
+
+            <label class="input_margin-bottom_20px">
+              <tui-input formControlName="login" tuiTextfieldSize="l" >
+                Логин
+                <input autocomplete="nickname" tuiTextfield type="text" name="login"/>
+              </tui-input>  
+
+              <div *ngIf="login.invalid && (login.dirty || login.touched)"
+                class="alert alert-danger"
+              >
+                <div *ngIf="login.errors?.['required']">Обязательное поле.</div>
+                <div *ngIf="login.errors?.['minlength']">
+                  Login должен содержать не менее 8 символов.
+                </div>
+                <div *ngIf="login.errors?.['maxlength']">
+                  Login должен содержать не более 20 символов.
+                </div>
+              </div>
+            </label>
+            
+            <label class="input_margin-bottom_20px">
+              <tui-input formControlName="password1" tuiTextfieldSize="l">
+                Пароль
+                <input autocomplete="new-password" tuiTextfield type="password" name="password1"/>
+              </tui-input>
+
+              <div *ngIf="password1.invalid && (password1.dirty || password1.touched)"
+                class="alert alert-danger"
+              >
+                <div *ngIf="password1.errors?.['required']">Обязательное поле.</div>
+                <div *ngIf="password1.errors?.['minlength']">
+                  Пароль должен содержать не менее 12 символов.
+                </div>
+              </div>
+              <div *ngIf="(password1.dirty || password1.touched)" class="alert" >
+                <div>
+                  Пароль должен состоять только из букв Латинского алфавита.
+                </div>
+              </div>
+            </label>
+
+            <label class="input_margin-bottom_20px">
+              <tui-input formControlName="password2" tuiTextfieldSize="l" >
+                Подтвердите пароль
+                <input autocomplete="new-password" tuiTextfield type="password" name="password2"/>
+              </tui-input>
+              <div *ngIf="password2.invalid && (password2.dirty || password2.touched)"
+                class="alert alert-danger"
+              >
+                <div *ngIf="password2.errors?.['required']">Обязательное поле.</div>
+                <div *ngIf="password2.value !== password1.value">Введенные пароли не совпадают.</div>
+              </div>
+            </label>
           </div>
           <div class="message">{{message}}</div>
           <div class="form__footer">
-            <button appearance="primary" size="m" tuiButton type="submit" class="tui-space_right-3 tui-space_bottom-3 btn">
+            <button appearance="primary" size="m" 
+              tuiButton type="submit" 
+              class="tui-space_right-3 tui-space_bottom-3 btn"
+              [disabled]="regForm.invalid" >
               Зарегистрироваться
             </button>
             <div routerLink="/account/login" class="inscription-bottom">Уже есть аккаунт? Войдите</div>

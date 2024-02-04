@@ -26,6 +26,7 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   }
 
   calculateStatistics(): any {
+    console.log(this.dataStat)
     const len = this.dataStat.length;
     let labels: string[] = new Array();
     let data: number[] = new Array();
@@ -47,17 +48,14 @@ export class BarChartComponent implements OnInit, AfterViewInit {
     }
     else if(this.typeQuestion == 3) {
       this.dataStat.rangeList.forEach((element: any, index: number) => {
-        // if(element.count > 0) {
         labels.push(element.rangeValue);
         data.push(element.percent);
         maxCount += element.count;
-        // }
       });;
     }
     this.labels = labels;
     this.data = data;
     this.countAnswer = maxCount;
-    // console.log(labels, data, maxCount)
   }
 
   barChartMethod() {

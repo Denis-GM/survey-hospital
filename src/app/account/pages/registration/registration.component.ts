@@ -10,24 +10,42 @@ import { IRegisterAccount } from 'src/app/core/interfaces/account-interfaces';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit{
-  protected message: string = 'Логин должен содержать не менее 8 символов. Пароль должен состоять минимум из 12 символов'
-
-  constructor(private accountService: AccountService, private router: Router) {}
-
-  ngOnInit(): void { }
+  protected message: string = ''
+  // protected message: string = 'Логин должен содержать не менее 8 символов. Пароль должен состоять минимум из 12 символов'
+  protected regForm!: FormGroup;
 
   items = [
     'Аналитик',
     'Администратор',
   ];
-  
-  regForm = new FormGroup({
-    role: new FormControl( this.items[0], [ Validators.required ]),
-    email: new FormControl('', [ Validators.required, Validators.email ]),
-    login: new FormControl('', [ Validators.required, Validators.min(8), Validators.min(20)]),
-    password1: new FormControl('', [ Validators.required, Validators.min(12) ]),
-    password2: new FormControl('', [ Validators.required, Validators.min(12) ]),
-  });
+
+  constructor(private accountService: AccountService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.regForm = new FormGroup({
+      role: new FormControl( this.items[0], [ Validators.required ]),
+      email: new FormControl('', [ Validators.required, Validators.email ]),
+      login: new FormControl('', [ Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
+      password1: new FormControl('', [ Validators.required, Validators.minLength(12) ]),
+      password2: new FormControl('', [ Validators.required, Validators.minLength(12) ]),
+    });
+  }
+
+  get email() {
+    return this.regForm.get('email')!;
+  }
+
+  get login() {
+    return this.regForm.get('login')!;
+  }
+
+  get password1() {
+    return this.regForm.get('password1')!;
+  }
+
+  get password2() {
+    return this.regForm.get('password2')!;
+  }
 
   registerAccount() {
     const roleString: string = this.regForm.get('role')!.value!;
@@ -45,8 +63,9 @@ export class RegistrationComponent implements OnInit{
         this.router.navigate(['/account/login']);
       },
       (err: any) => {
+        alert('Ошибка заполнения формы')
         console.log(err)
-        this.message = 'Уже существует аккаунт с такой почтой или логином'
+        // this.message = 'Уже существует аккаунт с такой почтой или логином'
       }
     );
   }
