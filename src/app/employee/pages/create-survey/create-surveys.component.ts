@@ -3,7 +3,7 @@ import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@ang
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
-import { ISurvey, IQuestion, IAnswerOptions } from '../../../core/interfaces/ISurvey';
+import { ISurvey, IQuestion, IAnswerOptions } from '../../../core/interfaces/survey.interface';
 import { TuiContextWithImplicit, TuiStringHandler, tuiPure } from '@taiga-ui/cdk';
 
 interface IInterface {

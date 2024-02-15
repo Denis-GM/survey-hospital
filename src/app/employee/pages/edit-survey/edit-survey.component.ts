@@ -3,9 +3,9 @@ import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@ang
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
-import { ISurvey, IQuestion, IAnswerOptions, IQuestionGet } from '../../../core/interfaces/ISurvey';
+import { ISurvey, IQuestion, IAnswerOptions, IQuestionGet } from '../../../core/interfaces/survey.interface';
 import { TuiContextWithImplicit, TuiStringHandler, tuiPure } from '@taiga-ui/cdk';
-import { QuestionBase } from 'src/app/core/interfaces/question-base';
+import { QuestionBase } from 'src/app/core/interfaces/question-base.interface';
 import { QuestionControlService } from 'src/app/core/services/question-control.service';
 
 interface IInterface {

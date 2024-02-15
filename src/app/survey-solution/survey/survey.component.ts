@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SurveysService } from 'src/app/core/api/surveys.service';
 import { FormArray, Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { QuestionControlService } from 'src/app/core/services/question-control.service';
-import { QuestionBase, SurveyBase } from 'src/app/core/interfaces/question-base';
+import { QuestionBase, SurveyBase } from 'src/app/core/interfaces/question-base.interface';
 
 @Component({
   selector: 'app-survey-solution',

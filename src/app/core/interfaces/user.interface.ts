@@ -1,4 +1,7 @@
-import { Role } from "./Role";
+export enum Role {
+    Analyst = 3,
+    Admin = 2
+}
 
 export interface IUser {
     id: string;

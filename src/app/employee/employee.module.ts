@@ -18,7 +18,6 @@ import { OptionComponent } from './components/option/option.component';
 import { SurveySolutionModule } from '../survey-solution/survey-solution.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { ModalWindowControlService } from '../core/services/modal-window-control.service';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import {TuiLetModule} from '@taiga-ui/cdk';
 import {TuiInputDateRangeModule} from '@taiga-ui/kit';
@@ -92,7 +91,6 @@ const routes: Routes = [
   ],
   providers: [
     SurveysService,
-    ModalWindowControlService,
     {
       provide: TUI_SANITIZER,
       useClass: NgDompurifySanitizer,

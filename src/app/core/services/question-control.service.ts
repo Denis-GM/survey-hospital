@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { QuestionBase } from '../interfaces/question-base';
+import { QuestionBase } from '../interfaces/question-base.interface';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IQuestion, IQuestionGet } from '../interfaces/ISurvey';
+import { IQuestion, IQuestionGet } from '../interfaces/survey.interface';
 
 @Injectable({
   providedIn: 'root'

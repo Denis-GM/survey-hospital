@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/core/api/account.service';
-import { IRegisterAccount } from 'src/app/core/interfaces/account-interfaces';
+import { IRegisterAccount } from 'src/app/core/interfaces/account.interface';
 
 @Component({
   selector: 'app-registration',
@@ -11,13 +11,9 @@ import { IRegisterAccount } from 'src/app/core/interfaces/account-interfaces';
 })
 export class RegistrationComponent implements OnInit{
   protected message: string = ''
-  // protected message: string = 'Логин должен содержать не менее 8 символов. Пароль должен состоять минимум из 12 символов'
   protected regForm!: FormGroup;
 
-  items = [
-    'Аналитик',
-    'Администратор',
-  ];
+  items = [ 'Аналитик', 'Администратор' ];
 
   constructor(private accountService: AccountService, private router: Router) {}
 
@@ -59,13 +55,11 @@ export class RegistrationComponent implements OnInit{
     console.log(newAccount)
     this.accountService.register(newAccount).subscribe(
       (data: any) => {
-        console.log(data);
         this.router.navigate(['/account/login']);
       },
       (err: any) => {
         alert('Ошибка заполнения формы')
         console.log(err)
-        // this.message = 'Уже существует аккаунт с такой почтой или логином'
       }
     );
   }

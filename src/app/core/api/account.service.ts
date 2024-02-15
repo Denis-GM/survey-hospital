@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
-import { IRegisterAccount, ILoginAccount } from '../interfaces/account-interfaces';
-import { IUser } from '../interfaces/IUser';
+import { IRegisterAccount, ILoginAccount } from '../interfaces/account.interface';
+import { IUser } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,13 +16,6 @@ export class AccountService {
 
     private userSubject: BehaviorSubject<IUser>;
     public user: Observable<IUser>;
-    
-    private headers = new HttpHeaders({ 
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', 
-        'Authorization': `Bearer ${localStorage.getItem('auth-token') || ''}`
-        // 'Authorization': `Bearer ${this.userValue.token}`
-    });
 
     private headersLogReg = new HttpHeaders({ 
         'Content-Type': 'application/json',
@@ -79,9 +72,7 @@ export class AccountService {
     }
 
     logout() {
-        localStorage.removeItem('user');
-        localStorage.removeItem('auth-token');
-        localStorage.removeItem('role');
+        localStorage.clear();
         this.userSubject.next({} as IUser);
         this.router.navigate(['/account/login']);
     }

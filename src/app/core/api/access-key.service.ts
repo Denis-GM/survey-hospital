@@ -10,12 +10,6 @@ export class AccessKeyService {
     private apiGetAccessKeyAdmin: string = this.apiUrl + '/admin/surveys/access-key';
     private apiAddAccessKeyAnalyst: string = this.apiUrl + '/analyst/surveys/add';
 
-    private headers = new HttpHeaders({ 
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', 
-        'Authorization': `Bearer ${localStorage.getItem('auth-token') || ''}`
-    });
-
     private headersNotAuth = new HttpHeaders({ 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*', 
@@ -34,7 +28,7 @@ export class AccessKeyService {
     }
 
     addAccessKeyАnalyst(accessKey: string): Observable<any> {
-        const params = new HttpParams().set("accessKey", accessKey);
+        // const params = new HttpParams().set("accessKey", accessKey);
         const headers = this.headersNotAuth.set('Authorization', `Bearer ${localStorage.getItem('auth-token')}`)
         return this.http.post(this.apiAddAccessKeyAnalyst + `?accessKey=${accessKey}`, {}, {headers: headers})
         // return this.http.post(this.apiAddAccessKeyAnalyst, {headers: headers, params: params})

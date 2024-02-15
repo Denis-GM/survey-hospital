@@ -2,8 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { Router } from '@angular/router';
 import { StatisticsService } from 'src/app/core/api/statistics.service';
 import { SurveysService } from 'src/app/core/api/surveys.service';
-import { ISurveyGet } from 'src/app/core/interfaces/ISurvey';
-import { ModalWindowControlService } from 'src/app/core/services/modal-window-control.service';
+import { ISurveyGet } from 'src/app/core/interfaces/survey.interface';
 
 @Component({
   selector: 'app-surveys',
@@ -21,8 +20,7 @@ export class SurveysComponent implements OnInit, OnDestroy {
   
   constructor(
     private router: Router, private surveysService: SurveysService,
-    private mwControl: ModalWindowControlService, private surveyService: SurveysService,
-    private statisticsService: StatisticsService) {
+    private surveyService: SurveysService, private statisticsService: StatisticsService) {
       this.role = (localStorage.getItem('role') || 3) as number;
     }
 

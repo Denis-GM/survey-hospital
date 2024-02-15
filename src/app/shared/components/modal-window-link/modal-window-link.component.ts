@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, Inject } from '@angular/core';
 import { TuiAlertService } from '@taiga-ui/core';
 import { ClipboardService } from 'ngx-clipboard';
-import { ModalWindowControlService } from 'src/app/core/services/modal-window-control.service';
 
 @Component({
   selector: 'app-modal-window-link',

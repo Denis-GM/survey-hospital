@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/not-found-page/not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
-import { Role } from './core/interfaces/Role';
 
 const routes: Routes = [
 	{ 
@@ -18,7 +17,6 @@ const routes: Routes = [
 		loadChildren: () => import('./employee/employee.module')
 			.then(m => m.AdminAnalyticalModule),
 		canActivate: [AuthGuard],
-		// data: { roles: [Role.Admin] }
 	},
 	{ 
 		path: 'fill', 

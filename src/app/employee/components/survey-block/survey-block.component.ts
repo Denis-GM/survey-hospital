@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { SurveysService } from 'src/app/core/api/surveys.service';
-import { ISurveyGet } from 'src/app/core/interfaces/ISurvey';
-import { ModalWindowControlService } from 'src/app/core/services/modal-window-control.service';
+import { ISurveyGet } from 'src/app/core/interfaces/survey.interface';
 
 @Component({
   selector: 'app-survey-block',
@@ -13,8 +12,7 @@ export class SurveyBlockComponent implements OnInit{
   private url: string = 'http://localhost:4200/patient/fill/'
   @Output() link = new EventEmitter<string>();
 
-  constructor(
-    private surveyService: SurveysService, private mwControl: ModalWindowControlService) {}
+  constructor(private surveyService: SurveysService) {}
 
   ngOnInit(): void {
     console.log(this.survey);
